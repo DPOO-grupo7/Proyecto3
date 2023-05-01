@@ -1,0 +1,56 @@
+package modelo;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Reserva {
+	private InformadorHuesped huespedAcargo;
+	private ArrayList<InformadorHuesped> grupoHuespedes;
+	private int numPersonas;
+	private Date fechaLlegada;
+	private Date fechaSalida;
+	private ArrayList<Habitacion> numHabitaciones;
+	private int identificacion;
+	private int facturacion;
+	private boolean enUso;
+
+	public Reserva(InformadorHuesped pHuespedAcargo, Date pFechaLlegada, Date pFechaSalida,
+			ArrayList<Habitacion> pNumHabitaciones, int identificador) {
+		huespedAcargo = pHuespedAcargo;
+		grupoHuespedes = new ArrayList<InformadorHuesped>();
+		grupoHuespedes.add(huespedAcargo);
+		fechaLlegada = pFechaLlegada;
+		fechaSalida = pFechaSalida;
+		numHabitaciones = pNumHabitaciones;
+		identificacion = identificador;
+		enUso = false;
+	}
+
+	public void setGrupoHuespedes(ArrayList<InformadorHuesped> pGrupoHuespedes) {
+		grupoHuespedes.addAll(pGrupoHuespedes);
+	}
+
+	public void setNumPersonas() {
+		numPersonas = grupoHuespedes.size();
+	}
+
+	public int getNumPersonas() {
+		return numPersonas;
+	}
+
+	public Date getFechaLlegada() {
+		return fechaLlegada;
+	}
+
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+
+	public ArrayList<Habitacion> getNumHabitaciones() {
+		return numHabitaciones;
+	}
+
+	public int getIdentificacion() {
+		return identificacion;
+	}
+}
