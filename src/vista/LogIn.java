@@ -16,37 +16,59 @@ public class LogIn extends JFrame{
 
 	public LogIn() {
 		frame = new JFrame();
-		frame.setVisible(true);
 		frame.setTitle("Hotel ddpo");
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		frame.setSize(800, 700);
+		frame.setSize(1000, 800);
 		frame.setResizable(true);
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setBackground(Color.decode("#a8c4d4"));
+		JPanel izq = new JPanel();
+		JPanel centro = new JPanel();
+		JPanel dere = new JPanel();
+		
+		izq.setBackground(Color.decode("#a8c4d4"));
+		izq.setPreferredSize(new Dimension (300,700));
+		
+		dere.setBackground(Color.decode("#a8c4d4"));
+		dere.setPreferredSize(new Dimension (300,700));
+	
+		centro.setBackground(Color.decode("#a8c4d4"));
+		centro.setPreferredSize(new Dimension (500, 700));
+		centro.setLayout(new BoxLayout(centro, BoxLayout.Y_AXIS));
+		
 		
 		this.usuario = new JTextField();
-		usuario.setPreferredSize(new Dimension (60, 100));
+		usuario.setPreferredSize(new Dimension (200,50));
 		this.contraseña = new JPasswordField();
-		this.label = new JLabel("hi");
+		contraseña.setPreferredSize(new Dimension (200, 50));
+		this.label = new JLabel();
 		this.hoteldpo = new ImageIcon("./imagenes/Foto Dpoo.png");
 		label.setIcon(this.hoteldpo);
 		this.iniciar = new JButton();
+		iniciar.setPreferredSize(new Dimension(200,50));
 		
 
-		panel.add(Box.createVerticalGlue());
-		panel.add(label);
-		panel.add(Box.createVerticalGlue());
-		panel.add(usuario);
-		panel.add(Box.createVerticalGlue());
-		panel.add(contraseña);
-		panel.add(Box.createVerticalGlue());
-		panel.add(iniciar);
-		panel.add(Box.createVerticalGlue());
-		panel.setAlignmentY(CENTER_ALIGNMENT);
-		panel.setAlignmentX(CENTER_ALIGNMENT);
-		panel.setVisible(true);
-		frame.add(panel);
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createVerticalGlue());
+		centro.add(label);
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createVerticalGlue());
+		centro.add(usuario);
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createVerticalGlue());
+		centro.add(contraseña);
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createHorizontalGlue());
+		centro.add(iniciar);
+		centro.add(Box.createVerticalGlue());
+		centro.add(Box.createVerticalGlue());
+		centro.setAlignmentY(Component.CENTER_ALIGNMENT);
+		centro.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		frame.add(izq, BorderLayout.WEST);
+		frame.add(centro, BorderLayout.CENTER);
+		frame.add(dere, BorderLayout.EAST);
+		frame.setVisible(true);
+		centro.setVisible(true);
 	}
 }
