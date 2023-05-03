@@ -15,7 +15,7 @@ public class LogIn extends JFrame implements ActionListener {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JPanel loginPanel;
-    private Autenticador Autenticador;
+    private Autenticador Autenticador = new Autenticador();
 
     public LogIn() {
         // Configurar el JFrame
