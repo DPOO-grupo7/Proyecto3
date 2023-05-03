@@ -22,8 +22,9 @@ public class LogIn extends JFrame implements ActionListener {
         // Configurar el JFrame
         setTitle("Inicio de sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 500);
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+        setSize(400, 250);
+        setLocationRelativeTo(this); // Centrar la ventana en la pantalla
+        setResizable(false);
 
         // Crear el panel de inicio de sesión
         loginPanel = new JPanel();
@@ -41,6 +42,7 @@ public class LogIn extends JFrame implements ActionListener {
         loginPanel.add(passwordLabel);
 
         passwordField = new JPasswordField();
+        passwordField.setSize(100, 30);
         loginPanel.add(passwordField);
 
         loginButton = new JButton("Iniciar sesión");
@@ -76,11 +78,11 @@ public class LogIn extends JFrame implements ActionListener {
         
 	        if (this.Autenticador.autenticar(username, password) == false)
 	        {
-	        	JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+	        	JOptionPane.showMessageDialog(this, "Usuario o contraseña invalido.", "Error", JOptionPane.ERROR_MESSAGE);
 	        }
 	        else
 	        {
-	        	JOptionPane.showMessageDialog(this, "Login successful!");
+	        	JOptionPane.showMessageDialog(this, "Inicio exitoso.");
         }
         else if (e.getSource() == registerButton)
         {
