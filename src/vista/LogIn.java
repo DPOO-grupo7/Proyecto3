@@ -15,6 +15,7 @@ public class LogIn extends JFrame{
 	
 
 	public LogIn() {
+		
 		frame = new JFrame();
 		frame.setTitle("Hotel ddpo");
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,9 +41,7 @@ public class LogIn extends JFrame{
 		usuario.setPreferredSize(new Dimension (200,50));
 		this.contraseña = new JPasswordField();
 		contraseña.setPreferredSize(new Dimension (200, 50));
-		this.label = new JLabel();
-		this.hoteldpo = new ImageIcon("./imagenes/Foto Dpoo.png");
-		label.setIcon(this.hoteldpo);
+		this.label = new JLabel("HOTEL DPO");
 		this.iniciar = new JButton();
 		iniciar.setPreferredSize(new Dimension(200,50));
 		
