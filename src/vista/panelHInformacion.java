@@ -18,7 +18,7 @@ public class panelHInformacion extends JPanel {
 	private Image imagen;
 
 	public panelHInformacion() {
-		imagen = new ImageIcon("./imagenes/FotoHotel.jpg").getImage();
+		imagen = new ImageIcon("./data/FotoHotel.jpg").getImage();
 
 		Color Silver = new Color(192, 192, 192);
 		// Esta ventana tiene 3 secciones

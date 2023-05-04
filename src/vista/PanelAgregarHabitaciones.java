@@ -19,6 +19,7 @@ public class PanelAgregarHabitaciones extends JFrame {
 	
 	
 	
+	
 	public PanelAgregarHabitaciones()
 	{
 		
