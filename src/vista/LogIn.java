@@ -15,6 +15,9 @@ public class LogIn extends JFrame implements ActionListener {
     private JButton loginButton;
     private JPanel loginPanel;
     private JPanel imgPanel;
+    private JPanel sur;
+    private JPanel izq;
+    private JPanel dere;
     private JButton registerButton;
     private Image dpo;
     private Autenticador Autenticador = new Autenticador();
@@ -23,13 +26,19 @@ public class LogIn extends JFrame implements ActionListener {
         // Configurar el JFrame
         setTitle("Inicio de sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 250);
+        setSize(600, 250);
         setLocationRelativeTo(this); // Centrar la ventana en la pantalla
         setResizable(false);
 
         // Crear el panel de inicio de sesión
         imgPanel = new JPanel();
         loginPanel = new JPanel();
+        sur = new JPanel();
+        sur.setSize(500, 50);
+        izq = new JPanel();
+        izq.setSize(80, 250);
+        dere = new JPanel();
+        dere.setSize(80, 250);
         loginPanel.setLayout(new GridLayout(3, 2));
         
         dpo = new ImageIcon("./data/HotelDpoo.png").getImage();
@@ -42,6 +51,7 @@ public class LogIn extends JFrame implements ActionListener {
         imgPanel.add(titulo);
         
         JLabel usernameLabel = new JLabel("Usuario:");
+        usernameLabel.setForeground(Color.WHITE);
         usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginPanel.add(usernameLabel);
 
@@ -49,6 +59,7 @@ public class LogIn extends JFrame implements ActionListener {
         loginPanel.add(usernameField);
 
         JLabel passwordLabel = new JLabel("Contraseña:");
+        passwordLabel.setForeground(Color.WHITE);
         passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginPanel.add(passwordLabel);
 
@@ -70,10 +81,18 @@ public class LogIn extends JFrame implements ActionListener {
 
         loginPanel.setBackground(Color.decode("#a8c4d4"));
         imgPanel.setBackground(Color.decode("#a8c4d4"));
-        loginPanel.setMaximumSize(new Dimension(300, 100));
+        dere.setBackground(Color.decode("#a8c4d4"));
+        izq.setBackground(Color.decode("#a8c4d4"));
+        sur.setBackground(Color.decode("#a8c4d4"));
+    
+        loginPanel.setMaximumSize(new Dimension(400, 200));
         // Agregar el panel al JFrame
         add(imgPanel, BorderLayout.NORTH);
         add(loginPanel, BorderLayout.CENTER);
+        add(sur, BorderLayout.SOUTH);
+        add(izq, BorderLayout.WEST);
+        add(dere, BorderLayout.EAST);
+       
 
         
         // Mostrar el JFrame
