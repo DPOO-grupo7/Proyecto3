@@ -86,6 +86,20 @@ public class LogIn extends JFrame implements ActionListener {
         }
         else if (e.getSource() == registerButton)
         {
+        	String tipo = "";
+        	String[] botones = {"Recepcion", "Personal"};
+        	int ventanaTipo = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir Tipo de Personal",JOptionPane.DEFAULT_OPTION, 
+					JOptionPane.QUESTION_MESSAGE, null,  botones, botones[0]);
+        	if (ventanaTipo == 0)
+        	{
+        		tipo = "RECEPCIONISTA";
+        	}
+        	else if (ventanaTipo == 1)
+        	{
+        		tipo = "PERSONAL DEL HOTEL";
+        	}
+        	this.Autenticador.setUsuarios(username, password, tipo);
+        	JOptionPane.showMessageDialog(this, "Registro exitoso.");
         	
         }
     }
