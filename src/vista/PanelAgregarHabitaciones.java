@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 
-import utilidades.Autenticador;
 
 public class PanelAgregarHabitaciones extends JFrame {
 
@@ -28,7 +27,7 @@ public class PanelAgregarHabitaciones extends JFrame {
 	
 	public PanelAgregarHabitaciones()
 	{
-		dpo = new ImageIcon("./data/HotelDpoo.png").getImage();
+		dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
         Icon icono = new ImageIcon(dpo);
 		
         setLayout(new BorderLayout());
@@ -36,17 +35,18 @@ public class PanelAgregarHabitaciones extends JFrame {
         
         izq = new JPanel();
         izq.setLayout(new GridLayout(5, 1));
-        izq.add(new JButton("Botón 1"));
-        izq.add(new JButton("Botón 2"));
-        izq.add(new JButton("Botón 3"));
-        izq.add(new JButton("Botón 4"));
-        izq.add(new JButton("Botón 5"));
+        izq.add(new JButton());
+        izq.add(new JButton());
+        izq.add(new JButton());
+        izq.add(new JButton());
+        izq.add(new JButton());
         
         
         centro = new JPanel();
-        centro.setLayout(new BoxLayout(centro, BoxLayout.Y_AXIS));
+        centro.setLayout(new GridLayout(6 ,1 ));
         JComboBox<String> comboBox = new JComboBox<String>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
         centro.add(comboBox);
+        centro.add(new JLabel());
         JButton button = new JButton("Agregar Habitación");
         comboBox.addActionListener(e -> {
             if (comboBox.getSelectedItem().equals("Opción 1")) {
@@ -60,10 +60,14 @@ public class PanelAgregarHabitaciones extends JFrame {
         
         
         dere = new JPanel();
-        dere.setLayout(new GridLayout(3, 1));
+        dere.setLayout(new GridLayout(6, 1));
+        //dere.add(new JLabel());
         dere.add(new JButton("Tipo de habitacion "));
+        dere.add(new JLabel());
         dere.add(new JButton("Numero de habitacion "));
+        dere.add(new JLabel());
         dere.add(new JButton("Tarifa"));
+        dere.add(new JLabel());
         
        
         arriba = new JPanel();
@@ -74,10 +78,13 @@ public class PanelAgregarHabitaciones extends JFrame {
         
         
         abajo = new JPanel();
+        JLabel espacio = new JLabel();
+        abajo.add(espacio);
         
-        centro.setBackground(Color.decode("#a8c4d4"));
-        arriba.setBackground(Color.decode("#a8c4d4"));
-        dere.setBackground(Color.decode("#a8c4d4"));
+        
+        centro.setBackground(Color.decode("#f5f6fb"));
+        arriba.setBackground(Color.decode("#f5f6fb"));
+        dere.setBackground(Color.decode("#f5f6fb"));
         izq.setBackground(Color.decode("#a8c4d4"));
         abajo.setBackground(Color.decode("#a8c4d4"));
         
