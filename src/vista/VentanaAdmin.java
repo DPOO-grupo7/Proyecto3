@@ -59,20 +59,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
         izq.add(new JLabel());
         
         
-        centro = new PanelAdminCentro("habitaciones");
+        centro = new PanelAdminCentro("habitaciones", this);
         
         
-        dere = new JPanel();
-        dere.setLayout(new GridLayout(8, 1));
-        //dere.add(new JLabel());
-        dere.add(new JButton("Tipo de habitacion "));
-        dere.add(new JLabel());
-        dere.add(new JButton("Numero de habitacion "));
-        dere.add(new JLabel());
-        dere.add(new JButton("Tarifa"));
-        dere.add(new JLabel());
-        dere.add(new JButton("Guardar"));
-        dere.add(new JLabel());
+        dere = new PanelAdminDerecha("habitaciones", this);
+        
         
        
         arriba = new JPanel();
@@ -126,7 +117,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
-			centro = new PanelAdminCentro("servicios");
+			centro = new PanelAdminCentro("servicios", this);
 			add(centro, BorderLayout.CENTER);
 			revalidate();
 			repaint();
@@ -135,20 +126,16 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
-			centro = new PanelAdminCentro("personal");
+			centro = new PanelAdminCentro("personal", this);
 			add(centro, BorderLayout.CENTER);
 			revalidate();
 			repaint();
-		}
-		else if (e.getSource() == botonSalir)
-		{
-			System.exit(0);
 		}
 		else if (e.getSource() == botonHabitaciones)
 		{
 			
 			remove(centro);
-			centro = new PanelAdminCentro("habitaciones");
+			centro = new PanelAdminCentro("habitaciones", this);
 			add(centro, BorderLayout.CENTER);
 			revalidate();
 			repaint();
@@ -158,10 +145,15 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
-			centro = new PanelAdminCentro("tarifa");
+			centro = new PanelAdminCentro("tarifa", this);
 			add(centro, BorderLayout.CENTER);
 			revalidate();
 			repaint();
 		}
+		else if (e.getSource() == botonSalir)
+		{
+			System.exit(0);
+		}
+		//else if (e.getSource() == dere.b)
 	}
 }

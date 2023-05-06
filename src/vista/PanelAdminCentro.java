@@ -6,7 +6,7 @@ import java.awt.*;
 public class PanelAdminCentro extends JPanel {
 
 	
-	public PanelAdminCentro(String tipo)
+	public PanelAdminCentro(String tipo, VentanaAdmin ventana)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
