@@ -16,9 +16,11 @@ public class PanelAdminDerecha extends JPanel {
 	public PanelAdminDerecha(String tipo, VentanaAdmin ventana) 
 
 	{
+		this.setLayout(new GridLayout(8, 1));
+		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
 		{
-			this.setLayout(new GridLayout(8, 1));
+			
 			
 			primer = new JButton("Tipo de habitacion ");
 			segun = new JButton("Numero de habitacion ");
@@ -37,6 +39,8 @@ public class PanelAdminDerecha extends JPanel {
 		}
 		else if (tipo == "servicios")
 		{
+			
+			
 			primer = new JButton("");
 			segun = new JButton("Producto");
 			tercer = new JButton("Tarifa");
@@ -54,6 +58,7 @@ public class PanelAdminDerecha extends JPanel {
 		}
 		else if (tipo == "personal")
 		{
+			
 			primer = new JButton("Usuario");
 			segun = new JButton("Contraseña ");
 			tercer = new JButton("Salario");
@@ -71,13 +76,14 @@ public class PanelAdminDerecha extends JPanel {
 		}
 		else if (tipo == "tarifa")
 		{
+			
 			primer = new JButton("");
 			segun = new JButton("Fecha");
 			tercer = new JButton("Tarifa");
 			guardar = new JButton("Guardar");
 			
 	        //dere.add(new JLabel());
-	        this.add(primer);
+	        this.add(new JLabel());
 	        this.add(new JLabel());
 	        this.add(segun);
 	        this.add(new JLabel());

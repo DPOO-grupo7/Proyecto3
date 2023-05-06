@@ -117,8 +117,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
+			remove(dere);
 			centro = new PanelAdminCentro("servicios", this);
+			dere = new PanelAdminDerecha("servicios", this);
 			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
@@ -126,8 +129,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
+			remove(dere);
 			centro = new PanelAdminCentro("personal", this);
+			dere = new PanelAdminDerecha("personal", this);
 			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
@@ -135,8 +141,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
+			remove(dere);
 			centro = new PanelAdminCentro("habitaciones", this);
+			dere = new PanelAdminDerecha("habitaciones", this);
 			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 			
@@ -145,11 +154,15 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
+			remove(dere);
 			centro = new PanelAdminCentro("tarifa", this);
+			dere = new PanelAdminDerecha("tarifa", this);
 			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
+		
 		else if (e.getSource() == botonSalir)
 		{
 			System.exit(0);
