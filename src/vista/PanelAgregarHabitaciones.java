@@ -12,41 +12,65 @@ import java.awt.*;
 public class PanelAgregarHabitaciones extends JFrame {
 
 	private JComboBox<String> Desplegable;
-	private JButton TipoHabitacion;
-	private JButton NumeroHabitacion;
-	private JButton Tarifa;
+	private JButton botonComida = new JButton();
+	private JButton botonHabitaciones = new JButton();
+	private JButton botonTarifa = new JButton();
+	private JButton botonSalir = new JButton();
+	private JButton botonPersonal = new JButton();
 	private JPanel izq;
 	private JPanel dere;
 	private JPanel arriba;
 	private JPanel abajo;
 	private JPanel centro;
-	private Image dpo;
-	
-	
+	private Image dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
+	private Image comida = new ImageIcon("./data/comida.png").getImage();
+	private Image personas = new ImageIcon("./data/personal.png").getImage();
+	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
+	private Image salir = new ImageIcon("./data/salir.png").getImage();
+	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	
 	
 	public PanelAgregarHabitaciones()
 	{
-		dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
+		
         Icon icono = new ImageIcon(dpo);
+        Icon food = new ImageIcon(comida);
+        Icon people = new ImageIcon(personas);
+        Icon door = new ImageIcon(puerta);
+        Icon price = new ImageIcon(tarifa);
+        Icon out = new ImageIcon(salir);
+        
 		
         setLayout(new BorderLayout());
         
+        this.botonComida.setIcon(food);
+        this.botonPersonal.setIcon(people);
+        this.botonSalir.setIcon(out);
+        this.botonTarifa.setIcon(price);
+        this.botonHabitaciones.setIcon(door);
         
         izq = new JPanel();
         izq.setLayout(new GridLayout(5, 1));
-        izq.add(new JButton());
-        izq.add(new JButton());
-        izq.add(new JButton());
-        izq.add(new JButton());
-        izq.add(new JButton());
+        izq.add(botonHabitaciones);
+        izq.add(botonComida);
+        izq.add(botonPersonal);
+        izq.add(botonTarifa);
+        izq.add(botonSalir);
         
         
         centro = new JPanel();
-        centro.setLayout(new GridLayout(6 ,1 ));
+        centro.setLayout(new GridLayout(6 ,3 ));
+        
         JComboBox<String> comboBox = new JComboBox<String>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
+        //1
+        centro.add(new JLabel());
         centro.add(comboBox);
         centro.add(new JLabel());
+        //2
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
         JButton button = new JButton("Agregar Habitación");
         comboBox.addActionListener(e -> {
             if (comboBox.getSelectedItem().equals("Opción 1")) {
@@ -55,18 +79,45 @@ public class PanelAgregarHabitaciones extends JFrame {
                 button.setEnabled(false);
             }
         });
+        //3
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
         centro.add(button);
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        centro.add(new JLabel());
+        
+     
         button.setEnabled(false);
         
         
         dere = new JPanel();
-        dere.setLayout(new GridLayout(6, 1));
+        dere.setLayout(new GridLayout(8, 1));
         //dere.add(new JLabel());
         dere.add(new JButton("Tipo de habitacion "));
         dere.add(new JLabel());
         dere.add(new JButton("Numero de habitacion "));
         dere.add(new JLabel());
         dere.add(new JButton("Tarifa"));
+        dere.add(new JLabel());
+        dere.add(new JButton("Guardar"));
         dere.add(new JLabel());
         
        
