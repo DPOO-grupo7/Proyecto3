@@ -8,6 +8,7 @@ public class PanelAdminCentro extends JPanel {
 	
 	public PanelAdminCentro(String tipo)
 	{
+		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
 		{
 			this.setLayout(new GridLayout(6 ,3 ));

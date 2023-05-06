@@ -59,7 +59,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
         izq.add(new JLabel());
         
         
-        centro = new PanelAdminCentro("servicios");
+        centro = new PanelAdminCentro("habitaciones");
         
         
         dere = new JPanel();
@@ -93,7 +93,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
         botonHabitaciones.addActionListener(this);
         botonSalir.addActionListener(this);
         
-        centro.setBackground(Color.decode("#f5f6fb"));
+        
         arriba.setBackground(Color.decode("#f5f6fb"));
         dere.setBackground(Color.decode("#f5f6fb"));
         izq.setBackground(Color.decode("#a8c4d4"));
@@ -124,44 +124,44 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 		if (e.getSource() == botonComida)
 		{
-			centro.removeAll();
+			
 			remove(centro);
 			centro = new PanelAdminCentro("servicios");
-			centro.revalidate();
-			centro.repaint();
 			add(centro, BorderLayout.CENTER);
+			revalidate();
+			repaint();
 		}
 		else if (e.getSource() == botonPersonal)
 		{
-			centro.removeAll();
+			
 			remove(centro);
 			centro = new PanelAdminCentro("personal");
-			centro.revalidate();
-			centro.repaint();
 			add(centro, BorderLayout.CENTER);
+			revalidate();
+			repaint();
 		}
 		else if (e.getSource() == botonSalir)
 		{
-			
+			System.exit(0);
 		}
 		else if (e.getSource() == botonHabitaciones)
 		{
-			centro.removeAll();
+			
 			remove(centro);
 			centro = new PanelAdminCentro("habitaciones");
-			centro.revalidate();
-			centro.repaint();
 			add(centro, BorderLayout.CENTER);
+			revalidate();
+			repaint();
 			
 		}
 		else if (e.getSource() == botonTarifa)
 		{
-			centro.removeAll();
+			
 			remove(centro);
 			centro = new PanelAdminCentro("tarifa");
-			centro.revalidate();
-			centro.repaint();
 			add(centro, BorderLayout.CENTER);
+			revalidate();
+			repaint();
 		}
 	}
 }
