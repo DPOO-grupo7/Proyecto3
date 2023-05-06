@@ -115,6 +115,21 @@ public class LogIn extends JFrame implements ActionListener {
 	        else
 	        {
 	        	JOptionPane.showMessageDialog(this, "Inicio exitoso.");
+	        	if (Autenticador.getTipo(username) == "ADMINISTRADOR")
+	        	{
+	        		new VentanaAdmin();
+	        		dispose();
+	        	}
+	        	else if (Autenticador.getTipo(username) == "RECEPCIONISTA")
+	        	{
+	        		new VentanaRecepcion();
+	        		dispose();
+	        	}
+	        	else if (Autenticador.getTipo(username) == "PERSONAL DEL HOTEL")
+	        	{
+	        		new VentanaEmpleados();
+	        		dispose();
+	        	}
         }
         else if (e.getSource() == registerButton)
         {
