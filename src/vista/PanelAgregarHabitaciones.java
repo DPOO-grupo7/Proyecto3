@@ -24,9 +24,9 @@ public class PanelAgregarHabitaciones extends JFrame {
 	private JPanel centro;
 	private Image dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
 	private Image comida = new ImageIcon("./data/comida.png").getImage();
-	private Image personas = new ImageIcon("./data/personal.png").getImage();
+	private Image personas = new ImageIcon("./data/personal2.png").getImage();
 	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
-	private Image salir = new ImageIcon("./data/salir.png").getImage();
+	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	
 	
@@ -50,12 +50,14 @@ public class PanelAgregarHabitaciones extends JFrame {
         this.botonHabitaciones.setIcon(door);
         
         izq = new JPanel();
-        izq.setLayout(new GridLayout(5, 1));
+        izq.setLayout(new GridLayout(7, 1));
+        izq.add(new JLabel());
         izq.add(botonHabitaciones);
         izq.add(botonComida);
         izq.add(botonPersonal);
         izq.add(botonTarifa);
         izq.add(botonSalir);
+        izq.add(new JLabel());
         
         
         centro = new JPanel();
@@ -122,13 +124,14 @@ public class PanelAgregarHabitaciones extends JFrame {
         
        
         arriba = new JPanel();
-        arriba.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        arriba.setLayout(new FlowLayout(FlowLayout.CENTER));
         JLabel titulo = new JLabel();
         titulo.setIcon(icono);
         arriba.add(titulo);
         
         
         abajo = new JPanel();
+        abajo.setSize(800, 200);
         JLabel espacio = new JLabel();
         abajo.add(espacio);
         
