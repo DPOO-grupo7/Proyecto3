@@ -18,7 +18,7 @@ public class PanelRecepDerecha extends JPanel {
 	{
 		this.setLayout(new GridLayout(8, 1));
 		this.setBackground(Color.decode("#f5f6fb"));
-		if (tipo == "habitaciones")
+		if (tipo == "reserva")
 		{
 			
 			
@@ -37,7 +37,7 @@ public class PanelRecepDerecha extends JPanel {
 	        this.add(guardar);
 	        this.add(new JLabel());
 		}
-		else if (tipo == "servicios")
+		else if (tipo == "factura")
 		{
 			
 			
@@ -56,7 +56,7 @@ public class PanelRecepDerecha extends JPanel {
 	        this.add(guardar);
 	        this.add(new JLabel());
 		}
-		else if (tipo == "personal")
+		else if (tipo == "inventario")
 		{
 			
 			primer = new JButton("Usuario");
@@ -74,7 +74,7 @@ public class PanelRecepDerecha extends JPanel {
 	        this.add(guardar);
 	        this.add(new JLabel());
 		}
-		else if (tipo == "tarifa")
+		else if (tipo == "invtotal")
 		{
 			
 			primer = new JButton("");

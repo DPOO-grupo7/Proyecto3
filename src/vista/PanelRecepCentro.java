@@ -12,19 +12,19 @@ public class PanelRecepCentro extends JPanel{
 	public PanelRecepCentro(String tipo, VentanaRecepcion ventanaRecepcion)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
-		if (tipo == "habitaciones")
+		if (tipo == "reserva")
 		{
 			crearCosas(tipo);
 		}
-		else if (tipo == "tarifa")
+		else if (tipo == "factura")
 		{
 			crearCosas(tipo);
 		}
-		else if (tipo == "personal")
+		else if (tipo == "inventario")
 		{
 			crearCosas(tipo);
 		}
-		else if (tipo == "servicios")
+		else if (tipo == "invtotal")
 		{
 			crearCosas(tipo);
 		}

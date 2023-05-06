@@ -11,58 +11,58 @@ import java.awt.*;
 
 public class VentanaRecepcion extends JFrame implements ActionListener {
 	
-	private JButton botonComida = new JButton();
-	private JButton botonHabitaciones = new JButton();
-	private JButton botonTarifa = new JButton();
+	private JButton botonFactura = new JButton();
+	private JButton botonInventario = new JButton();
+	private JButton botonInvTotal = new JButton();
 	private JButton botonSalir = new JButton();
-	private JButton botonPersonal = new JButton();
+	private JButton botonReserva = new JButton();
 	private JPanel izq;
 	private JPanel dere;
 	private JPanel arriba;
 	private JPanel abajo;
 	private JPanel centro;
 	private Image dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
-	private Image comida = new ImageIcon("./data/comida.png").getImage();
-	private Image personas = new ImageIcon("./data/personal2.png").getImage();
-	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
+	private Image factura = new ImageIcon("./data/factura.png").getImage();
+	private Image inventario = new ImageIcon("./data/inventario.png").getImage();
+	private Image cajas = new ImageIcon("./data/invtotal.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
-	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
+	private Image reserva = new ImageIcon("./data/reserva.png").getImage();
 	
 	
 	public VentanaRecepcion()
 	{
 		
         Icon icono = new ImageIcon(dpo);
-        Icon food = new ImageIcon(comida);
-        Icon people = new ImageIcon(personas);
-        Icon door = new ImageIcon(puerta);
-        Icon price = new ImageIcon(tarifa);
+        Icon ticket = new ImageIcon(factura);
+        Icon inventario = new ImageIcon(this.inventario);
+        Icon cajas = new ImageIcon(this.cajas);
+        Icon reserva = new ImageIcon(this.reserva);
         Icon out = new ImageIcon(salir);
         
 		
         setLayout(new BorderLayout());
         
-        this.botonComida.setIcon(food);
-        this.botonPersonal.setIcon(people);
+        this.botonFactura.setIcon(ticket);
+        this.botonInventario.setIcon(inventario);
         this.botonSalir.setIcon(out);
-        this.botonTarifa.setIcon(price);
-        this.botonHabitaciones.setIcon(door);
+        this.botonReserva.setIcon(reserva);
+        this.botonInvTotal.setIcon(cajas);
         
         izq = new JPanel();
         izq.setLayout(new GridLayout(7, 1));
         izq.add(new JLabel());
-        izq.add(botonHabitaciones);
-        izq.add(botonComida);
-        izq.add(botonPersonal);
-        izq.add(botonTarifa);
+        izq.add(botonFactura);
+        izq.add(botonInventario);
+        izq.add(botonInvTotal);
+        izq.add(botonReserva);
         izq.add(botonSalir);
         izq.add(new JLabel());
         
         
-        centro = new PanelRecepCentro("habitaciones", this);
+        centro = new PanelRecepCentro("reserva", this);
         
         
-        dere = new PanelRecepDerecha("habitaciones", this);
+        dere = new PanelRecepDerecha("reserva", this);
         
         
        
@@ -78,10 +78,10 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         JLabel espacio = new JLabel();
         abajo.add(espacio);
         
-        botonComida.addActionListener(this);
-        botonTarifa.addActionListener(this);
-        botonPersonal.addActionListener(this);
-        botonHabitaciones.addActionListener(this);
+        botonFactura.addActionListener(this);
+        botonReserva.addActionListener(this);
+        botonInventario.addActionListener(this);
+        botonInvTotal.addActionListener(this);
         botonSalir.addActionListener(this);
         
         
@@ -113,50 +113,50 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 	{
 
 
-		if (e.getSource() == botonComida)
+		if (e.getSource() == botonFactura)
 		{
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("servicios", this);
-			dere = new PanelRecepDerecha("servicios", this);
+			centro = new PanelRecepCentro("factura", this);
+			dere = new PanelRecepDerecha("factura", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
-		else if (e.getSource() == botonPersonal)
+		else if (e.getSource() == botonInventario)
 		{
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("personal", this);
-			dere = new PanelRecepDerecha("personal", this);
+			centro = new PanelRecepCentro("inventario", this);
+			dere = new PanelRecepDerecha("inventario", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
-		else if (e.getSource() == botonHabitaciones)
+		else if (e.getSource() == botonInvTotal)
 		{
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("habitaciones", this);
-			dere = new PanelRecepDerecha("habitaciones", this);
+			centro = new PanelRecepCentro("invtotal", this);
+			dere = new PanelRecepDerecha("invtotal", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 			
 		}
-		else if (e.getSource() == botonTarifa)
+		else if (e.getSource() == botonReserva)
 		{
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("tarifa", this);
-			dere = new PanelRecepDerecha("tarifa", this);
+			centro = new PanelRecepCentro("reserva", this);
+			dere = new PanelRecepDerecha("reserva", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();
