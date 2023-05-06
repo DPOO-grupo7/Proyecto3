@@ -9,9 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class PanelAgregarHabitaciones extends JFrame {
-
-	private JComboBox<String> Desplegable;
+public class VentanaAdmin extends JFrame implements ActionListener {
+	
 	private JButton botonComida = new JButton();
 	private JButton botonHabitaciones = new JButton();
 	private JButton botonTarifa = new JButton();
@@ -30,7 +29,7 @@ public class PanelAgregarHabitaciones extends JFrame {
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	
 	
-	public PanelAgregarHabitaciones()
+	public VentanaAdmin()
 	{
 		
         Icon icono = new ImageIcon(dpo);
@@ -60,54 +59,7 @@ public class PanelAgregarHabitaciones extends JFrame {
         izq.add(new JLabel());
         
         
-        centro = new JPanel();
-        centro.setLayout(new GridLayout(6 ,3 ));
-        
-        JComboBox<String> comboBox = new JComboBox<String>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
-        //1
-        centro.add(new JLabel());
-        centro.add(comboBox);
-        centro.add(new JLabel());
-        //2
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-        JButton button = new JButton("Agregar Habitación");
-        comboBox.addActionListener(e -> {
-            if (comboBox.getSelectedItem().equals("Opción 1")) {
-                button.setEnabled(true);
-            } else {
-                button.setEnabled(false);
-            }
-        });
-        //3
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-        centro.add(button);
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        centro.add(new JLabel());
-        
-     
-        button.setEnabled(false);
+        centro = new PanelAdminCentro("servicios");
         
         
         dere = new JPanel();
@@ -135,6 +87,11 @@ public class PanelAgregarHabitaciones extends JFrame {
         JLabel espacio = new JLabel();
         abajo.add(espacio);
         
+        botonComida.addActionListener(this);
+        botonTarifa.addActionListener(this);
+        botonPersonal.addActionListener(this);
+        botonHabitaciones.addActionListener(this);
+        botonSalir.addActionListener(this);
         
         centro.setBackground(Color.decode("#f5f6fb"));
         arriba.setBackground(Color.decode("#f5f6fb"));
@@ -150,10 +107,61 @@ public class PanelAgregarHabitaciones extends JFrame {
         
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Agregar Habitaciones");
+        setTitle("Panel Admin");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
     
+        
+        //IMPLEMENTAR ACTION LISTENER CON LAS FUNCIONES SIMILARES QUE HAY EN LA INTERFAZ
+        //EN LA LINEA 265, Y 298. DE INTERFAZ.JAVA. 
+        
+	}
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+
+
+		if (e.getSource() == botonComida)
+		{
+			centro.removeAll();
+			remove(centro);
+			centro = new PanelAdminCentro("servicios");
+			centro.revalidate();
+			centro.repaint();
+			add(centro, BorderLayout.CENTER);
+		}
+		else if (e.getSource() == botonPersonal)
+		{
+			centro.removeAll();
+			remove(centro);
+			centro = new PanelAdminCentro("personal");
+			centro.revalidate();
+			centro.repaint();
+			add(centro, BorderLayout.CENTER);
+		}
+		else if (e.getSource() == botonSalir)
+		{
+			
+		}
+		else if (e.getSource() == botonHabitaciones)
+		{
+			centro.removeAll();
+			remove(centro);
+			centro = new PanelAdminCentro("habitaciones");
+			centro.revalidate();
+			centro.repaint();
+			add(centro, BorderLayout.CENTER);
+			
+		}
+		else if (e.getSource() == botonTarifa)
+		{
+			centro.removeAll();
+			remove(centro);
+			centro = new PanelAdminCentro("tarifa");
+			centro.revalidate();
+			centro.repaint();
+			add(centro, BorderLayout.CENTER);
+		}
 	}
 }

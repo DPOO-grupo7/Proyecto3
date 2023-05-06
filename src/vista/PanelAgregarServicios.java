@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.Color;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,11 +24,10 @@ public class PanelAgregarServicios extends JFrame {
 	private JPanel centro;
 	private Image dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
 	private Image comida = new ImageIcon("./data/comida.png").getImage();
-	private Image personas = new ImageIcon("./data/personal.png").getImage();
+	private Image personas = new ImageIcon("./data/personal2.png").getImage();
 	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
-	private Image salir = new ImageIcon("./data/salir.png").getImage();
+	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
-	
 	
 	public PanelAgregarServicios()
 	{
