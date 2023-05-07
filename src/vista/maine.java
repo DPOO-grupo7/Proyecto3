@@ -1,10 +1,10 @@
 package vista;
 
-public class main {
+public class maine {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new VentanaPrincipal();
+		new LogIn();
 		//este main es para pobrobar cada ventana
 	}
 

@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 public class Grid extends JPanel{
 
 	private static final int PADDING = 10;
-    private static final int CELL_SIZE = 12;
+    private static final int CELL_SIZE = 32;
     private static final int SPACING = 4;
-    private static final int COLUMNS = 53;
+    private static final int COLUMNS = 13;
 
     @Override
     protected void paintComponent(Graphics g) {
