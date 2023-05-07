@@ -98,7 +98,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Panel Admin");
+        setTitle("Panel Recepcion");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);

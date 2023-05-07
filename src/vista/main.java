@@ -4,7 +4,7 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new VentanaRecepcion();
+		new test();
 		//este main es para pobrobar cada ventana
 	}
 

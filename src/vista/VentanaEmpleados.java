@@ -96,7 +96,7 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
         
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Panel Admin");
+        setTitle("Panel Empleados");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);

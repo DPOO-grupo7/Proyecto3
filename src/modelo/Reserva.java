@@ -53,4 +53,9 @@ public class Reserva {
 	public int getIdentificacion() {
 		return identificacion;
 	}
+
+	public InformadorHuesped getHuesped() {
+		// TODO Auto-generated method stub
+		return this.huespedAcargo;
+	}
 }
