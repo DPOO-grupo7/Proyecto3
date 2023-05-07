@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import controlador.ManejadorReservas;
+
 import java.awt.*;
 
 
@@ -59,10 +62,10 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         izq.add(new JLabel());
         
         
-        centro = new PanelRecepCentro("reserva", this);
+        centro = new PanelReservasLista(new ManejadorReservas());
         
         
-        dere = new PanelRecepDerecha("reserva", this);
+        dere = new PanelReservasFormulario(new String[]{"1","3"});
         
         
        
@@ -155,8 +158,9 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("reserva", this);
-			dere = new PanelRecepDerecha("reserva", this);
+			centro = new PanelReservasLista(new ManejadorReservas());
+			//dere = new PanelRecepDerecha("reserva", this);
+			dere = new PanelReservasFormulario(new String[]{"1","3"});
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();

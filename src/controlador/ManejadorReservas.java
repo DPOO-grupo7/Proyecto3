@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.ListModel;
+
 import modelo.Habitacion;
 import modelo.InformadorHuesped;
 import modelo.Reserva;
@@ -63,5 +65,10 @@ public class ManejadorReservas implements Serializable{
 	public ArrayList<InformadorHuesped> getGrupoHuespedes() {
 		return grupoHuespedes;
 	}
+	public ArrayList<Reserva> getListaReservas() 
+	{
+		return LISTA_RESERVA;
+	}
+	
 	
 }
