@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import utilidades.Autenticador;
+
 import java.awt.*;
 
 public class VentanaAdmin extends JFrame implements ActionListener {
@@ -26,9 +29,12 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
+	private Autenticador autenticador;
+	
 
-	public VentanaAdmin() {
+	public VentanaAdmin(Autenticador autenticador) {
 
+		this.autenticador = autenticador;
 		Icon icono = new ImageIcon(dpo);
 		Icon food = new ImageIcon(comida);
 		Icon people = new ImageIcon(personas);
@@ -98,8 +104,9 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
+		
 
 		if (e.getSource() == botonComida) {
 
@@ -112,13 +119,12 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 			revalidate();
 			repaint();
 		} else if (e.getSource() == botonPersonal) {
-
 			remove(centro);
 			remove(dere);
-			centro = new PanelAdminCentro("personal", this);
-			dere = new PanelAdminDerecha("personal", this);
+			centro = new PanelAdminPersonal(this, autenticador);
+			//dere = new PanelAdminDerecha("personal", this);
 			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
+			//add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		} else if (e.getSource() == botonHabitaciones) {

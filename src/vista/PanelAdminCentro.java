@@ -12,6 +12,7 @@ public class PanelAdminCentro extends JPanel{
     private JList<String> listaHabitaciones;
     private JButton btnAgregar;
     private JButton btnEliminar;
+    
 	
 	public PanelAdminCentro(String tipo, VentanaAdmin ventana)
 	{
@@ -40,10 +41,6 @@ public class PanelAdminCentro extends JPanel{
 	        add(panelBotones, BorderLayout.SOUTH);
 		}
 		else if (tipo == "tarifa")
-		{
-			crearCosas(tipo, ventana);
-		}
-		else if (tipo == "personal")
 		{
 			crearCosas(tipo, ventana);
 		}
