@@ -133,10 +133,11 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("inventario", this);
-			dere = new PanelRecepDerecha("inventario", this);
+			//centro = new PanelRecepCentro("inventario", this);
+			centro = new PanelInventarioDisponible();
+			//dere = new PanelRecepDerecha("inventario", this);
 			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
+			//add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
@@ -145,7 +146,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 			
 			remove(centro);
 			remove(dere);
-			centro = new PanelRecepCentro("invtotal", this);
+			centro = new PanelInventarioTotal();
 			dere = new PanelRecepDerecha("invtotal", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);

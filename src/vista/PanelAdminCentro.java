@@ -8,30 +8,52 @@ public class PanelAdminCentro extends JPanel{
 
 	private JComboBox<String> desplegable;
 	private JButton utilidad;
+	private JLabel titulo;
+    private JList<String> listaHabitaciones;
+    private JButton btnAgregar;
+    private JButton btnEliminar;
 	
 	public PanelAdminCentro(String tipo, VentanaAdmin ventana)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
 		{
-			crearCosas(tipo);
+			//crearCosas(tipo);
+			setLayout(new BorderLayout());
+
+	        // Título del panel
+	        titulo = new JLabel("Inventario de habitaciones");
+	        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+	        add(titulo, BorderLayout.NORTH);
+
+	        // Lista de habitaciones
+	        listaHabitaciones = new JList<>(new String[]{"Habitación 101", "Habitación 102", "Habitación 103", "Habitación 104", "Habitación 105"});
+	        JScrollPane scrollPane = new JScrollPane(listaHabitaciones);
+	        add(scrollPane, BorderLayout.CENTER);
+
+	        // Botones para agregar y eliminar habitaciones
+	        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	        btnAgregar = new JButton("Agregar habitación");
+	        btnEliminar = new JButton("Eliminar habitación");
+	        panelBotones.add(btnAgregar);
+	        panelBotones.add(btnEliminar);
+	        add(panelBotones, BorderLayout.SOUTH);
 		}
 		else if (tipo == "tarifa")
 		{
-			crearCosas(tipo);
+			crearCosas(tipo, ventana);
 		}
 		else if (tipo == "personal")
 		{
-			crearCosas(tipo);
+			crearCosas(tipo, ventana);
 		}
 		else if (tipo == "servicios")
 		{
-			crearCosas(tipo);
+			crearCosas(tipo, ventana);
 		}
-		desplegable.addActionListener(ventana);
-		utilidad.addActionListener(ventana);
+		
 	}
-	public void crearCosas(String tipo)
+	public void crearCosas(String tipo, VentanaAdmin ventana)
 	{
 		this.setLayout(new GridLayout(6 ,3 ));
         
@@ -78,7 +100,8 @@ public class PanelAdminCentro extends JPanel{
         this.add(new JLabel());
         this.add(new JLabel());
         
-     
+        desplegable.addActionListener(ventana);
+		utilidad.addActionListener(ventana);
         utilidad.setEnabled(false);
 	}
 	

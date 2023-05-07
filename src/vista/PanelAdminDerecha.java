@@ -10,7 +10,8 @@ public class PanelAdminDerecha extends JPanel {
 	private JButton segun;
 	private JButton tercer;
 	private JButton guardar;
-	private String[] nombres = {"Tipo de habitacion ", "Numero de habitacion ", "Tarifa"};;
+	private String[] nombres = {"Tipo de habitacion ", "Numero de habitacion ", "Tarifa"};
+	
 
 
 	public PanelAdminDerecha(String tipo, VentanaAdmin ventana) 
