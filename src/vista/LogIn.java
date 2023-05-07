@@ -20,15 +20,16 @@ public class LogIn extends JFrame implements ActionListener {
 	private JPanel dere;
 	private JButton registerButton;
 	private Image dpo;
-	private Autenticador Autenticador = new Autenticador();
+	private Autenticador Autenticador;
 
-	public LogIn() {
+	public LogIn(Autenticador ese) {
 		// Configurar el JFrame
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 250);
 		setLocationRelativeTo(this); // Centrar la ventana en la pantalla
 		setResizable(false);
+		Autenticador = ese;
 
 		// Crear el panel de inicio de sesión
 		imgPanel = new JPanel();
@@ -108,7 +109,7 @@ public class LogIn extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
 				if (Autenticador.getTipo(username) == "ADMINISTRADOR") {
-					new VentanaAdmin();
+					new VentanaAdmin(Autenticador);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "RECEPCIONISTA") {
 					new VentanaRecepcion();

@@ -2,13 +2,19 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class VentanaPrincipal extends JFrame {
-	private static final long serialVersionUID = 1L;
+import utilidades.Autenticador;
 
+public class VentanaPrincipal extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
+	private Autenticador Autenticador = new Autenticador();
+	private JButton iniciar = new JButton("Iniciar Sesion");
 	public VentanaPrincipal() {
 		// TODO Auto-generated constructor stub
 		VentanaInformacionHotel();
@@ -31,10 +37,11 @@ public class VentanaPrincipal extends JFrame {
 
 		panelHInformacion panelHInformacion = new panelHInformacion();
 		panelHServicios panelHServicios = new panelHServicios();
+		iniciar.addActionListener(this);
+		panelHServicios.add(iniciar);
 		Contenedor.setLayout(new GridLayout(1, 2, 0, 0));
 		Contenedor.add(panelHInformacion);
 		Contenedor.add(panelHServicios);
-
 		add(panelHSeleccionVista, BorderLayout.NORTH);
 		add(Contenedor, BorderLayout.CENTER);
 
@@ -43,6 +50,18 @@ public class VentanaPrincipal extends JFrame {
 	public static void main(String[] args) {
 
 		new VentanaPrincipal();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
+		if (e.getSource() == iniciar)
+		{
+			new LogIn(Autenticador);
+			dispose();
+		}
 
 	}
 }
