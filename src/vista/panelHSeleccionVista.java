@@ -11,6 +11,10 @@ public class panelHSeleccionVista extends JPanel {
 
 		JLabel NombreHotel = new JLabel(Nombre);
 		add(NombreHotel);
+//		ImageIcon HotelDpoo = new ImageIcon("./data/HotelDpoo.jpg");
+//		JLabel NombreHotel = new JLabel(HotelDpoo);
+
+//		add(NombreHotel);
 	}
 
 }
