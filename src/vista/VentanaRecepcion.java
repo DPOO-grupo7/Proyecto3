@@ -14,6 +14,7 @@ import java.awt.*;
 
 public class VentanaRecepcion extends JFrame implements ActionListener {
 	
+	private static final long serialVersionUID = 1L;
 	private JButton botonFactura = new JButton();
 	private JButton botonInventario = new JButton();
 	private JButton botonInvTotal = new JButton();
@@ -62,7 +63,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         izq.add(new JLabel());
         
         
-        centro = new PanelReservasLista(new ManejadorReservas());
+         centro = new PanelReservasLista(new ManejadorReservas());
         
         
         dere = new PanelReservasFormulario(new String[]{"1","3"});

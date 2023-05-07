@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class PanelRecepDerecha extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private JButton primer;
 	private JButton segun;
 	private JButton tercer;
@@ -96,5 +97,15 @@ public class PanelRecepDerecha extends JPanel {
 		segun.addActionListener(ventanaRecepcion);
 		tercer.addActionListener(ventanaRecepcion);
 		guardar.addActionListener(ventanaRecepcion);
+	}
+
+
+	public String[] getNombres() {
+		return nombres;
+	}
+
+
+	public void setNombres(String[] nombres) {
+		this.nombres = nombres;
 	}	
 }

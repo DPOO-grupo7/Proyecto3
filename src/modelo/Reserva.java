@@ -23,7 +23,7 @@ public class Reserva {
 		fechaSalida = pFechaSalida;
 		numHabitaciones = pNumHabitaciones;
 		identificacion = identificador;
-		enUso = false;
+		setEnUso(false);
 	}
 
 	public void setGrupoHuespedes(ArrayList<InformadorHuesped> pGrupoHuespedes) {
@@ -57,5 +57,21 @@ public class Reserva {
 	public InformadorHuesped getHuesped() {
 		// TODO Auto-generated method stub
 		return this.huespedAcargo;
+	}
+
+	public int getFacturacion() {
+		return facturacion;
+	}
+
+	public void setFacturacion(int facturacion) {
+		this.facturacion = facturacion;
+	}
+
+	public boolean isEnUso() {
+		return enUso;
+	}
+
+	public void setEnUso(boolean enUso) {
+		this.enUso = enUso;
 	}
 }

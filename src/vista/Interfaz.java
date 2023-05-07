@@ -173,7 +173,7 @@ public class Interfaz {
 			{
 				usuario="admin";
 				login=loginActual;
-				password=passwordActual;
+				setPassword(passwordActual);
 			}
 			else
 			{
@@ -193,7 +193,7 @@ public class Interfaz {
 			{
 				usuario="recepcionista";
 				login=loginActual;
-				password=passwordActual;
+				setPassword(passwordActual);
 			}
 			else
 			{
@@ -213,7 +213,7 @@ public class Interfaz {
 			{
 				usuario="huesped";
 				login=loginActual;
-				password=passwordActual;
+				setPassword(passwordActual);
 			}
 			else
 			{
@@ -269,7 +269,7 @@ public class Interfaz {
 			datos = solicitarDatos(opcion);
 			System.out.println(hotel.opcionesAdmin(opcion, login,datos));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -286,7 +286,7 @@ public class Interfaz {
 			System.out.println("Ubicaci�n: "+buscada.getUbicacion());
 			System.out.println("Tipo: "+buscada.getTipo());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -469,7 +469,7 @@ public class Interfaz {
 		try {
 			fecha = formatoFecha.parse(fechaTexto);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return fecha;
@@ -542,9 +542,15 @@ public class Interfaz {
 		return hotel.getServicios();
 	}
 	public static void main(String[] args) {
-		Interfaz interfaz=new Interfaz();
+		 new Interfaz();
 		
 
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 

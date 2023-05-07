@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 
 public class PanelReservasLista extends JPanel {
-    private JList<Reserva> listaReservas;
+    private static final long serialVersionUID = 1L;
+	private JList<Reserva> listaReservas;
     
 
     public PanelReservasLista(ManejadorReservas res) {

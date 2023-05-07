@@ -1,7 +1,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +16,7 @@ import posterityKeeper.Archivador;
 
 
 public class Hotel implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Archivador archivador;
 	private ArrayList<InformadorRecepcionista> recepcionistas;
 	private ArrayList<InformadorAdministrador> admins;

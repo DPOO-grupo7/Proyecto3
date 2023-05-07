@@ -7,7 +7,8 @@ import modelo.Reserva;
 import java.awt.*;
 
 public class PanelReservaDetalle extends JPanel {
-    private JLabel labelHuesped;
+    private static final long serialVersionUID = 1L;
+	private JLabel labelHuesped;
     private JLabel labelHabitacion;
     private JLabel labelFechaEntrada;
     private JLabel labelFechaSalida;

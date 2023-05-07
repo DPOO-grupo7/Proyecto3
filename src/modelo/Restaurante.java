@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Restaurante implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int rangoHorario;
 	private ArrayList<String> menu;
 	public Restaurante(int R, ArrayList<String> M) 

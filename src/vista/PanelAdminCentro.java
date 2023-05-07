@@ -2,10 +2,10 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class PanelAdminCentro extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> desplegable;
 	private JButton utilidad;
 	private JLabel titulo;

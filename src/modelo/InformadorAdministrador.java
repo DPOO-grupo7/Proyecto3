@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class InformadorAdministrador implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String login;
 	private String password;
 	private Hotel hotel;

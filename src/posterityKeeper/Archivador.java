@@ -13,10 +13,11 @@ import modelo.Hotel;
 
 
 public class Archivador implements Serializable{
-	private static final String RUTA_HUESPED="./data/huespedes.bin";
-	private static final String RUTA_ADMIN="./data/admins.bin";
-	private static final String RUTA_RECEP="./data/recepcionistas.bin";
-	private static final String RUTA_RESER="./data/reserva.bin";
+	private static final long serialVersionUID = 1L;
+//	private static final String RUTA_HUESPED="./data/huespedes.bin";
+//	private static final String RUTA_ADMIN="./data/admins.bin";
+//	private static final String RUTA_RECEP="./data/recepcionistas.bin";
+//	private static final String RUTA_RESER="./data/reserva.bin";
 	private static final String RUTA_HABITA="./data/habitaciones.bin";
 	private static final String RUTA_HOTEL="./data/hotel.bin";
 	public Archivador() {
