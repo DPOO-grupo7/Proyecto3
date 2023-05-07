@@ -13,7 +13,7 @@ public class VentanaPrincipal extends JFrame {
 		// TODO Auto-generated constructor stub
 		VentanaInformacionHotel();
 
-		setSize(900, 700);
+		setSize(900, 650);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("HotelGranDPOO");
