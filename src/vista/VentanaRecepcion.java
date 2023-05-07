@@ -146,11 +146,11 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
-			remove(dere);
+			//remove(dere);
 			centro = new PanelInventarioTotal();
-			dere = new PanelRecepDerecha("invtotal", this);
+			//dere = new PanelRecepDerecha("invtotal", this);
 			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
+			//add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 			
