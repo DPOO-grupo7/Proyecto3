@@ -7,9 +7,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import controlador.ControladorHabitaciones;
-import controlador.ManejadorReservas;
-import controlador.ManejadorTarifa;
 import utilidades.Autenticador;
 
 import java.awt.*;
@@ -33,17 +30,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	private Autenticador autenticador;
-	private ControladorHabitaciones controlHabitaciones;
-	private ManejadorReservas reservas;
-	private ManejadorTarifa tarifas;
 	
 
-	public VentanaAdmin(Autenticador autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
+	public VentanaAdmin(Autenticador autenticador) {
 
 		this.autenticador = autenticador;
-		this.tarifas = tarifas;
-		this.controlHabitaciones = controlHabitaciones;
-		this.reservas = reservas;
 		Icon icono = new ImageIcon(dpo);
 		Icon food = new ImageIcon(comida);
 		Icon people = new ImageIcon(personas);
@@ -69,9 +60,9 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		izq.add(botonSalir);
 		izq.add(new JLabel());
 
-		centro = new PanelAdminCentro("habitaciones", this, controlHabitaciones);
+		centro = new PanelAdminCentro("habitaciones", this);
 
-		//dere = new PanelAdminDerecha("habitaciones", this);
+		dere = new PanelAdminDerecha("habitaciones", this);
 
 		arriba = new JPanel();
 		arriba.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -91,13 +82,13 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		botonSalir.addActionListener(this);
 
 		arriba.setBackground(Color.decode("#f5f6fb"));
-		//dere.setBackground(Color.decode("#f5f6fb"));
+		dere.setBackground(Color.decode("#f5f6fb"));
 		izq.setBackground(Color.decode("#a8c4d4"));
 		abajo.setBackground(Color.decode("#a8c4d4"));
 
 		add(izq, BorderLayout.WEST);
 		add(centro, BorderLayout.CENTER);
-		//add(dere, BorderLayout.EAST);
+		add(dere, BorderLayout.EAST);
 		add(arriba, BorderLayout.NORTH);
 		add(abajo, BorderLayout.SOUTH);
 
@@ -119,11 +110,17 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 		if (e.getSource() == botonComida) {
 
-			repintar("servicios");
-			
+			remove(centro);
+			remove(dere);
+			centro = new PanelAdminCentro("servicios", this);
+			dere = new PanelAdminDerecha("servicios", this);
+			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
+			revalidate();
+			repaint();
 		} else if (e.getSource() == botonPersonal) {
 			remove(centro);
-			//remove(dere);
+			remove(dere);
 			centro = new PanelAdminPersonal(this, autenticador);
 			//dere = new PanelAdminDerecha("personal", this);
 			add(centro, BorderLayout.CENTER);
@@ -132,24 +129,30 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 			repaint();
 		} else if (e.getSource() == botonHabitaciones) {
 
-			repintar("habitaciones");
+			remove(centro);
+			remove(dere);
+			centro = new PanelAdminCentro("habitaciones", this);
+			dere = new PanelAdminDerecha("habitaciones", this);
+			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
+			revalidate();
+			repaint();
 
 		} else if (e.getSource() == botonTarifa) {
 
-			repintar("tarifa");
+			remove(centro);
+			remove(dere);
+			centro = new PanelAdminCentro("tarifa", this);
+			dere = new PanelAdminDerecha("tarifa", this);
+			add(centro, BorderLayout.CENTER);
+			add(dere, BorderLayout.EAST);
+			revalidate();
+			repaint();
 		}
 
 		else if (e.getSource() == botonSalir) {
 			System.exit(0);
 		}
 		// else if (e.getSource() == dere.b)
-	}
-	public void repintar(String tipo) {
-		remove(centro);
-		centro = new PanelAdminCentro(tipo, this, controlHabitaciones);
-		add(centro, BorderLayout.CENTER);
-		//add(dere, BorderLayout.EAST);
-		revalidate();
-		repaint();
 	}
 }

@@ -44,9 +44,5 @@ public class Habitacion {
 	public ArrayList<Date> getFechasReservadas() {
 		return fechasReservadas;
 	}
-	public String getDatos()
-	{
-		String cadena = "ID: "+this.identificador+" Capacidad: "+this.capacidad+" Ubicacion: "+this.ubicacion;
-		return cadena;
-	}
+
 }

@@ -4,11 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-import controlador.ControladorHabitaciones;
-import controlador.ManejadorReservas;
-import controlador.ManejadorTarifa;
-
 import java.awt.*;
 
 import utilidades.Autenticador;
@@ -26,10 +21,7 @@ public class LogIn extends JFrame implements ActionListener {
 	private JButton registerButton;
 	private Image dpo;
 	private Autenticador Autenticador;
-	private ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
-	private ManejadorReservas reservas = new ManejadorReservas();
-	private ManejadorTarifa tarifas = new ManejadorTarifa();
-	
+
 	public LogIn(Autenticador ese) {
 		// Configurar el JFrame
 		setTitle("Inicio de sesión");
@@ -117,7 +109,7 @@ public class LogIn extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
 				if (Autenticador.getTipo(username) == "ADMINISTRADOR") {
-					new VentanaAdmin(Autenticador, controlHabitaciones, reservas, tarifas);
+					new VentanaAdmin(Autenticador);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "RECEPCIONISTA") {
 					new VentanaRecepcion();
