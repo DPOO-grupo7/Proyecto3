@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controlador.ManejadorReservas;
+import utilidades.Autenticador;
 
 import java.awt.*;
 
@@ -31,11 +32,11 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 	private Image cajas = new ImageIcon("./data/invtotal.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image reserva = new ImageIcon("./data/reserva.png").getImage();
+	private Autenticador autenticador;
 	
-	
-	public VentanaRecepcion()
+	public VentanaRecepcion(Autenticador autenticador)
 	{
-		
+		this.autenticador = autenticador;
         Icon icono = new ImageIcon(dpo);
         Icon ticket = new ImageIcon(factura);
         Icon inventario = new ImageIcon(this.inventario);
@@ -171,7 +172,8 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 		
 		else if (e.getSource() == botonSalir)
 		{
-			System.exit(0);
+			new LogIn(autenticador);
+			dispose();
 		}
 		//else if (e.getSource() == dere.b)
 	}

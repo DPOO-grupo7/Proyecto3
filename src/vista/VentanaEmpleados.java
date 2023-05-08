@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import utilidades.Autenticador;
+
 import java.awt.*;
 
 public class VentanaEmpleados extends JFrame implements ActionListener {
@@ -22,9 +25,11 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 	private Image consume = new ImageIcon("./data/consumo.png").getImage();
 	private Image pay = new ImageIcon("./data/pagar.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
+	private Autenticador autenticador;
 
-	public VentanaEmpleados() {
+	public VentanaEmpleados(Autenticador autenticador) {
 
+		this.autenticador = autenticador;
 		Icon icono = new ImageIcon(dpo);
 		Icon consumo = new ImageIcon(consume);
 		Icon pagar = new ImageIcon(pay);
@@ -113,7 +118,8 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			System.exit(0);
+			new LogIn(autenticador);
+			dispose();
 		}
 		// else if (e.getSource() == dere.b)
 	}

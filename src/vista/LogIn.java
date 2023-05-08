@@ -120,10 +120,10 @@ public class LogIn extends JFrame implements ActionListener {
 					new VentanaAdmin(Autenticador, controlHabitaciones, reservas, tarifas);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "RECEPCIONISTA") {
-					new VentanaRecepcion();
+					new VentanaRecepcion(Autenticador);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "PERSONAL DEL HOTEL") {
-					new VentanaEmpleados();
+					new VentanaEmpleados(Autenticador);
 					dispose();
 				}
 			}
