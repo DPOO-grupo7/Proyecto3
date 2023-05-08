@@ -39,7 +39,7 @@ public class PanelAdminCentro extends JPanel{
 	        DefaultListModel listModel = new DefaultListModel();
 	        	for(int i=0; i<lista.size(); i++) {
 	            //Añadir cada elemento del ArrayList en el modelo de la lista
-	        		listModel.add(i, lista.get(i));
+	        		listModel.add(i, lista.get(i).getDatos());
 	        }
 	        listaHabitaciones = new JList<>(listModel);
 	        JScrollPane scrollPane = new JScrollPane(listaHabitaciones);
@@ -48,9 +48,7 @@ public class PanelAdminCentro extends JPanel{
 	        // Botones para agregar y eliminar habitaciones
 	        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	        btnAgregar = new JButton("Agregar habitación");
-	        btnEliminar = new JButton("Eliminar habitación");
 	        panelBotones.add(btnAgregar);
-	        panelBotones.add(btnEliminar);
 	        add(panelBotones, BorderLayout.SOUTH);
 	        btnAgregar.addActionListener(e -> {
 	        	String clase = "";
@@ -81,8 +79,7 @@ public class PanelAdminCentro extends JPanel{
 					clase = "Suite Doble";
 				} 
 				controlHabitaciones.crearHabitacion(capacidad, ubicacion, clase);
-				revalidate();
-				repaint();
+				ventana.repintar("habitaciones");
 				
 	        
 	    	

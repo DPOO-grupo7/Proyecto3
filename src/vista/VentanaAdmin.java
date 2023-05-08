@@ -91,13 +91,13 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		botonSalir.addActionListener(this);
 
 		arriba.setBackground(Color.decode("#f5f6fb"));
-		dere.setBackground(Color.decode("#f5f6fb"));
+		//dere.setBackground(Color.decode("#f5f6fb"));
 		izq.setBackground(Color.decode("#a8c4d4"));
 		abajo.setBackground(Color.decode("#a8c4d4"));
 
 		add(izq, BorderLayout.WEST);
 		add(centro, BorderLayout.CENTER);
-		add(dere, BorderLayout.EAST);
+		//add(dere, BorderLayout.EAST);
 		add(arriba, BorderLayout.NORTH);
 		add(abajo, BorderLayout.SOUTH);
 
@@ -119,17 +119,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 		if (e.getSource() == botonComida) {
 
-			remove(centro);
-			remove(dere);
-			centro = new PanelAdminCentro("servicios", this, controlHabitaciones);
-			dere = new PanelAdminDerecha("servicios", this);
-			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
+			repintar("servicios");
+			
 		} else if (e.getSource() == botonPersonal) {
 			remove(centro);
-			remove(dere);
+			//remove(dere);
 			centro = new PanelAdminPersonal(this, autenticador);
 			//dere = new PanelAdminDerecha("personal", this);
 			add(centro, BorderLayout.CENTER);
@@ -138,30 +132,24 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 			repaint();
 		} else if (e.getSource() == botonHabitaciones) {
 
-			remove(centro);
-			//remove(dere);
-			centro = new PanelAdminCentro("habitaciones", this, controlHabitaciones);
-			//dere = new PanelAdminDerecha("habitaciones", this);
-			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
+			repintar("habitaciones");
 
 		} else if (e.getSource() == botonTarifa) {
 
-			remove(centro);
-			remove(dere);
-			centro = new PanelAdminCentro("tarifa", this, controlHabitaciones);
-			dere = new PanelAdminDerecha("tarifa", this);
-			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
+			repintar("tarifa");
 		}
 
 		else if (e.getSource() == botonSalir) {
 			System.exit(0);
 		}
 		// else if (e.getSource() == dere.b)
+	}
+	public void repintar(String tipo) {
+		remove(centro);
+		centro = new PanelAdminCentro(tipo, this, controlHabitaciones);
+		add(centro, BorderLayout.CENTER);
+		//add(dere, BorderLayout.EAST);
+		revalidate();
+		repaint();
 	}
 }
