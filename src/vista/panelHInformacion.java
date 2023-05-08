@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import utilidades.Utilidades;
+
 public class panelHInformacion extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -94,8 +96,11 @@ public class panelHInformacion extends JPanel {
 		TiposHabitaciones.add(SuiteDoble);
 
 		// el grid de ocupacion
-
-		Grid GRID = new Grid();
+		Utilidades utilidades = new Utilidades();
+		int[][] greenGrid = utilidades.createGreenGrid();
+		
+		
+		Grid GRID = new Grid(greenGrid);
 //		GRID.setBackground(SilverTransparente);
 //		GRID.setOpaque(true);
 

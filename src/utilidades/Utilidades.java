@@ -24,4 +24,15 @@ public class Utilidades {
 		}
 		return fecha;
 	}
+	public int[][] createGreenGrid() {
+	    int[][] greenGrid = new int[12][50];
+
+	    for (int row = 0; row < greenGrid.length; row++) {
+	        for (int col = 0; col < greenGrid[row].length; col++) {
+	            greenGrid[row][col] = 1; // El valor 1 indica el color verde en el array COLORS
+	        }
+	    }
+
+	    return greenGrid;
+	}
 }
