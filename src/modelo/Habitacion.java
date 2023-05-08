@@ -46,8 +46,7 @@ public class Habitacion {
 	}
 	public String getDatos()
 	{
-		String cadena = "ID: "+this.identificador+" Capacidad: "+this.capacidad+" Ubicacion: "+this.ubicacion+ " Tipo: "
-		+tipo;
+		String cadena = "ID: "+this.identificador+" Capacidad: "+this.capacidad+" Ubicacion: "+this.ubicacion;
 		return cadena;
 	}
 }

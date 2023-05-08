@@ -11,31 +11,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controlador.ControladorHabitaciones;
-import controlador.ManejadorReservas;
-import controlador.ManejadorTarifa;
 import utilidades.Autenticador;
-
-
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private static VentanaPrincipal Ventana;
 	private static final long serialVersionUID = 1L;
-	private Autenticador Autenticador;
-	//= new Autenticador();
+	private Autenticador Autenticador = new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
 	private JButton restaurante = new JButton("Restaurante");
-	private ControladorHabitaciones controlHabitaciones;
-	private ManejadorReservas reservas;
-	private ManejadorTarifa tarifas;
 
-	public VentanaPrincipal(Autenticador Autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
+	public VentanaPrincipal() {
 		// TODO Auto-generated constructor stub
-		this.Autenticador = Autenticador;
-		this.controlHabitaciones = controlHabitaciones;
-		this.reservas = reservas;
-		this.tarifas = tarifas;
 		VentanaInformacionHotel();
 
 		setSize(900, 650);
@@ -70,11 +57,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		Autenticador inicio = new Autenticador();
-		ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
-		ManejadorReservas reservas = new ManejadorReservas();
-		ManejadorTarifa tarifas = new ManejadorTarifa();
-		Ventana = new VentanaPrincipal(inicio, controlHabitaciones, reservas, tarifas);
+
+		Ventana = new VentanaPrincipal();
 
 	}
 
@@ -82,7 +66,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == iniciar) {
-			new LogIn(Autenticador,  controlHabitaciones,  reservas,  tarifas);
+			new LogIn(Autenticador);
 			dispose();
 		}
 		if (e.getSource() == restaurante) {

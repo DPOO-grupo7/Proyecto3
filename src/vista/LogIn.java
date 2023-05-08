@@ -26,15 +26,12 @@ public class LogIn extends JFrame implements ActionListener {
 	private JButton registerButton;
 	private Image dpo;
 	private Autenticador Autenticador;
-	private ControladorHabitaciones controlHabitaciones;
-	private ManejadorReservas reservas;
-	private ManejadorTarifa tarifas;
+	private ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
+	private ManejadorReservas reservas = new ManejadorReservas();
+	private ManejadorTarifa tarifas = new ManejadorTarifa();
 	
-	public LogIn(Autenticador ese, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
+	public LogIn(Autenticador ese) {
 		// Configurar el JFrame
-		this.controlHabitaciones = controlHabitaciones;
-		this.reservas = reservas;
-		this.tarifas = tarifas;
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 250);
@@ -123,10 +120,10 @@ public class LogIn extends JFrame implements ActionListener {
 					new VentanaAdmin(Autenticador, controlHabitaciones, reservas, tarifas);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "RECEPCIONISTA") {
-					new VentanaRecepcion(Autenticador, controlHabitaciones, reservas, tarifas);
+					new VentanaRecepcion(Autenticador);
 					dispose();
 				} else if (Autenticador.getTipo(username) == "PERSONAL DEL HOTEL") {
-					new VentanaEmpleados(Autenticador, controlHabitaciones, reservas, tarifas);
+					new VentanaEmpleados(Autenticador);
 					dispose();
 				}
 			}
