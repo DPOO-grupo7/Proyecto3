@@ -6,12 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import utilidades.Autenticador;
+
 import java.awt.*;
 
 public class VentanaEmpleados extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JButton botonConsumo = new JButton();
 	private JButton botonSalir = new JButton();
+	private Autenticador Autenticador = new Autenticador();
 	private JButton botonPagar = new JButton();
 	private JPanel izq;
 	private JPanel dere;
@@ -113,7 +117,8 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			System.exit(0);
+			new LogIn(Autenticador);
+			dispose();
 		}
 		// else if (e.getSource() == dere.b)
 	}
