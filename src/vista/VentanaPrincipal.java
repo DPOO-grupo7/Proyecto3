@@ -1,8 +1,6 @@
 package vista;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,14 +11,10 @@ import javax.swing.JPanel;
 
 import utilidades.Autenticador;
 
-public class VentanaPrincipal extends JFrame implements ActionListener {
-	
-	private static VentanaPrincipal Ventana;
+public class VentanaPrincipal extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private Autenticador Autenticador = new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
-	private JButton restaurante = new JButton("Restaurante");
-
 	public VentanaPrincipal() {
 		// TODO Auto-generated constructor stub
 		VentanaInformacionHotel();
@@ -32,7 +26,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void VentanaInformacionHotel() {
-
 		/*
 		 * Esta funcion se llamara cuando se quiera mostrar la ventana principal
 		 * 
@@ -44,10 +37,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 		panelHInformacion panelHInformacion = new panelHInformacion();
 		panelHServicios panelHServicios = new panelHServicios();
-		restaurante.addActionListener(this);
 		iniciar.addActionListener(this);
-		panelHSeleccionVista.add(restaurante);
-		panelHSeleccionVista.add(iniciar);
+		panelHServicios.add(iniciar);
 		Contenedor.setLayout(new GridLayout(1, 2, 0, 0));
 		Contenedor.add(panelHInformacion);
 		Contenedor.add(panelHServicios);
@@ -58,26 +49,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 
-		Ventana = new VentanaPrincipal();
+		new VentanaPrincipal();
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 
-		if (e.getSource() == iniciar) {
+		if (e.getSource() == iniciar)
+		{
 			new LogIn(Autenticador);
 			dispose();
-		}
-		if (e.getSource() == restaurante) {
-
-			Ventana.getContentPane().removeAll();
-			Ventana.revalidate();
-			Ventana.repaint();
-			Ventana.getContentPane().add(new VentanaRestaurante(), BorderLayout.CENTER);
-			Ventana.revalidate();
-			Ventana.repaint();
-
 		}
 
 	}
