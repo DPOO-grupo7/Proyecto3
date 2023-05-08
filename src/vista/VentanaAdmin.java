@@ -69,7 +69,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		izq.add(botonSalir);
 		izq.add(new JLabel());
 
-		centro = new PanelAdminCentro("habitaciones", this, controlHabitaciones);
+		centro = new PanelAdminCentro("habitaciones", this, this.controlHabitaciones);
 
 		//dere = new PanelAdminDerecha("habitaciones", this);
 
@@ -140,7 +140,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			new VentanaPrincipal(autenticador);
+			new VentanaPrincipal(autenticador, controlHabitaciones, reservas, tarifas);
 			dispose();
 		}
 		// else if (e.getSource() == dere.b)

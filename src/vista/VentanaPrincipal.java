@@ -11,7 +11,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controlador.ControladorHabitaciones;
+import controlador.ManejadorReservas;
+import controlador.ManejadorTarifa;
 import utilidades.Autenticador;
+
+
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
@@ -21,10 +26,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	//= new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
 	private JButton restaurante = new JButton("Restaurante");
+	private ControladorHabitaciones controlHabitaciones;
+	private ManejadorReservas reservas;
+	private ManejadorTarifa tarifas;
 
-	public VentanaPrincipal(Autenticador Autenticador) {
+	public VentanaPrincipal(Autenticador Autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
 		// TODO Auto-generated constructor stub
 		this.Autenticador = Autenticador;
+		this.controlHabitaciones = controlHabitaciones;
+		this.reservas = reservas;
+		this.tarifas = tarifas;
 		VentanaInformacionHotel();
 
 		setSize(900, 650);
@@ -60,7 +71,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		Autenticador inicio = new Autenticador();
-		Ventana = new VentanaPrincipal(inicio);
+		ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
+		ManejadorReservas reservas = new ManejadorReservas();
+		ManejadorTarifa tarifas = new ManejadorTarifa();
+		Ventana = new VentanaPrincipal(inicio, controlHabitaciones, reservas, tarifas);
 
 	}
 
@@ -68,7 +82,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == iniciar) {
-			new LogIn(Autenticador);
+			new LogIn(Autenticador,  controlHabitaciones,  reservas,  tarifas);
 			dispose();
 		}
 		if (e.getSource() == restaurante) {
