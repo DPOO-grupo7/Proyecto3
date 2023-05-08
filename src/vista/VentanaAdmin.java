@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import controlador.ControladorHabitaciones;
+import controlador.ManejadorReservas;
+import controlador.ManejadorTarifa;
 import utilidades.Autenticador;
 
 import java.awt.*;
@@ -30,11 +33,17 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	private Autenticador autenticador;
+	private ControladorHabitaciones controlHabitaciones;
+	private ManejadorReservas reservas;
+	private ManejadorTarifa tarifas;
 	
 
-	public VentanaAdmin(Autenticador autenticador) {
+	public VentanaAdmin(Autenticador autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
 
 		this.autenticador = autenticador;
+		this.tarifas = tarifas;
+		this.controlHabitaciones = controlHabitaciones;
+		this.reservas = reservas;
 		Icon icono = new ImageIcon(dpo);
 		Icon food = new ImageIcon(comida);
 		Icon people = new ImageIcon(personas);
@@ -60,9 +69,9 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		izq.add(botonSalir);
 		izq.add(new JLabel());
 
-		centro = new PanelAdminCentro("habitaciones", this);
+		centro = new PanelAdminCentro("habitaciones", this, controlHabitaciones);
 
-		dere = new PanelAdminDerecha("habitaciones", this);
+		//dere = new PanelAdminDerecha("habitaciones", this);
 
 		arriba = new JPanel();
 		arriba.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -112,7 +121,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 			remove(centro);
 			remove(dere);
-			centro = new PanelAdminCentro("servicios", this);
+			centro = new PanelAdminCentro("servicios", this, controlHabitaciones);
 			dere = new PanelAdminDerecha("servicios", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
@@ -130,11 +139,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		} else if (e.getSource() == botonHabitaciones) {
 
 			remove(centro);
-			remove(dere);
-			centro = new PanelAdminCentro("habitaciones", this);
-			dere = new PanelAdminDerecha("habitaciones", this);
+			//remove(dere);
+			centro = new PanelAdminCentro("habitaciones", this, controlHabitaciones);
+			//dere = new PanelAdminDerecha("habitaciones", this);
 			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
+			//add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 
@@ -142,7 +151,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 
 			remove(centro);
 			remove(dere);
-			centro = new PanelAdminCentro("tarifa", this);
+			centro = new PanelAdminCentro("tarifa", this, controlHabitaciones);
 			dere = new PanelAdminDerecha("tarifa", this);
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);

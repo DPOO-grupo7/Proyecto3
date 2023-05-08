@@ -1,7 +1,14 @@
 package vista;
 
 import javax.swing.*;
+
+import controlador.ControladorHabitaciones;
+import controlador.ManejadorReservas;
+import controlador.ManejadorTarifa;
+import modelo.Habitacion;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PanelAdminCentro extends JPanel{
 
@@ -12,9 +19,11 @@ public class PanelAdminCentro extends JPanel{
     private JList<String> listaHabitaciones;
     private JButton btnAgregar;
     private JButton btnEliminar;
-    
+    private ControladorHabitaciones controlHabitaciones;
+	private ManejadorReservas reservas;
+	private ManejadorTarifa tarifas;
 	
-	public PanelAdminCentro(String tipo, VentanaAdmin ventana)
+	public PanelAdminCentro(String tipo, VentanaAdmin ventana, ControladorHabitaciones controlHabitaciones)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
@@ -26,9 +35,13 @@ public class PanelAdminCentro extends JPanel{
 	        titulo = new JLabel("Inventario de habitaciones");
 	        titulo.setHorizontalAlignment(SwingConstants.CENTER);
 	        add(titulo, BorderLayout.NORTH);
-
-	        // Lista de habitaciones
-	        listaHabitaciones = new JList<>(new String[]{"Habitación 101", "Habitación 102", "Habitación 103", "Habitación 104", "Habitación 105"});
+	        ArrayList<Habitacion> lista = controlHabitaciones.retornarHabitaciones();
+	        DefaultListModel listModel = new DefaultListModel();
+	        	for(int i=0; i<lista.size(); i++) {
+	            //Añadir cada elemento del ArrayList en el modelo de la lista
+	        		listModel.add(i, lista.get(i));
+	        }
+	        listaHabitaciones = new JList<>(listModel);
 	        JScrollPane scrollPane = new JScrollPane(listaHabitaciones);
 	        add(scrollPane, BorderLayout.CENTER);
 
@@ -39,6 +52,43 @@ public class PanelAdminCentro extends JPanel{
 	        panelBotones.add(btnAgregar);
 	        panelBotones.add(btnEliminar);
 	        add(panelBotones, BorderLayout.SOUTH);
+	        btnAgregar.addActionListener(e -> {
+	        	String clase = "";
+	        	int capacidad = 0;
+	        	String[] botones = { "1", "2", "3", "4", "5"};
+	        	String[] botones2 = { "Estandar", "Suite", "Suite Doble"};
+				String ubicacion = JOptionPane.showInputDialog(null, "Ubicacion de Habitacion");
+				int seleccion = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir capacidad",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
+				if (seleccion == 0) {
+					capacidad = 1;
+				} else if (seleccion == 1) {
+					capacidad = 2;
+				} else if (seleccion == 2) {
+					capacidad = 3;
+				} else if (seleccion == 3) {
+					capacidad = 4;
+				} else if (seleccion == 4) {
+					capacidad = 5;
+				}
+				int seleccion2 = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir tipo",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones2, botones2[0]);
+				if (seleccion2 == 0) {
+					clase = "Estandar";
+				} else if (seleccion2 == 1) {
+					clase = "Suite";
+				} else if (seleccion2 == 2) {
+					clase = "Suite Doble";
+				} 
+				controlHabitaciones.crearHabitacion(capacidad, ubicacion, clase);
+				revalidate();
+				repaint();
+				
+	        
+	    	
+	            
+	        });
+	        
 		}
 		else if (tipo == "tarifa")
 		{
