@@ -8,17 +8,19 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controlador.ManejadorReservas;
+import utilidades.Autenticador;
 
 import java.awt.*;
 
-
 public class VentanaRecepcion extends JFrame implements ActionListener {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JButton botonFactura = new JButton();
 	private JButton botonInventario = new JButton();
 	private JButton botonInvTotal = new JButton();
 	private JButton botonSalir = new JButton();
+
+	private Autenticador Autenticador = new Autenticador();
 	private JButton botonReserva = new JButton();
 	private JPanel izq;
 	private JPanel dere;
@@ -31,148 +33,130 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 	private Image cajas = new ImageIcon("./data/invtotal.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image reserva = new ImageIcon("./data/reserva.png").getImage();
-	
-	
-	public VentanaRecepcion()
-	{
-		
-        Icon icono = new ImageIcon(dpo);
-        Icon ticket = new ImageIcon(factura);
-        Icon inventario = new ImageIcon(this.inventario);
-        Icon cajas = new ImageIcon(this.cajas);
-        Icon reserva = new ImageIcon(this.reserva);
-        Icon out = new ImageIcon(salir);
-        
-		
-        setLayout(new BorderLayout());
-        
-        this.botonFactura.setIcon(ticket);
-        this.botonInventario.setIcon(inventario);
-        this.botonSalir.setIcon(out);
-        this.botonReserva.setIcon(reserva);
-        this.botonInvTotal.setIcon(cajas);
-        
-        izq = new JPanel();
-        izq.setLayout(new GridLayout(7, 1));
-        izq.add(new JLabel());
-        izq.add(botonFactura);
-        izq.add(botonInventario);
-        izq.add(botonInvTotal);
-        izq.add(botonReserva);
-        izq.add(botonSalir);
-        izq.add(new JLabel());
-        
-        
-         centro = new PanelReservasLista(new ManejadorReservas());
-        
-        
-        dere = new PanelReservasFormulario(new String[]{"1","3"});
-        
-        
-       
-        arriba = new JPanel();
-        arriba.setLayout(new FlowLayout(FlowLayout.CENTER));
-        JLabel titulo = new JLabel();
-        titulo.setIcon(icono);
-        arriba.add(titulo);
-        
-        
-        abajo = new JPanel();
-        abajo.setSize(800, 200);
-        JLabel espacio = new JLabel();
-        abajo.add(espacio);
-        
-        botonFactura.addActionListener(this);
-        botonReserva.addActionListener(this);
-        botonInventario.addActionListener(this);
-        botonInvTotal.addActionListener(this);
-        botonSalir.addActionListener(this);
-        
-        
-        arriba.setBackground(Color.decode("#f5f6fb"));
-        dere.setBackground(Color.decode("#f5f6fb"));
-        izq.setBackground(Color.decode("#a8c4d4"));
-        abajo.setBackground(Color.decode("#a8c4d4"));
-        
-        add(izq, BorderLayout.WEST);
-        add(centro, BorderLayout.CENTER);
-        add(dere, BorderLayout.EAST);
-        add(arriba, BorderLayout.NORTH);
-        add(abajo, BorderLayout.SOUTH);
-        
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Panel Recepcion");
-        setSize(800, 600);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    
-        
-        //IMPLEMENTAR ACTION LISTENER CON LAS FUNCIONES SIMILARES QUE HAY EN LA INTERFAZ
-        //EN LA LINEA 265, Y 298. DE INTERFAZ.JAVA. 
-        
+
+	public VentanaRecepcion() {
+
+		Icon icono = new ImageIcon(dpo);
+		Icon ticket = new ImageIcon(factura);
+		Icon inventario = new ImageIcon(this.inventario);
+		Icon cajas = new ImageIcon(this.cajas);
+		Icon reserva = new ImageIcon(this.reserva);
+		Icon out = new ImageIcon(salir);
+
+		setLayout(new BorderLayout());
+
+		this.botonFactura.setIcon(ticket);
+		this.botonInventario.setIcon(inventario);
+		this.botonSalir.setIcon(out);
+		this.botonReserva.setIcon(reserva);
+		this.botonInvTotal.setIcon(cajas);
+
+		izq = new JPanel();
+		izq.setLayout(new GridLayout(7, 1));
+		izq.add(new JLabel());
+		izq.add(botonFactura);
+		izq.add(botonInventario);
+		izq.add(botonInvTotal);
+		izq.add(botonReserva);
+		izq.add(botonSalir);
+		izq.add(new JLabel());
+
+		centro = new PanelReservasLista(new ManejadorReservas());
+
+		dere = new PanelReservasFormulario(new String[] { "1", "3" });
+
+		arriba = new JPanel();
+		arriba.setLayout(new FlowLayout(FlowLayout.CENTER));
+		JLabel titulo = new JLabel();
+		titulo.setIcon(icono);
+		arriba.add(titulo);
+
+		abajo = new JPanel();
+		abajo.setSize(800, 200);
+		JLabel espacio = new JLabel();
+		abajo.add(espacio);
+
+		botonFactura.addActionListener(this);
+		botonReserva.addActionListener(this);
+		botonInventario.addActionListener(this);
+		botonInvTotal.addActionListener(this);
+		botonSalir.addActionListener(this);
+
+		arriba.setBackground(Color.decode("#f5f6fb"));
+		dere.setBackground(Color.decode("#f5f6fb"));
+		izq.setBackground(Color.decode("#a8c4d4"));
+		abajo.setBackground(Color.decode("#a8c4d4"));
+
+		add(izq, BorderLayout.WEST);
+		add(centro, BorderLayout.CENTER);
+		add(dere, BorderLayout.EAST);
+		add(arriba, BorderLayout.NORTH);
+		add(abajo, BorderLayout.SOUTH);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Panel Recepcion");
+		setSize(800, 600);
+		setLocationRelativeTo(null);
+		setVisible(true);
+
+		// IMPLEMENTAR ACTION LISTENER CON LAS FUNCIONES SIMILARES QUE HAY EN LA
+		// INTERFAZ
+		// EN LA LINEA 265, Y 298. DE INTERFAZ.JAVA.
+
 	}
+
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 
+		if (e.getSource() == botonFactura) {
 
-		if (e.getSource() == botonFactura)
-		{
-			
 			remove(centro);
 			remove(dere);
 			centro = new PanelFacturas();
-			//dere = new PanelRecepDerecha("factura", this);
+			// dere = new PanelRecepDerecha("factura", this);
 			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
+			// add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
-		}
-		else if (e.getSource() == botonInventario)
-		{
-			
+		} else if (e.getSource() == botonInventario) {
+
 			remove(centro);
 			remove(dere);
-			//centro = new PanelRecepCentro("inventario", this);
+			// centro = new PanelRecepCentro("inventario", this);
 			centro = new PanelInventarioDisponible();
-			//dere = new PanelRecepDerecha("inventario", this);
+			// dere = new PanelRecepDerecha("inventario", this);
 			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
+			// add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
-		}
-		else if (e.getSource() == botonInvTotal)
-		{
-			
+		} else if (e.getSource() == botonInvTotal) {
+
 			remove(centro);
-			//remove(dere);
+			// remove(dere);
 			centro = new PanelInventarioTotal();
-			//dere = new PanelRecepDerecha("invtotal", this);
+			// dere = new PanelRecepDerecha("invtotal", this);
 			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
+			// add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
-			
-		}
-		else if (e.getSource() == botonReserva)
-		{
-			
+
+		} else if (e.getSource() == botonReserva) {
+
 			remove(centro);
 			remove(dere);
 			centro = new PanelReservasLista(new ManejadorReservas());
-			//dere = new PanelRecepDerecha("reserva", this);
-			dere = new PanelReservasFormulario(new String[]{"1","3"});
+			// dere = new PanelRecepDerecha("reserva", this);
+			dere = new PanelReservasFormulario(new String[] { "1", "3" });
 			add(centro, BorderLayout.CENTER);
 			add(dere, BorderLayout.EAST);
 			revalidate();
 			repaint();
 		}
-		
-		else if (e.getSource() == botonSalir)
-		{
-			System.exit(0);
+
+		else if (e.getSource() == botonSalir) {
+			new LogIn(Autenticador);
+			dispose();
 		}
-		//else if (e.getSource() == dere.b)
+		// else if (e.getSource() == dere.b)
 	}
 }

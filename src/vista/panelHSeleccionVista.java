@@ -17,4 +17,5 @@ public class panelHSeleccionVista extends JPanel {
 //		add(NombreHotel);
 	}
 
+	
 }
