@@ -25,6 +25,7 @@ public class PanelAdminCentro extends JPanel{
 	
 	public PanelAdminCentro(String tipo, VentanaAdmin ventana, ControladorHabitaciones controlHabitaciones)
 	{
+		this.controlHabitaciones = controlHabitaciones;
 		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
 		{
@@ -35,7 +36,7 @@ public class PanelAdminCentro extends JPanel{
 	        titulo = new JLabel("Inventario de habitaciones");
 	        titulo.setHorizontalAlignment(SwingConstants.CENTER);
 	        add(titulo, BorderLayout.NORTH);
-	        ArrayList<Habitacion> lista = controlHabitaciones.retornarHabitaciones();
+	        ArrayList<Habitacion> lista = this.controlHabitaciones.retornarHabitaciones();
 	        DefaultListModel listModel = new DefaultListModel();
 	        	for(int i=0; i<lista.size(); i++) {
 	            //Añadir cada elemento del ArrayList en el modelo de la lista

@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import controlador.ControladorHabitaciones;
+import controlador.ManejadorReservas;
+import controlador.ManejadorTarifa;
 import utilidades.Autenticador;
 
 import java.awt.*;
@@ -26,10 +29,16 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 	private Image pay = new ImageIcon("./data/pagar.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Autenticador autenticador;
+	private ControladorHabitaciones controlHabitaciones;
+	private ManejadorReservas reservas;
+	private ManejadorTarifa tarifas;
 
-	public VentanaEmpleados(Autenticador autenticador) {
+	public VentanaEmpleados(Autenticador autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
 
 		this.autenticador = autenticador;
+		this.controlHabitaciones = controlHabitaciones;
+		this.reservas = reservas;
+		this.tarifas = tarifas;
 		Icon icono = new ImageIcon(dpo);
 		Icon consumo = new ImageIcon(consume);
 		Icon pagar = new ImageIcon(pay);
@@ -118,7 +127,7 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			new LogIn(autenticador);
+			new VentanaPrincipal(autenticador, controlHabitaciones, reservas, tarifas);
 			dispose();
 		}
 		// else if (e.getSource() == dere.b)
