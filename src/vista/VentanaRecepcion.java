@@ -172,7 +172,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 		
 		else if (e.getSource() == botonSalir)
 		{
-			new LogIn(autenticador);
+			new VentanaPrincipal(autenticador);
 			dispose();
 		}
 		//else if (e.getSource() == dere.b)

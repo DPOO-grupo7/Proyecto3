@@ -17,12 +17,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private static VentanaPrincipal Ventana;
 	private static final long serialVersionUID = 1L;
-	private Autenticador Autenticador = new Autenticador();
+	private Autenticador Autenticador;
+	//= new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
 	private JButton restaurante = new JButton("Restaurante");
 
-	public VentanaPrincipal() {
+	public VentanaPrincipal(Autenticador Autenticador) {
 		// TODO Auto-generated constructor stub
+		this.Autenticador = Autenticador;
 		VentanaInformacionHotel();
 
 		setSize(900, 650);
@@ -57,8 +59,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-
-		Ventana = new VentanaPrincipal();
+		Autenticador inicio = new Autenticador();
+		Ventana = new VentanaPrincipal(inicio);
 
 	}
 
