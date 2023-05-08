@@ -56,7 +56,7 @@ public class PanelAdminCentro extends JPanel{
 	        	String[] botones = { "1", "2", "3", "4", "5"};
 	        	String[] botones2 = { "Estandar", "Suite", "Suite Doble"};
 				String ubicacion = JOptionPane.showInputDialog(null, "Ubicacion de Habitacion");
-				int seleccion = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir capacidad",
+				int seleccion = JOptionPane.showOptionDialog(null, "Elige capacidad", "Elegir capacidad",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
 				if (seleccion == 0) {
 					capacidad = 1;
