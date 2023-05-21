@@ -69,6 +69,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	}
 
+	
 	public static void main(String[] args) {
 		Autenticador inicio = new Autenticador();
 		ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
