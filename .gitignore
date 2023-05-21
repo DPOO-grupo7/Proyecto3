@@ -9,7 +9,7 @@ bin/utilidades/Utilidades.class
 .classpath
 .bin/
 
-.bin/DS_Store
+bin/DS_Store
 .DS_Store
 .src/DS_Store
 bin/.DS_Store
