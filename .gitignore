@@ -7,3 +7,4 @@ bin/utilidades/Utilidades.class
 *.class
 *.class
 .classpath
+.bin/
