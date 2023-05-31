@@ -128,6 +128,22 @@ public class Hotel implements Serializable{
 		}
 		return -1;
 	}
+	
+	public ControladorHabitaciones getControladorHabitaciones()
+	{
+		return this.ch;
+	}
+	
+	public ManejadorReservas getManejadorReservas()
+	{
+		return this.mr;
+	}
+	
+	public ManejadorTarifa getManejadorTarifas()
+	{
+		return this.mt;
+	}
+	
 	public void crearHabitacion(int pCapacidad, String pUbicacion, String pTipo)
 	{
 		ch.crearHabitacion(pCapacidad, pUbicacion, pTipo);

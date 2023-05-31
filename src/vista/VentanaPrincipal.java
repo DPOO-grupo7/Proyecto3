@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import controlador.ControladorHabitaciones;
 import controlador.ManejadorReservas;
 import controlador.ManejadorTarifa;
+import modelo.Hotel;
+import posterityKeeper.Archivador;
 import utilidades.Autenticador;
 
 
@@ -29,6 +31,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	private ControladorHabitaciones controlHabitaciones;
 	private ManejadorReservas reservas;
 	private ManejadorTarifa tarifas;
+	private static Archivador archivador = new Archivador();
 
 	public VentanaPrincipal(Autenticador Autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
 		// TODO Auto-generated constructor stub
@@ -71,10 +74,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	
 	public static void main(String[] args) {
+		Hotel hotel = new Hotel(archivador);
 		Autenticador inicio = new Autenticador();
-		ControladorHabitaciones controlHabitaciones = new ControladorHabitaciones();
-		ManejadorReservas reservas = new ManejadorReservas();
-		ManejadorTarifa tarifas = new ManejadorTarifa();
+		ControladorHabitaciones controlHabitaciones = hotel.getControladorHabitaciones();
+		ManejadorReservas reservas = hotel.getManejadorReservas();
+		ManejadorTarifa tarifas = hotel.getManejadorTarifas();
 		Ventana = new VentanaPrincipal(inicio, controlHabitaciones, reservas, tarifas);
 
 	}
