@@ -1,11 +1,16 @@
 package controlador;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import modelo.Habitacion;
 
-public class ControladorHabitaciones {
+public class ControladorHabitaciones implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ArrayList<Habitacion> LISTA_HABITACIONES = new ArrayList<Habitacion>();
 	
 	public ControladorHabitaciones() {

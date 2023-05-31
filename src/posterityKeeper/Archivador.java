@@ -14,12 +14,9 @@ import modelo.Hotel;
 
 public class Archivador implements Serializable{
 	private static final long serialVersionUID = 1L;
-//	private static final String RUTA_HUESPED="./data/huespedes.bin";
-//	private static final String RUTA_ADMIN="./data/admins.bin";
-//	private static final String RUTA_RECEP="./data/recepcionistas.bin";
-//	private static final String RUTA_RESER="./data/reserva.bin";
-	private static final String RUTA_HABITA="./data/habitaciones.bin";
-	private static final String RUTA_HOTEL="./data/hotel.bin";
+	private static final String RUTA_RESER="./data/reserva.txt";
+	private static final String RUTA_HABITA="./data/habitaciones.txt";
+	private static final String RUTA_HOTEL="./data/hotel.txt";
 	public Archivador() {
 	}
 	public void guardarHabitaciones(ArrayList<Habitacion> habitaciones)
@@ -43,29 +40,41 @@ public class Archivador implements Serializable{
 	}
 	public void guardarHotel(Hotel hotel) {
 
-		try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(RUTA_HOTEL))) {
-            stream.writeObject(hotel);
+		try {
+            FileOutputStream archivoSalida = new FileOutputStream(RUTA_HOTEL);
+            ObjectOutputStream objetoSalida = new ObjectOutputStream(archivoSalida);
+            objetoSalida.writeObject(hotel);
+            objetoSalida.close();
+            archivoSalida.close();
+            System.out.println("Hotel serializado y guardado en el archivo: " + RUTA_HOTEL);
         } catch (IOException e) {
-            System.out.println("Error writing binary file: " + e.getMessage());
+            e.printStackTrace();
         }
 
 	}
 	public Hotel cargarHotel()
 	{
-		try (ObjectInputStream stream = new ObjectInputStream(new FileInputStream(RUTA_HOTEL))) {
-            Object object = stream.readObject();
-            // Cast the object to the appropriate class
-            if (object instanceof Hotel) {
-                Hotel hotel= (Hotel) object;
-                return hotel;
-            } else {
-                System.err.println("Hubo un error al cargar el archivo.");
-            }
-            
+		Hotel hotelDeserializado = null;
+		try {
+            FileInputStream archivoEntrada = new FileInputStream(RUTA_HOTEL);
+            ObjectInputStream objetoEntrada = new ObjectInputStream(archivoEntrada);
+            hotelDeserializado = (Hotel) objetoEntrada.readObject();
+            objetoEntrada.close();
+            archivoEntrada.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error reading binary file: " + e.getMessage());
+            e.printStackTrace();
+            e.getMessage();
         }
-		return new Hotel(this);
+        
+        // Verificación del hotel deserializado
+        if (hotelDeserializado != null) {
+            return hotelDeserializado;
+        } else {
+            System.out.println("No se pudo deserializar el hotel.");
+            return null;
+        }
+		
 
 	}
 }
+
