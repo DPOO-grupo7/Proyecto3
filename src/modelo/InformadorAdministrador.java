@@ -27,11 +27,16 @@ public class InformadorAdministrador implements Serializable{
 	{
 		return password;
 	}
-	public String opciones(String opcion, HashMap<String, String> datos)
+	public String opciones(String opcion, HashMap<String, String> datos, String tamanio
+			, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
+			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
+			boolean desayuno)
 	{
 		if (opcion.equals("1"))
 		{
-			hotel.crearHabitacion(Integer.parseInt(datos.get("capacidad")), datos.get("ubicacion"),datos.get("tipo"));
+			hotel.crearHabitacion(Integer.parseInt(datos.get("capacidad")), datos.get("ubicacion"),datos.get("tipo"), tamanio,  cama,  ac,  heat,  tv,  cafe,
+					 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
+					 desayuno);
 		}
 		
 		else if (opcion.equals("2"))

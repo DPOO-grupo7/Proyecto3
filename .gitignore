@@ -16,3 +16,9 @@ bin/.DS_Store
 src/.DS_Store
 .DS_Store
 bin/modelo/Hotel.class
+bin/modelo/Habitacion.class
+bin/controlador/ControladorHabitaciones.class
+bin/modelo/Habitacion.class
+bin/modelo/Hotel.class
+bin/modelo/InformadorAdministrador.class
+bin/vista/Interfaz.class

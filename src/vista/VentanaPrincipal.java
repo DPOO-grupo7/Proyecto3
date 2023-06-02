@@ -74,7 +74,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
 	
 	public static void main(String[] args) {
-		Hotel hotel = new Hotel(archivador);
+		Hotel hotel = new Hotel(archivador, true, true, true ,true ,true, true, true);
 		Autenticador inicio = new Autenticador();
 		ControladorHabitaciones controlHabitaciones = hotel.getControladorHabitaciones();
 		ManejadorReservas reservas = hotel.getManejadorReservas();

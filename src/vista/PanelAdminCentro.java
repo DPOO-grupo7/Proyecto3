@@ -23,7 +23,9 @@ public class PanelAdminCentro extends JPanel{
 	private ManejadorReservas reservas;
 	private ManejadorTarifa tarifas;
 	
-	public PanelAdminCentro(String tipo, VentanaAdmin ventana, ControladorHabitaciones controlHabitaciones)
+	public PanelAdminCentro(String tipo, VentanaAdmin ventana, ControladorHabitaciones controlHabitaciones, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
+			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
+			boolean desayuno)
 	{
 		this.controlHabitaciones = controlHabitaciones;
 		this.setBackground(Color.decode("#f5f6fb"));
@@ -79,7 +81,9 @@ public class PanelAdminCentro extends JPanel{
 				} else if (seleccion2 == 2) {
 					clase = "Suite Doble";
 				} 
-				controlHabitaciones.crearHabitacion(capacidad, ubicacion, clase);
+				controlHabitaciones.crearHabitacion(capacidad, ubicacion, clase,  tamanio,  cama,  ac,  heat,  tv,  cafe,
+						 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
+						 desayuno);
 				ventana.repintar("habitaciones");
 				
 	        

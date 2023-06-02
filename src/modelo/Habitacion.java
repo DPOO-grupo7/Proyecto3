@@ -16,14 +16,43 @@ public class Habitacion implements Serializable{
 	private ArrayList<Date> fechasReservadas;
 	private ArrayList<String> caracteristicas;
 	private String tipo;
+	private String tamanio;
+	private boolean aireAcondicionado;
+	private boolean calefaccion;
+	private String tamanioCama;
+	private boolean tv;
+	private boolean cafetera;
+	private boolean plancha;
+	private boolean ropaDeCama;
+	private boolean secador;
+	private boolean voltaje;
+	private boolean USBA;
+	private boolean USBC;
+	private boolean desayuno;
 
-	public Habitacion(int pCapacidad, String pUbicacion, String pTipo, int identificacion) {
+	public Habitacion(int pCapacidad, String pUbicacion, String pTipo, int identificacion,
+			String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
+			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
+			boolean desayuno) {
 		identificador = identificacion;
 		capacidad = pCapacidad;
 		ubicacion = pUbicacion;
 		fechasReservadas = new ArrayList<Date>();
 		caracteristicas = new ArrayList<String>();
 		tipo = pTipo;
+		this.tamanio = tamanio;
+		this.aireAcondicionado = ac;
+		this.calefaccion = heat;
+		this.tamanioCama = cama;
+		this.tv = tv;
+		this.cafetera = cafe;
+		this.plancha = plancha;
+		this.ropaDeCama = ropa;
+		this.secador = secador;
+		this.voltaje = voltaje;
+		this.USBA = usba;
+		this.USBC = usbc;
+		this.desayuno = desayuno;
 	}
 
 	public int getIdentificador() {
@@ -55,4 +84,62 @@ public class Habitacion implements Serializable{
 		+tipo;
 		return cadena;
 	}
+
+	public String getTamanio() {
+		return tamanio;
+	}
+
+	public boolean isAireAcondicionado() {
+		return aireAcondicionado;
+	}
+
+	public boolean isCalefaccion() {
+		return calefaccion;
+	}
+
+	public String getTamanioCama() {
+		return tamanioCama;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public boolean isTv() {
+		return tv;
+	}
+
+	public boolean isCafetera() {
+		return cafetera;
+	}
+
+	public boolean isPlancha() {
+		return plancha;
+	}
+
+	public boolean isRopaDeCama() {
+		return ropaDeCama;
+	}
+
+	public boolean isSecador() {
+		return secador;
+	}
+
+	public boolean isVoltaje() {
+		return voltaje;
+	}
+
+	public boolean isUSBA() {
+		return USBA;
+	}
+
+	public boolean isUSBC() {
+		return USBC;
+	}
+
+	public boolean isDesayuno() {
+		return desayuno;
+	}
+
+	
 }

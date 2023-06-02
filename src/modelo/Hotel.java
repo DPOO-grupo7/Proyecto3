@@ -28,7 +28,15 @@ public class Hotel implements Serializable{
 	private HashMap<SimpleDateFormat, Integer> tarifasEstandar;
 	private HashMap<SimpleDateFormat, Integer> tarifasSuite;
 	private HashMap<SimpleDateFormat, Integer> tarifasDoble;
-	public Hotel(Archivador pArchivador)
+	private boolean parqueaderoGratuito;
+	private boolean wifiGratis;
+	private boolean piscina;
+	private boolean zonaHumeda;
+	private boolean asador;
+	private boolean recepcion24;
+	private boolean mascotas;
+	public Hotel(Archivador pArchivador, boolean parq, boolean wifi, boolean pis, boolean zona, boolean bbq,
+			boolean recepcion, boolean pets)
 	{
 		archivador=pArchivador;
 		recepcionistas=new ArrayList<InformadorRecepcionista>();
@@ -42,6 +50,13 @@ public class Hotel implements Serializable{
 		tarifasSuite=new HashMap<SimpleDateFormat, Integer>();
 		tarifasDoble=new HashMap<SimpleDateFormat, Integer>();
 		servicios.put("Servicio Prueba", 25);
+		this.parqueaderoGratuito = parq;
+		this.wifiGratis = wifi;
+		this.piscina = pis;
+		this.zonaHumeda = zona;
+		this.asador = bbq;
+		this.recepcion24 = recepcion;
+		this.mascotas = pets;
 	}
 	public Archivador getArchivador()
 	{
@@ -100,7 +115,9 @@ public class Hotel implements Serializable{
 	}
 	public Object opcionesAdmin(String opcion,String login,HashMap<String, String> datos)
 	{
-		return admins.get(encontrarAdmin(login)).opciones(opcion,datos);
+		return admins.get(encontrarAdmin(login)).opciones(opcion,datos, "9x9",  "2x2",  true,  true,  true,  true,
+				 true,  true,  true,  true,  true,  true,
+				 true);
 	}
 	public Object opcionesRecepcion(String opcion,String login, HashMap<String, String> datos)
 	{
@@ -144,9 +161,13 @@ public class Hotel implements Serializable{
 		return this.mt;
 	}
 	
-	public void crearHabitacion(int pCapacidad, String pUbicacion, String pTipo)
+	public void crearHabitacion(int pCapacidad, String pUbicacion, String pTipo, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
+			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
+			boolean desayuno)
 	{
-		ch.crearHabitacion(pCapacidad, pUbicacion, pTipo);
+		ch.crearHabitacion(pCapacidad, pUbicacion, pTipo,  tamanio,  cama,  ac,  heat,  tv,  cafe,
+				 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
+				 desayuno);
 	}
 	public Habitacion solicitarHabitacion(int id)
 	{
@@ -256,4 +277,29 @@ public class Hotel implements Serializable{
 		servicios.get(admins);
 	}
 
+	public void setCaracteristicas()
+	{
+		
+	}
+	public boolean isParqueaderoGratuito() {
+		return parqueaderoGratuito;
+	}
+	public boolean isWifiGratis() {
+		return wifiGratis;
+	}
+	public boolean isPiscina() {
+		return piscina;
+	}
+	public boolean isZonaHumeda() {
+		return zonaHumeda;
+	}
+	public boolean isAsador() {
+		return asador;
+	}
+	public boolean isRecepcion24() {
+		return recepcion24;
+	}
+	public boolean isMascotas() {
+		return mascotas;
+	}
 }

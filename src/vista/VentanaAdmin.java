@@ -69,7 +69,11 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		izq.add(botonSalir);
 		izq.add(new JLabel());
 
-		centro = new PanelAdminCentro("habitaciones", this, this.controlHabitaciones);
+		//crear
+		centro = new PanelAdminCentro("habitaciones", this, this.controlHabitaciones, "9x9",  "2x2"
+				,  true,  true,  true,  true,
+				 true,  true,  true,  true,  true,  true,
+				 true);
 
 		//dere = new PanelAdminDerecha("habitaciones", this);
 
@@ -147,10 +151,15 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	}
 	public void repintar(String tipo) {
 		remove(centro);
-		centro = new PanelAdminCentro(tipo, this, controlHabitaciones);
+		centro = new PanelAdminCentro(tipo, this, controlHabitaciones,
+				"9x9",  "2x2",  true,  true,  true,  true,
+				 true,  true,  true,  true,  true,  true,
+				 true);
 		add(centro, BorderLayout.CENTER);
 		//add(dere, BorderLayout.EAST);
 		revalidate();
 		repaint();
 	}
+	
+	
 }
