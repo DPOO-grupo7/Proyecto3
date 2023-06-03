@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import modelo.Habitacion;
 import modelo.Hotel;
+import utilidades.Autenticador;
 
 
 public class Archivador implements Serializable{
@@ -17,6 +18,7 @@ public class Archivador implements Serializable{
 	private static final String RUTA_RESER="./data/reserva.txt";
 	private static final String RUTA_HABITA="./data/habitaciones.txt";
 	private static final String RUTA_HOTEL="./data/hotel.txt";
+	private static final String RUTA_LOGINS="./data/logins.txt";
 	public Archivador() {
 	}
 	public void guardarHabitaciones(ArrayList<Habitacion> habitaciones)
@@ -78,17 +80,17 @@ public class Archivador implements Serializable{
 		
 
 	}
-	public Hotel cargarAutenticador()
+	public Autenticador cargarAutenticador()
 	{
-		Hotel hotelDeserializado = null;
+		Autenticador hotelDeserializado = null;
 		try {
-            FileInputStream archivoEntrada = new FileInputStream(RUTA_HOTEL);
+            FileInputStream archivoEntrada = new FileInputStream(RUTA_LOGINS);
             ObjectInputStream objetoEntrada = new ObjectInputStream(archivoEntrada);
-            Object object = (Hotel) objetoEntrada.readObject();
+            Object object = (Autenticador) objetoEntrada.readObject();
             objetoEntrada.close();
             archivoEntrada.close();
-            if (object instanceof Hotel) {
-                hotelDeserializado= (Hotel) object;
+            if (object instanceof Autenticador) {
+                hotelDeserializado= (Autenticador) object;
              
             } else {
                 System.out.println("No se pudo deserializar el hotel.");
@@ -98,6 +100,20 @@ public class Archivador implements Serializable{
             e.getMessage();
         }
 		return hotelDeserializado;
+	}
+	
+	public void guardarAutenticador(Autenticador hotel) {
+
+		try {
+            FileOutputStream archivoSalida = new FileOutputStream(RUTA_LOGINS);
+            ObjectOutputStream objetoSalida = new ObjectOutputStream(archivoSalida);
+            objetoSalida.writeObject(hotel);
+            objetoSalida.close();
+            archivoSalida.close();
+            System.out.println("Autenticador serializado y guardado en el archivo: " + RUTA_LOGINS);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
 

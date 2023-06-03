@@ -61,13 +61,13 @@ public class PanelAdminPersonal extends JPanel {
 			int ventanaTipo = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir Tipo de Personal",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
 			if (ventanaTipo == 0) {
-				tipo = "RECEPCIONISTA";
+				tipo = "2";
 			} else if (ventanaTipo == 1) {
-				tipo = "PERSONAL DEL HOTEL";
+				tipo = "3";
 			} else if (ventanaTipo == 2) {
-				tipo = "ADMINISTRADOR";
+				tipo = "1";
 			}
-			hotel.setUsuarios(username, password, tipo);
+			hotel.crearCuenta(tipo, username, password);
 			JOptionPane.showMessageDialog(this, "Registro exitoso.");
             
         });

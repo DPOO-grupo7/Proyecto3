@@ -21,6 +21,7 @@ public class Hotel implements Serializable{
 	private Archivador archivador;
 	private ArrayList<InformadorRecepcionista> recepcionistas;
 	private ArrayList<InformadorAdministrador> admins;
+	private ArrayList<InformadorPersonal> personal;
 	private ArrayList<InformadorHuesped> huespedes;
 	private ControladorHabitaciones ch;
 	private ManejadorReservas mr;
@@ -91,9 +92,9 @@ public class Hotel implements Serializable{
 		}
 		else if (tipoUsuario.equals("3"))
 		{
-			for (int i=0; i<huespedes.size();i++)
+			for (int i=0; i<personal.size();i++)
 			{
-				if (huespedes.get(i).getLogin().equals(login) && huespedes.get(i).getPassword().equals(password))
+				if (personal.get(i).getLogin().equals(login) &&personal.get(i).getPassword().equals(password))
 				{
 					existe=true;
 				}
@@ -110,6 +111,10 @@ public class Hotel implements Serializable{
 		else if (tipoUsuario.equals("2"))
 		{
 			recepcionistas.add(new InformadorRecepcionista(login, password, this));
+		}
+		else if (tipoUsuario.equals("3"))
+		{
+			personal.add(new InformadorPersonal(login, password, this));
 		}
 	}
 	public void crearCuentaHuesped(String login, String password,  int identificacion, String correo, int telefono)

@@ -27,9 +27,8 @@ public class LogIn extends JFrame implements ActionListener {
 	private JButton registerButton;
 	private Image dpo;
 	private Hotel hotel;
-	private Autenticador autenticador;
 	
-	public LogIn(Hotel hotel, Autenticador autenticador) {
+	public LogIn(Hotel hotel) {
 		// Configurar el JFrame
 		this.hotel = hotel;
 		setTitle("Inicio de sesión");
@@ -110,21 +109,33 @@ public class LogIn extends JFrame implements ActionListener {
 		String password = new String(passwordField.getPassword());
 
 		if (e.getSource() == loginButton)
-
-			if (this.hotel.Autenticar(username, password) == false) {
+		{
+			String tipo = "";
+			String[] botones = { "Recepcion", "Personal", "Admin" };
+			int ventanaTipo = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir Tipo de Personal",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
+			if (ventanaTipo == 0) {
+				tipo = "2";
+			} else if (ventanaTipo == 1) {
+				tipo = "3";
+			}
+			else if (ventanaTipo == 2) {
+				tipo = "1";
+			}
+			if (this.hotel.iniciarSesion(tipo, username, password) == false) {
 				JOptionPane.showMessageDialog(this, "Usuario o contraseña invalido.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
 				System.out.println("perra");
-				if (hotel.getTipo(username) == "ADMINISTRADOR") {
+				if (tipo == "1") {
 					System.out.println("perra1");
 					new VentanaAdmin(this.hotel);
 					dispose();
-				} else if (hotel.getTipo(username) == "RECEPCIONISTA") {
+				} else if (tipo  == "2") {
 					new VentanaRecepcion(hotel);
 					dispose();
-				} else if (hotel.getTipo(username) == "PERSONAL DEL HOTEL") {
+				} else if (tipo == "3") {
 					new VentanaEmpleados(hotel);
 					dispose();
 				}
@@ -133,17 +144,21 @@ public class LogIn extends JFrame implements ActionListener {
 					System.out.println("error");
 				}
 			}
+		}
+			
 		else if (e.getSource() == registerButton) {
 			String tipo = "";
-			String[] botones = { "Recepcion", "Personal" };
+			String[] botones = { "Recepcion", "Personal", "Admin"};
 			int ventanaTipo = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir Tipo de Personal",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
 			if (ventanaTipo == 0) {
-				tipo = "RECEPCIONISTA";
+				tipo = "2";
 			} else if (ventanaTipo == 1) {
-				tipo = "PERSONAL DEL HOTEL";
+				tipo = "3";
+			} else if (ventanaTipo == 2) {
+				tipo = "1";
 			}
-			this.hotel.setUsuarios(username, password, tipo);
+			this.hotel.crearCuenta(tipo, username, password);;
 			JOptionPane.showMessageDialog(this, "Registro exitoso.");
 
 		}
