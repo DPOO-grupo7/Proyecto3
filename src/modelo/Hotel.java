@@ -132,7 +132,7 @@ public class Hotel implements Serializable{
 			personal.add(new InformadorPersonal(login, password, this));
 		}
 	}
-	public void crearCuentaHuesped(String login, String password,  int identificacion, String correo, int telefono)
+	public void crearCuentaHuesped(String login, String password,  String identificacion, String correo, String telefono)
 	{
 		huespedes.add(new InformadorHuesped(login, password, identificacion, correo, telefono));
 	}

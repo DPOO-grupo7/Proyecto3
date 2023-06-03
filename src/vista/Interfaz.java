@@ -243,7 +243,7 @@ public class Interfaz {
 				String correo = br.readLine();
 				System.out.println("Ingresar tel�fono:");
 				String telefono = br.readLine();
-				hotel.crearCuentaHuesped(loginActual, passwordActual, Integer.parseInt(identificacion), correo, Integer.parseInt(telefono));
+				hotel.crearCuentaHuesped(loginActual, passwordActual, identificacion, correo, telefono);
 			}
 			else if (tipoCuenta.equals("1") || tipoCuenta.equals("2"))
 			{
@@ -494,9 +494,9 @@ public class Interfaz {
 			String telefono=br.readLine();
 			
 
-			InformadorHuesped persona = new InformadorHuesped(nombre, documento, Integer.parseInt(documento), correo, Integer.parseInt(telefono));
+			InformadorHuesped persona = new InformadorHuesped(nombre, documento, documento, correo, telefono);
 			miembrosGrupo.add(persona);
-			hotel.crearCuentaHuesped(nombre, documento, Integer.parseInt(documento), correo, Integer.parseInt(telefono));
+			hotel.crearCuentaHuesped(nombre, documento, documento, correo, telefono);
 			System.out.println("�Desea a�adir m�s hu�spedes?");
 			System.out.println("-----------------");
 			System.out.println("1. S�.");
