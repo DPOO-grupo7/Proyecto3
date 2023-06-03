@@ -8,7 +8,10 @@ public class Autenticador implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5588432063116714352L;
+	/**
+	 * 
+	 */
 	private HashMap<String, String> usuariosConContraseña;
 	private HashMap<String, String> usuariosConTipo;
 //	private HashMap<String,PersonaldelHotel> personaldelhotel;

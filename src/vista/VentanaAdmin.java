@@ -111,10 +111,9 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                // Lógica personalizada a ejecutar antes de cerrar el JFrame
-                hotel.guardarHotel(); // Ejemplo de método personalizado
+                hotel.guardarHotel(); 
                 System.out.println("puta");
-                // Cerrar el JFrame
+               
                 dispose();
             }
         });

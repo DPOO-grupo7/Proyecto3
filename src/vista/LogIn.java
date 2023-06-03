@@ -27,8 +27,9 @@ public class LogIn extends JFrame implements ActionListener {
 	private JButton registerButton;
 	private Image dpo;
 	private Hotel hotel;
+	private Autenticador autenticador;
 	
-	public LogIn(Hotel hotel) {
+	public LogIn(Hotel hotel, Autenticador autenticador) {
 		// Configurar el JFrame
 		this.hotel = hotel;
 		setTitle("Inicio de sesión");
@@ -115,8 +116,10 @@ public class LogIn extends JFrame implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
+				System.out.println("perra");
 				if (hotel.getTipo(username) == "ADMINISTRADOR") {
-					new VentanaAdmin( hotel);
+					System.out.println("perra1");
+					new VentanaAdmin(this.hotel);
 					dispose();
 				} else if (hotel.getTipo(username) == "RECEPCIONISTA") {
 					new VentanaRecepcion(hotel);
@@ -124,6 +127,10 @@ public class LogIn extends JFrame implements ActionListener {
 				} else if (hotel.getTipo(username) == "PERSONAL DEL HOTEL") {
 					new VentanaEmpleados(hotel);
 					dispose();
+				}
+				else
+				{
+					System.out.println("error");
 				}
 			}
 		else if (e.getSource() == registerButton) {

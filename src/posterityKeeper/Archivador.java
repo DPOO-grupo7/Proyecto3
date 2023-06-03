@@ -58,23 +58,46 @@ public class Archivador implements Serializable{
 		try {
             FileInputStream archivoEntrada = new FileInputStream(RUTA_HOTEL);
             ObjectInputStream objetoEntrada = new ObjectInputStream(archivoEntrada);
-            hotelDeserializado = (Hotel) objetoEntrada.readObject();
+            Object object = (Hotel) objetoEntrada.readObject();
             objetoEntrada.close();
             archivoEntrada.close();
+            if (object instanceof Hotel) {
+                hotelDeserializado= (Hotel) object;
+             
+            } else {
+                System.out.println("No se pudo deserializar el hotel.");
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             e.getMessage();
         }
+		return hotelDeserializado;
         
         // Verificación del hotel deserializado
-        if (hotelDeserializado != null) {
-            return hotelDeserializado;
-        } else {
-            System.out.println("No se pudo deserializar el hotel.");
-            return null;
-        }
+		
 		
 
+	}
+	public Hotel cargarAutenticador()
+	{
+		Hotel hotelDeserializado = null;
+		try {
+            FileInputStream archivoEntrada = new FileInputStream(RUTA_HOTEL);
+            ObjectInputStream objetoEntrada = new ObjectInputStream(archivoEntrada);
+            Object object = (Hotel) objetoEntrada.readObject();
+            objetoEntrada.close();
+            archivoEntrada.close();
+            if (object instanceof Hotel) {
+                hotelDeserializado= (Hotel) object;
+             
+            } else {
+                System.out.println("No se pudo deserializar el hotel.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+		return hotelDeserializado;
 	}
 }
 

@@ -320,6 +320,7 @@ public class Hotel implements Serializable{
 	}
 	public String getTipo(String username) {
 		// TODO Auto-generated method stub
+		System.out.println("GATA");
 		return autenticador.getTipo(username);
 	}
 }
