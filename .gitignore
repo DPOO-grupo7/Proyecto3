@@ -26,3 +26,4 @@ bin/modelo/Habitacion.class
 bin/modelo/Hotel.class
 bin/modelo/InformadorHuesped.class
 bin/modelo/Hotel.class
+bin/vista/Interfaz.class
