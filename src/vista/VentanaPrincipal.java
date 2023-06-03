@@ -89,6 +89,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		{
 			hotel = archivador.cargarHotel();
 		}
+		
 		Ventana = new VentanaPrincipal(hotel);
 
 	}

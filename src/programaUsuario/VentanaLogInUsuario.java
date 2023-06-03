@@ -1,4 +1,4 @@
-package vista;
+package programaUsuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +14,7 @@ import java.awt.*;
 
 import utilidades.Autenticador;
 
-public class LogIn extends JFrame implements ActionListener {
+public class VentanaLogInUsuario extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
@@ -28,7 +28,7 @@ public class LogIn extends JFrame implements ActionListener {
 	private Image dpo;
 	private Hotel hotel;
 	
-	public LogIn(Hotel hotel) {
+	public VentanaLogInUsuario(Hotel hotel) {
 		// Configurar el JFrame
 		this.hotel = hotel;
 		setTitle("Inicio de sesión");
@@ -128,13 +128,14 @@ public class LogIn extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
 				if (tipo == "1") {
-					new VentanaAdmin(this.hotel);
+					System.out.println("perra1");
+					//new VentanaAdmin(this.hotel);
 					dispose();
 				} else if (tipo  == "2") {
-					new VentanaRecepcion(hotel);
+					//new VentanaRecepcion(hotel);
 					dispose();
 				} else if (tipo == "3") {
-					new VentanaEmpleados(hotel);
+					//new VentanaEmpleados(hotel);
 					dispose();
 				}
 			
