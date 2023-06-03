@@ -29,6 +29,7 @@ public class Habitacion implements Serializable{
 	private boolean USBA;
 	private boolean USBC;
 	private boolean desayuno;
+	private int precio = 0;
 
 	public Habitacion(int pCapacidad, String pUbicacion, String pTipo, int identificacion,
 			String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
@@ -139,6 +140,14 @@ public class Habitacion implements Serializable{
 
 	public boolean isDesayuno() {
 		return desayuno;
+	}
+
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 
 	

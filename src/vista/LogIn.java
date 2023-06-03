@@ -127,7 +127,6 @@ public class LogIn extends JFrame implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
-				System.out.println("perra");
 				if (tipo == "1") {
 					System.out.println("perra1");
 					new VentanaAdmin(this.hotel);
@@ -139,10 +138,7 @@ public class LogIn extends JFrame implements ActionListener {
 					new VentanaEmpleados(hotel);
 					dispose();
 				}
-				else
-				{
-					System.out.println("error");
-				}
+			
 			}
 		}
 			

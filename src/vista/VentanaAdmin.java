@@ -112,7 +112,6 @@ public class VentanaAdmin extends JFrame implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 hotel.guardarHotel(); 
-                System.out.println("puta");
                
                 dispose();
             }

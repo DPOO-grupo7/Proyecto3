@@ -102,6 +102,21 @@ public class Hotel implements Serializable{
 		}
 		return existe;
 	}
+	
+	public boolean iniciarSesionHuesped(String login, String password)
+	{
+		boolean existe=false;
+		
+		for (int i=0; i<admins.size();i++)
+		{
+			if (admins.get(i).getLogin().equals(login) && admins.get(i).getPassword().equals(password))
+			{
+				existe=true;
+			}
+		}
+		
+		return existe;
+	}
 	public void crearCuenta(String tipoUsuario, String login, String password)
 	{
 		if (tipoUsuario.equals("1"))

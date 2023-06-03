@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
@@ -90,6 +92,14 @@ public class VentanaEmpleados extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setVisible(true);
 
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                hotel.guardarHotel(); 
+               
+                dispose();
+            }
+        });
 		// IMPLEMENTAR ACTION LISTENER CON LAS FUNCIONES SIMILARES QUE HAY EN LA
 		// INTERFAZ
 		// EN LA LINEA 265, Y 298. DE INTERFAZ.JAVA.
