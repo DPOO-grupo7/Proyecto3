@@ -150,6 +150,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
+			hotel.guardarHotel();
 			new VentanaPrincipal(hotel);
 			dispose();
 		}

@@ -67,7 +67,7 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		izq.add(new JLabel());
 
 		//crear
-		centro = new PanelAdminCentro("habitaciones", this, hotel, "9x9",  "2x2"
+		centro = new PanelHuespedCentro("habitaciones", this, hotel, "9x9",  "2x2"
 				,  true,  true,  true,  true,
 				 true,  true,  true,  true,  true,  true,
 				 true);
@@ -131,16 +131,17 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 
 			repintar("servicios");
 			
-		} else if (e.getSource() == botonPersonal) {
-			remove(centro);
+		}// else if (e.getSource() == botonPersonal) {
+			//remove(centro);
 			//remove(dere);
-			centro = new PanelAdminPersonal(this, hotel);
+			//centro = new PanelAdminPersonal(this, hotel);
 			//dere = new PanelAdminDerecha("personal", this);
-			add(centro, BorderLayout.CENTER);
+			//add(centro, BorderLayout.CENTER);
 			//add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
-		} else if (e.getSource() == botonHabitaciones) {
+			//revalidate();
+			//repaint();
+		//}
+		 else if (e.getSource() == botonHabitaciones) {
 
 			repintar("habitaciones");
 
@@ -150,14 +151,14 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			new VentanaPrincipal(hotel);
+			new VentanaInicialHuesped(hotel);
 			dispose();
 		}
 		// else if (e.getSource() == dere.b)
 	}
 	public void repintar(String tipo) {
 		remove(centro);
-		centro = new PanelAdminCentro(tipo, this, hotel,
+		centro = new PanelHuespedCentro(tipo, this, hotel,
 				"9x9",  "2x2",  true,  true,  true,  true,
 				 true,  true,  true,  true,  true,  true,
 				 true);

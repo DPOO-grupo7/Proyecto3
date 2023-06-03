@@ -107,9 +107,9 @@ public class Hotel implements Serializable{
 	{
 		boolean existe=false;
 		
-		for (int i=0; i<admins.size();i++)
+		for (int i=0; i<huespedes.size();i++)
 		{
-			if (admins.get(i).getLogin().equals(login) && admins.get(i).getPassword().equals(password))
+			if (huespedes.get(i).getLogin().equals(login) && huespedes.get(i).getPassword().equals(password))
 			{
 				existe=true;
 			}

@@ -115,7 +115,8 @@ public class VentanaLogInUsuario extends JFrame implements ActionListener {
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
-				//ventana()
+				new VentanaHuesped(hotel);
+				dispose();
 				}
 			
 			

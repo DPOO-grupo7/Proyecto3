@@ -188,6 +188,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 		
 		else if (e.getSource() == botonSalir)
 		{
+			hotel.guardarHotel();
 			new VentanaPrincipal(this.hotel);
 			dispose();
 		}
