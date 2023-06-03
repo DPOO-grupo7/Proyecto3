@@ -12,9 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import controlador.ControladorHabitaciones;
-import controlador.ManejadorReservas;
-import controlador.ManejadorTarifa;
+
 import modelo.Hotel;
 import posterityKeeper.Archivador;
 import utilidades.Autenticador;

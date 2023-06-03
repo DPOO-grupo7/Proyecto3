@@ -9,11 +9,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-import controlador.ControladorHabitaciones;
-import controlador.ManejadorReservas;
-import controlador.ManejadorTarifa;
 import modelo.Hotel;
-import utilidades.Autenticador;
 
 import java.awt.*;
 
