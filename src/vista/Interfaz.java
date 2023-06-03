@@ -20,6 +20,7 @@ import modelo.Hotel;
 import modelo.InformadorHuesped;
 import modelo.Reserva;
 import posterityKeeper.Archivador;
+import utilidades.Autenticador;
 
 public class Interfaz {
 	private Hotel hotel;
@@ -158,7 +159,7 @@ public class Interfaz {
 	}
 	private void crearHotel()
 	{
-		hotel=new Hotel(archivador, true, true, true ,true ,true, true, true);
+		hotel=new Hotel(archivador, true, true, true ,true ,true, true, true, new Autenticador());
 	}
 	private void iniciarSesion(String tipoUsuario) throws IOException
 	{

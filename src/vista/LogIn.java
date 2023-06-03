@@ -8,6 +8,7 @@ import javax.swing.*;
 import controlador.ControladorHabitaciones;
 import controlador.ManejadorReservas;
 import controlador.ManejadorTarifa;
+import modelo.Hotel;
 
 import java.awt.*;
 
@@ -25,22 +26,17 @@ public class LogIn extends JFrame implements ActionListener {
 	private JPanel dere;
 	private JButton registerButton;
 	private Image dpo;
-	private Autenticador Autenticador;
-	private ControladorHabitaciones controlHabitaciones;
-	private ManejadorReservas reservas;
-	private ManejadorTarifa tarifas;
+	private Hotel hotel;
 	
-	public LogIn(Autenticador ese, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
+	public LogIn(Hotel hotel) {
 		// Configurar el JFrame
-		this.controlHabitaciones = controlHabitaciones;
-		this.reservas = reservas;
-		this.tarifas = tarifas;
+		this.hotel = hotel;
 		setTitle("Inicio de sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 250);
 		setLocationRelativeTo(this); // Centrar la ventana en la pantalla
 		setResizable(false);
-		Autenticador = ese;
+		
 
 		// Crear el panel de inicio de sesión
 		imgPanel = new JPanel();
@@ -114,19 +110,19 @@ public class LogIn extends JFrame implements ActionListener {
 
 		if (e.getSource() == loginButton)
 
-			if (this.Autenticador.autenticar(username, password) == false) {
+			if (this.hotel.Autenticar(username, password) == false) {
 				JOptionPane.showMessageDialog(this, "Usuario o contraseña invalido.", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(this, "Inicio exitoso.");
-				if (Autenticador.getTipo(username) == "ADMINISTRADOR") {
-					new VentanaAdmin(Autenticador, controlHabitaciones, reservas, tarifas);
+				if (hotel.getTipo(username) == "ADMINISTRADOR") {
+					new VentanaAdmin( hotel);
 					dispose();
-				} else if (Autenticador.getTipo(username) == "RECEPCIONISTA") {
-					new VentanaRecepcion(Autenticador, controlHabitaciones, reservas, tarifas);
+				} else if (hotel.getTipo(username) == "RECEPCIONISTA") {
+					new VentanaRecepcion(hotel);
 					dispose();
-				} else if (Autenticador.getTipo(username) == "PERSONAL DEL HOTEL") {
-					new VentanaEmpleados(Autenticador, controlHabitaciones, reservas, tarifas);
+				} else if (hotel.getTipo(username) == "PERSONAL DEL HOTEL") {
+					new VentanaEmpleados(hotel);
 					dispose();
 				}
 			}
@@ -140,7 +136,7 @@ public class LogIn extends JFrame implements ActionListener {
 			} else if (ventanaTipo == 1) {
 				tipo = "PERSONAL DEL HOTEL";
 			}
-			this.Autenticador.setUsuarios(username, password, tipo);
+			this.hotel.setUsuarios(username, password, tipo);
 			JOptionPane.showMessageDialog(this, "Registro exitoso.");
 
 		}

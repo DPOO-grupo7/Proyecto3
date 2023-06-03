@@ -1,9 +1,14 @@
 package utilidades;
 
+import java.io.Serializable;
 import java.util.HashMap;
 //import Modelo.PersonaldelHotel;
 
-public class Autenticador {
+public class Autenticador implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HashMap<String, String> usuariosConContraseña;
 	private HashMap<String, String> usuariosConTipo;
 //	private HashMap<String,PersonaldelHotel> personaldelhotel;

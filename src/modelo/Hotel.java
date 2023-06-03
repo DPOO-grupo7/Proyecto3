@@ -12,6 +12,7 @@ import controlador.ControladorHabitaciones;
 import controlador.ManejadorReservas;
 import controlador.ManejadorTarifa;
 import posterityKeeper.Archivador;
+import utilidades.Autenticador;
 
 
 
@@ -35,9 +36,11 @@ public class Hotel implements Serializable{
 	private boolean asador;
 	private boolean recepcion24;
 	private boolean mascotas;
+	private Autenticador autenticador;
 	public Hotel(Archivador pArchivador, boolean parq, boolean wifi, boolean pis, boolean zona, boolean bbq,
-			boolean recepcion, boolean pets)
+			boolean recepcion, boolean pets, Autenticador autenticador)
 	{
+		this.autenticador = autenticador;
 		archivador=pArchivador;
 		recepcionistas=new ArrayList<InformadorRecepcionista>();
 		admins=new ArrayList<InformadorAdministrador>();
@@ -277,10 +280,7 @@ public class Hotel implements Serializable{
 		servicios.get(admins);
 	}
 
-	public void setCaracteristicas()
-	{
-		
-	}
+
 	public boolean isParqueaderoGratuito() {
 		return parqueaderoGratuito;
 	}
@@ -302,4 +302,25 @@ public class Hotel implements Serializable{
 	public boolean isMascotas() {
 		return mascotas;
 	}
+	public Autenticador getAutenticador() {
+		return autenticador;
+	}
+	public ArrayList<Habitacion> retornarHabitaciones()
+	{
+		return ch.retornarHabitaciones();
+	}
+	
+	public boolean Autenticar(String user, String pass)
+	{
+		return autenticador.autenticar(user, pass);
+	}
+	public void setUsuarios(String user, String pass, String tipo)
+	{
+		autenticador.setUsuarios(user, pass, tipo);
+	}
+	public String getTipo(String username) {
+		// TODO Auto-generated method stub
+		return autenticador.getTipo(username);
+	}
 }
+

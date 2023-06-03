@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import modelo.Hotel;
 import utilidades.Autenticador;
 
 public class PanelAdminPersonal extends JPanel {
@@ -21,13 +22,13 @@ public class PanelAdminPersonal extends JPanel {
     JTextField userField;
     JPasswordField passField;
     JButton addButton;
-    private Autenticador autenticador;
+    private Hotel hotel;
 	
-	public PanelAdminPersonal(VentanaAdmin ventana, Autenticador autenticador)
+	public PanelAdminPersonal(VentanaAdmin ventana, Hotel hotel)
 	{
 		setLayout(new GridLayout(6, 4)); // Establece el layout del panel
 		
-		this.autenticador = autenticador;
+		
 		//add(new JLabel());
         userLabel = new JLabel("Usuario: "); // Crea el label para el usuario
         add(userLabel); // Agrega el label al panel
@@ -66,7 +67,7 @@ public class PanelAdminPersonal extends JPanel {
 			} else if (ventanaTipo == 2) {
 				tipo = "ADMINISTRADOR";
 			}
-			this.autenticador.setUsuarios(username, password, tipo);
+			hotel.setUsuarios(username, password, tipo);
 			JOptionPane.showMessageDialog(this, "Registro exitoso.");
             
         });

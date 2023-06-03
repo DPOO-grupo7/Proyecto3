@@ -10,8 +10,10 @@ import javax.swing.*;
 import controlador.ControladorHabitaciones;
 import controlador.ManejadorReservas;
 import controlador.ManejadorTarifa;
+import modelo.Hotel;
 import utilidades.Autenticador;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.*;
 
 public class VentanaAdmin extends JFrame implements ActionListener {
@@ -32,18 +34,13 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
-	private Autenticador autenticador;
-	private ControladorHabitaciones controlHabitaciones;
-	private ManejadorReservas reservas;
-	private ManejadorTarifa tarifas;
+	private Hotel hotel;
 	
 
-	public VentanaAdmin(Autenticador autenticador, ControladorHabitaciones controlHabitaciones, ManejadorReservas reservas, ManejadorTarifa tarifas) {
-
-		this.autenticador = autenticador;
-		this.tarifas = tarifas;
-		this.controlHabitaciones = controlHabitaciones;
-		this.reservas = reservas;
+	public VentanaAdmin(Hotel hotel)
+	{
+		this.hotel = hotel;
+		
 		Icon icono = new ImageIcon(dpo);
 		Icon food = new ImageIcon(comida);
 		Icon people = new ImageIcon(personas);
@@ -70,7 +67,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		izq.add(new JLabel());
 
 		//crear
-		centro = new PanelAdminCentro("habitaciones", this, this.controlHabitaciones, "9x9",  "2x2"
+		centro = new PanelAdminCentro("habitaciones", this, hotel, "9x9",  "2x2"
 				,  true,  true,  true,  true,
 				 true,  true,  true,  true,  true,  true,
 				 true);
@@ -110,6 +107,17 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		setSize(800, 600);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Lógica personalizada a ejecutar antes de cerrar el JFrame
+                hotel.guardarHotel(); // Ejemplo de método personalizado
+                System.out.println("puta");
+                // Cerrar el JFrame
+                dispose();
+            }
+        });
 
 		// IMPLEMENTAR ACTION LISTENER CON LAS FUNCIONES SIMILARES QUE HAY EN LA
 		// INTERFAZ
@@ -128,7 +136,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		} else if (e.getSource() == botonPersonal) {
 			remove(centro);
 			//remove(dere);
-			centro = new PanelAdminPersonal(this, autenticador);
+			centro = new PanelAdminPersonal(this, hotel);
 			//dere = new PanelAdminDerecha("personal", this);
 			add(centro, BorderLayout.CENTER);
 			//add(dere, BorderLayout.EAST);
@@ -144,14 +152,14 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		}
 
 		else if (e.getSource() == botonSalir) {
-			new VentanaPrincipal(autenticador, controlHabitaciones, reservas, tarifas);
+			new VentanaPrincipal(hotel);
 			dispose();
 		}
 		// else if (e.getSource() == dere.b)
 	}
 	public void repintar(String tipo) {
 		remove(centro);
-		centro = new PanelAdminCentro(tipo, this, controlHabitaciones,
+		centro = new PanelAdminCentro(tipo, this, hotel,
 				"9x9",  "2x2",  true,  true,  true,  true,
 				 true,  true,  true,  true,  true,  true,
 				 true);
