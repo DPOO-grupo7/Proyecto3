@@ -4,7 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -29,19 +33,17 @@ public class PanelHuespedCentro extends JPanel{
 	private JButton utilidad;
 	private JLabel titulo;
     private JList<String> listaHabitaciones;
-    private JButton btnAgregar;
-    private JButton btnEliminar;
+    private JButton btnBuscar;
+    private JButton btnFechas;
+    private Date fechaIni = formatearFecha("01/01/2021");
+    private Date fechaFin = formatearFecha("31/12/2040");
 	//metodo de controlador habitaciones
 	//hotel recopilarDisponibilidad();
 	
-	public PanelHuespedCentro(String tipo, VentanaHuesped ventana, Hotel hotel, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
-			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno)
+	public PanelHuespedCentro(String tipo, VentanaHuesped ventana, Hotel hotel, Date uno, Date fin)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		
-		JCalendar calendar = new JCalendar();
-		add(calendar);
 		if (tipo == "habitaciones")
 		{
 			//crearCosas(tipo);
@@ -51,52 +53,24 @@ public class PanelHuespedCentro extends JPanel{
 	        titulo = new JLabel("Inventario de habitaciones");
 	        titulo.setHorizontalAlignment(SwingConstants.CENTER);
 	        add(titulo, BorderLayout.NORTH);
-	        ArrayList<Habitacion> lista = hotel.recopilarDisponibilidadFecha();
-	        DefaultListModel listModel = new DefaultListModel();
-	        	for(int i=0; i<lista.size(); i++) {
-	            //Añadir cada elemento del ArrayList en el modelo de la lista
-	        		listModel.add(i, lista.get(i).getDatos());
-	        }
-	        listaHabitaciones = new JList<>(listModel);
-	        JScrollPane scrollPane = new JScrollPane(listaHabitaciones);
-	        add(scrollPane, BorderLayout.CENTER);
+	        
+	        ListaDisponible(hotel, uno, fin);
 
 	        // Botones para agregar y eliminar habitaciones
 	        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	        btnAgregar = new JButton("Agregar habitación");
-	        panelBotones.add(btnAgregar);
+	        
+	        btnBuscar = new JButton("Buscar");
+	        btnFechas = new JButton("Fechas");
+	        panelBotones.add(btnFechas);
+	        panelBotones.add(btnBuscar);
+	        
 	        add(panelBotones, BorderLayout.SOUTH);
-	        btnAgregar.addActionListener(e -> {
-	        	String clase = "";
-	        	int capacidad = 0;
-	        	String[] botones = { "1", "2", "3", "4", "5"};
-	        	String[] botones2 = { "Estandar", "Suite", "Suite Doble"};
-				String ubicacion = JOptionPane.showInputDialog(null, "Ubicacion de Habitacion");
-				int seleccion = JOptionPane.showOptionDialog(null, "Elige capacidad", "Elegir capacidad",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones, botones[0]);
-				if (seleccion == 0) {
-					capacidad = 1;
-				} else if (seleccion == 1) {
-					capacidad = 2;
-				} else if (seleccion == 2) {
-					capacidad = 3;
-				} else if (seleccion == 3) {
-					capacidad = 4;
-				} else if (seleccion == 4) {
-					capacidad = 5;
-				}
-				int seleccion2 = JOptionPane.showOptionDialog(null, "Elige un tipo", "Elegir tipo",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botones2, botones2[0]);
-				if (seleccion2 == 0) {
-					clase = "Estandar";
-				} else if (seleccion2 == 1) {
-					clase = "Suite";
-				} else if (seleccion2 == 2) {
-					clase = "Suite Doble";
-				} 
-				hotel.crearHabitacion(capacidad, ubicacion, clase,  tamanio,  cama,  ac,  heat,  tv,  cafe,
-						 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-						 desayuno);
+	        btnFechas.addActionListener(e -> {
+	        	this.fechaIni = JOptionPaneCalendario.mostrarCalendario();
+	        	this.fechaFin = JOptionPaneCalendario.mostrarCalendario();
+	        });
+	        btnBuscar.addActionListener(e -> {
+	        	ventana.setFechas(this.fechaIni, this.fechaFin);
 				ventana.repintar("habitaciones");
 				
 	        
@@ -114,7 +88,22 @@ public class PanelHuespedCentro extends JPanel{
 			crearCosas(tipo, ventana);
 		}
 		
+		
 	}
+	
+	public void ListaDisponible(Hotel hotel, Date fechaIni, Date fechaFin )
+	{
+		ArrayList<Habitacion> lista = hotel.recopilarDisponibilidadFecha(fechaIni, fechaFin);
+        DefaultListModel listModel = new DefaultListModel();
+        	for(int i=0; i<lista.size(); i++) {
+            //Añadir cada elemento del ArrayList en el modelo de la lista
+        		listModel.add(i, lista.get(i).getDatos());
+        }
+        listaHabitaciones = new JList<>(listModel);
+        JScrollPane scrollPane = new JScrollPane(listaHabitaciones);
+        add(scrollPane, BorderLayout.CENTER);
+	}
+	
 	public void crearCosas(String tipo, VentanaHuesped ventana)
 	{
 		this.setLayout(new GridLayout(6 ,3 ));
@@ -165,6 +154,20 @@ public class PanelHuespedCentro extends JPanel{
         desplegable.addActionListener(ventana);
 		utilidad.addActionListener(ventana);
         utilidad.setEnabled(false);
+	}
+	public Date formatearFecha(String fechaTexto) {
+		// esta va a ser usada para cuando se quiera buscar una fecha o reservar en esa
+		// fecha.
+//		un ejemplo de fechaTexto = "15/01/2023";
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = null;
+		try {
+			fecha = formatoFecha.parse(fechaTexto);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		return fecha;
 	}
 	
 }

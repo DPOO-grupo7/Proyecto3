@@ -14,6 +14,10 @@ import modelo.Hotel;
 import utilidades.Autenticador;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.*;
 
 public class VentanaHuesped extends JFrame implements ActionListener {
@@ -35,6 +39,8 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	private Hotel hotel;
+	private Date fechaIni = formatearFecha("01/01/2021");
+    private Date fechaFin = formatearFecha("31/12/2040");
 	
 
 	public VentanaHuesped(Hotel hotel)
@@ -67,10 +73,7 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		izq.add(new JLabel());
 
 		//crear
-		centro = new PanelHuespedCentro("habitaciones", this, hotel, "9x9",  "2x2"
-				,  true,  true,  true,  true,
-				 true,  true,  true,  true,  true,  true,
-				 true);
+		centro = new PanelHuespedCentro("habitaciones", this, hotel, fechaIni, fechaFin);
 
 		//dere = new PanelAdminDerecha("habitaciones", this);
 
@@ -158,15 +161,31 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 	}
 	public void repintar(String tipo) {
 		remove(centro);
-		centro = new PanelHuespedCentro(tipo, this, hotel,
-				"9x9",  "2x2",  true,  true,  true,  true,
-				 true,  true,  true,  true,  true,  true,
-				 true);
+		centro = new PanelHuespedCentro(tipo, this, hotel, this.fechaIni, this.fechaFin);
 		add(centro, BorderLayout.CENTER);
 		//add(dere, BorderLayout.EAST);
 		revalidate();
 		repaint();
 	}
 	
+	public Date formatearFecha(String fechaTexto) {
+		// esta va a ser usada para cuando se quiera buscar una fecha o reservar en esa
+		// fecha.
+//		un ejemplo de fechaTexto = "15/01/2023";
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = null;
+		try {
+			fecha = formatoFecha.parse(fechaTexto);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		return fecha;
+	}
 	
+	public void setFechas(Date ini, Date end)
+	{
+		this.fechaIni = ini;
+		this.fechaFin = end;
+	}
 }
