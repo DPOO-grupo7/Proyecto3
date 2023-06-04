@@ -77,11 +77,26 @@ public class PanelAdminCentro extends JPanel{
 				} else if (seleccion2 == 2) {
 					clase = "Suite Doble";
 				} 
-				hotel.crearHabitacion(capacidad, ubicacion, clase,  "9x9",  "2x2",  true,  true,  true,  true,
-						 true,  true,  true,  true,  true,  true,
-						 true);
-				ventana.repintar("habitaciones");
 				
+				String tamanio = JOptionPane.showInputDialog(null, "Tamaño de la habitación");
+			    String cama = JOptionPane.showInputDialog(null, "Tamaño de la cama");
+			    boolean ac = JOptionPane.showConfirmDialog(null, "¿Tiene aire acondicionado?") == JOptionPane.YES_OPTION;
+			    boolean heat = JOptionPane.showConfirmDialog(null, "¿Tiene calefacción?") == JOptionPane.YES_OPTION;
+			    boolean tv = JOptionPane.showConfirmDialog(null, "¿Tiene TV?") == JOptionPane.YES_OPTION;
+			    boolean cafe = JOptionPane.showConfirmDialog(null, "¿Tiene cafetera?") == JOptionPane.YES_OPTION;
+			    boolean plancha = JOptionPane.showConfirmDialog(null, "¿Tiene plancha?") == JOptionPane.YES_OPTION;
+			    boolean ropa = JOptionPane.showConfirmDialog(null, "¿Tiene ropa de cama?") == JOptionPane.YES_OPTION;
+			    boolean secador = JOptionPane.showConfirmDialog(null, "¿Tiene secador de pelo?") == JOptionPane.YES_OPTION;
+			    boolean voltaje = JOptionPane.showConfirmDialog(null, "¿Tiene voltaje?") == JOptionPane.YES_OPTION;
+			    boolean usba = JOptionPane.showConfirmDialog(null, "¿Tiene puerto USB tipo A?") == JOptionPane.YES_OPTION;
+			    boolean usbc = JOptionPane.showConfirmDialog(null, "¿Tiene puerto USB tipo C?") == JOptionPane.YES_OPTION;
+			    boolean desayuno = JOptionPane.showConfirmDialog(null, "¿Incluye desayuno?") == JOptionPane.YES_OPTION;
+			    
+			    hotel.crearHabitacion(capacidad, ubicacion, clase,  tamanio,  cama,  ac,  heat,  tv,  cafe,
+						 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
+						 desayuno);
+				ventana.repintar("habitaciones");
+
 	        
 	    	
 	            

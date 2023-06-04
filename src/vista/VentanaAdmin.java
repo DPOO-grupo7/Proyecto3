@@ -31,6 +31,7 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
 	private Hotel hotel;
+	private JLabel lblFuncionalidad;
 	
 
 	public VentanaAdmin(Hotel hotel)
@@ -52,6 +53,8 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		this.botonTarifa.setIcon(price);
 		this.botonHabitaciones.setIcon(door);
 
+		lblFuncionalidad = new JLabel("Habitaciones");
+		
 		izq = new JPanel();
 		izq.setLayout(new GridLayout(7, 1));
 		izq.add(new JLabel());
@@ -153,7 +156,15 @@ public class VentanaAdmin extends JFrame implements ActionListener {
 		remove(centro);
 		centro = new PanelAdminCentro(tipo, this, hotel);
 		add(centro, BorderLayout.CENTER);
-		//add(dere, BorderLayout.EAST);
+		 if (tipo.equals("servicios")) {
+		 lblFuncionalidad.setText("Agregar servicios");
+		 } else if (tipo.equals("personal")) {
+		 lblFuncionalidad.setText("Agregar Personal");
+		 } else if (tipo.equals("habitaciones")) {
+		 lblFuncionalidad.setText("Agregar Habitaciones una por una");
+		 } else if (tipo.equals("tarifa")) {
+		 lblFuncionalidad.setText("Agregar Tarifas");
+		 }
 		revalidate();
 		repaint();
 	}
