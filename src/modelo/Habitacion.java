@@ -88,12 +88,10 @@ public class Habitacion implements Serializable{
 		return fechasReservadas;
 	}
 	public String getDatos() {
-	    String cadena = "ID: " + this.identificador + " Capacidad: " + this.capacidad + " Ubicacion: " + this.ubicacion + " Tipo: "
-	            + tipo + "Tamaño: " + this.tamanio + " AC: " + (this.aireAcondicionado ? "si" : "no") + " Calefacción: " + (this.calefaccion ? "si" : "no")
-	            + " Tamaño cama: " + this.tamanioCama + " TV: " + (this.tv ? "si" : "no") + " Cafetera: " + (this.cafetera ? "si" : "no")
-	            + " Plancha: " + (this.plancha ? "si" : "no") + " Ropa De Cama: " + (this.ropaDeCama ? "si" : "no") + " Secador: " + (this.secador ? "si" : "no")
-	            + " Voltaje: " + (this.voltaje ? "si" : "no") + " USB-A: " + (this.USBA ? "si" : "no") + " USB-C: " + (this.USBC ? "si" : "no")
-	            + " Desayuno: " + (this.desayuno ? "si" : "no") + " Precio: " + this.precio + "$";
+	    String cadena = String.format("ID: %2d  Capacidad: %-2d  Ubicacion: %-18s  Tipo: %-15s  Tamaño: %-6s  AC: %-3s  Calefacción: %-3s  Tamaño cama: %-8s  TV: %-3s  Cafetera: %-3s  Plancha: %-3s  Ropa De Cama: %-3s  Secador: %-3s  Voltaje: %-3s  USB-A: %-3s  USB-C: %-3s  Desayuno: %-3s  Precio: %-2d", 
+	        identificador, capacidad, ubicacion, tipo, tamanio, aireAcondicionado ? "si" : "no", calefaccion ? "si" : "no", tamanioCama,
+	        tv ? "si" : "no", cafetera ? "si" : "no", plancha ? "si" : "no", ropaDeCama ? "si" : "no", secador ? "si" : "no",
+	        voltaje ? "si" : "no", USBA ? "si" : "no", USBC ? "si" : "no", desayuno ? "si" : "no", precio);
 	    return cadena;
 	}
 

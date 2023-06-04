@@ -8,6 +8,11 @@ import controlador.ManejadorTarifa;
 import modelo.Habitacion;
 import modelo.Hotel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.awt.*;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -108,6 +113,60 @@ public class PanelAdminCentro extends JPanel{
 	            
 	        });
 	        
+	        btnSubir.addActionListener(e -> {
+	            JFileChooser fileChooser = new JFileChooser();
+	            int option = fileChooser.showOpenDialog(ventana); 
+	            int precio = 0;
+	            
+	            if (option == JFileChooser.APPROVE_OPTION) { 
+	                File file = fileChooser.getSelectedFile(); 
+	                
+	                try {
+	                    BufferedReader reader = new BufferedReader(new FileReader(file)); 
+	                    String line;
+	                    boolean isFirstLine = true; 
+	                    
+	                    while ((line = reader.readLine()) != null) { 
+	                        if (isFirstLine) { 
+	                            isFirstLine = false;
+	                            continue;
+	                        }
+	                        
+	                        String[] values = line.split(","); 
+	                        
+	                        if (values.length == 16) { 
+	                            String ubicacion = values[0].trim();
+	                            int capacidad = Integer.parseInt(values[1].trim());
+	                            String tipoHab = values[2].trim();
+	                            String tamanio = values[3].trim();
+	                            String cama = values[4].trim();
+	                            boolean ac = parseBoolean(values[5].trim());
+	                            boolean calefaccion = parseBoolean(values[6].trim());
+	                            boolean tv = parseBoolean(values[7].trim());
+	                            boolean cafetera = parseBoolean(values[8].trim());
+	                            boolean plancha = parseBoolean(values[9].trim());
+	                            boolean ropaCama = parseBoolean(values[10].trim());
+	                            boolean secador = parseBoolean(values[11].trim());
+	                            boolean voltaje = parseBoolean(values[12].trim());
+	                            boolean usbA = parseBoolean(values[13].trim());
+	                            boolean usbC = parseBoolean(values[14].trim());
+	                            boolean desayuno = parseBoolean(values[15].trim());
+	                            
+	                            hotel.crearHabitacion(capacidad, ubicacion, tipoHab, tamanio, cama, ac, calefaccion, tv, cafetera,
+	                                    plancha, ropaCama, secador, voltaje, usbA, usbC, desayuno, precio);
+	                        }
+	                    }
+	                    
+	                    reader.close();
+	                    
+	                    ventana.repintar("habitaciones"); 
+	                } catch (IOException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+	        });
+
+	        
 		}
 		else if (tipo == "tarifa")
 		{
@@ -119,6 +178,11 @@ public class PanelAdminCentro extends JPanel{
 		}
 		
 	}
+	
+	private boolean parseBoolean(String value) {
+	    return value.equalsIgnoreCase("Si");
+	}
+	
 	public void crearCosas(String tipo, VentanaAdmin ventana)
 	{
 		this.setLayout(new GridLayout(6 ,3 ));
