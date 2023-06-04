@@ -215,6 +215,17 @@ public class Hotel implements Serializable{
 		}
 		return CuartosDisponibles;
 	}
+	
+	public ArrayList<Habitacion> recopilarDisponibilidadFecha(Date fechaInicio, Date fechaFin) 
+	{
+
+		ArrayList<Habitacion> CuartosDisponibles = ch.habitacionesFechas(fechaInicio, fechaFin);
+		if (CuartosDisponibles.isEmpty()) {
+			System.out.println("ESTA VACIO");
+		}
+		return CuartosDisponibles;
+	}
+	
 	public ArrayList<Habitacion> asignacioncuartos(ArrayList<Habitacion> listaDisponibilidadCuartos, int cantidadPersonas) {
 
 		ArrayList<Habitacion> cuartosAsignados = ch.asignarcuartos(listaDisponibilidadCuartos,cantidadPersonas);

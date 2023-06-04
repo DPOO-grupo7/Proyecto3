@@ -54,6 +54,8 @@ public class ControladorHabitaciones implements Serializable{
 		}
 		return FiltroFinal;
 	}
+	
+	
 	public ArrayList<Habitacion> habitacionesDisponiblesTipo(ArrayList<Habitacion> listaPorFiltrar, String tipo) {
 		ArrayList<Habitacion> listaFiltrada = new ArrayList<Habitacion>();
 
@@ -70,6 +72,16 @@ public class ControladorHabitaciones implements Serializable{
 		}
 		return listaFiltrada;
 	}
+	
+	//metodo p3
+	public ArrayList<Habitacion> habitacionesFechas(Date fechaInicio,Date fechaFin)
+	{
+		ArrayList<Habitacion> Filtro = habitacionesDisponiblesFecha(LISTA_HABITACIONES, fechaInicio, fechaFin);
+		
+		return Filtro;
+		
+	}
+	
 	public ArrayList<Habitacion> habitacionesDisponiblesFecha(ArrayList<Habitacion> listaPorFiltrar, Date fechaInicio,Date fechaFin) {
 		ArrayList<Habitacion> listaFiltrada = new ArrayList<Habitacion>();
 
