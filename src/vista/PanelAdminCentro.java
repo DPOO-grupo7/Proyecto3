@@ -22,9 +22,7 @@ public class PanelAdminCentro extends JPanel{
     private JButton btnEliminar;
     
 	
-	public PanelAdminCentro(String tipo, VentanaAdmin ventana, Hotel hotel, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
-			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno)
+	public PanelAdminCentro(String tipo, VentanaAdmin ventana, Hotel hotel)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		if (tipo == "habitaciones")
@@ -79,9 +77,9 @@ public class PanelAdminCentro extends JPanel{
 				} else if (seleccion2 == 2) {
 					clase = "Suite Doble";
 				} 
-				hotel.crearHabitacion(capacidad, ubicacion, clase,  tamanio,  cama,  ac,  heat,  tv,  cafe,
-						 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-						 desayuno);
+				hotel.crearHabitacion(capacidad, ubicacion, clase,  "9x9",  "2x2",  true,  true,  true,  true,
+						 true,  true,  true,  true,  true,  true,
+						 true);
 				ventana.repintar("habitaciones");
 				
 	        
