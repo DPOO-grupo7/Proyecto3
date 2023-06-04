@@ -22,7 +22,6 @@ import java.awt.*;
 
 public class VentanaHuesped extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	private JButton botonComida = new JButton();
 	private JButton botonHabitaciones = new JButton();
 	private JButton botonTarifa = new JButton();
 	private JButton botonSalir = new JButton();
@@ -33,11 +32,10 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 	private JPanel abajo;
 	private JPanel centro;
 	private Image dpo = new ImageIcon("./data/HotelDpooB.png").getImage();
-	private Image comida = new ImageIcon("./data/comida.png").getImage();
-	private Image personas = new ImageIcon("./data/personal2.png").getImage();
-	private Image tarifa = new ImageIcon("./data/tarifa.png").getImage();
+	private Image personas = new ImageIcon("./data/reserva.png").getImage();
+	private Image tarifa = new ImageIcon("./data/pagar.png").getImage();
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
-	private Image puerta = new ImageIcon("./data/habitacion.png").getImage();
+	private Image puerta = new ImageIcon("./data/disp.png").getImage();
 	private Hotel hotel;
 	private Date fechaIni = formatearFecha("01/01/2021");
     private Date fechaFin = formatearFecha("31/12/2040");
@@ -48,16 +46,15 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		this.hotel = hotel;
 		
 		Icon icono = new ImageIcon(dpo);
-		Icon food = new ImageIcon(comida);
-		Icon people = new ImageIcon(personas);
+		Icon reserva = new ImageIcon(personas);
 		Icon door = new ImageIcon(puerta);
 		Icon price = new ImageIcon(tarifa);
 		Icon out = new ImageIcon(salir);
 
 		setLayout(new BorderLayout());
 
-		this.botonComida.setIcon(food);
-		this.botonPersonal.setIcon(people);
+		
+		this.botonPersonal.setIcon(reserva);
 		this.botonSalir.setIcon(out);
 		this.botonTarifa.setIcon(price);
 		this.botonHabitaciones.setIcon(door);
@@ -66,7 +63,6 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		izq.setLayout(new GridLayout(7, 1));
 		izq.add(new JLabel());
 		izq.add(botonHabitaciones);
-		izq.add(botonComida);
 		izq.add(botonPersonal);
 		izq.add(botonTarifa);
 		izq.add(botonSalir);
@@ -88,7 +84,6 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 		JLabel espacio = new JLabel();
 		abajo.add(espacio);
 
-		botonComida.addActionListener(this);
 		botonTarifa.addActionListener(this);
 		botonPersonal.addActionListener(this);
 		botonHabitaciones.addActionListener(this);
@@ -130,20 +125,9 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 
-		if (e.getSource() == botonComida) {
-
-			repintar("servicios");
-			
-		}// else if (e.getSource() == botonPersonal) {
-			//remove(centro);
-			//remove(dere);
-			//centro = new PanelAdminPersonal(this, hotel);
-			//dere = new PanelAdminDerecha("personal", this);
-			//add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
-			//revalidate();
-			//repaint();
-		//}
+		if (e.getSource() == botonPersonal) {
+			repintar("personal");
+		}
 		 else if (e.getSource() == botonHabitaciones) {
 
 			repintar("habitaciones");
