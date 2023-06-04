@@ -232,7 +232,7 @@ public class PanelHuespedCentro extends JPanel{
 
 			InformadorHuesped persona = new InformadorHuesped(nombre, documento, documento, email, telefono);
 			miembrosGrupo.add(persona);
-			hotel.crearCuentaHuesped(nombre, documento, documento, email, telefono);
+			//hotel.crearCuentaHuesped(nombre, documento, documento, email, telefono);
 			
 			
 			continuar = JOptionPane.showConfirmDialog(null, "¿Quieres seguir agregando?", "Agregar Ocupantes", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -242,52 +242,61 @@ public class PanelHuespedCentro extends JPanel{
 		return miembrosGrupo;
 	}
 	
-	public void crearReserva(Hotel hotel) throws IOException {
+	public void crearReserva(Hotel hotel, Date fechaIngreso, Date fechaSalida) throws IOException {
 		int CntP = 0;
 		// Primera interacción: Verificar disponibilidad de la solicitud general
-		System.out.println("Reserva de habitaci�n");
-		System.out.println("---------------------");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Ingrese fecha de inicio de su estad�a (dd/MM/yyyy):");
-		String fechaIngreso = br.readLine();
-		System.out.println("Ingrese fecha de finalizaci�n de su estad�a (dd/MM/yyyy):");
-		String fechaSalida = br.readLine();
-		System.out.println("Ingresar tipo de habitaci�n:");
-		System.out.println("----------------------------");
-		System.out.println("1 - Estandar");
-		System.out.println("2 - Suite");
-		System.out.println("3 - Suite doble");
-		int tipoHabitacion = Integer.parseInt(br.readLine());
-		System.out.println("Ingresar car�cteristicas adicionales de la habitaci�n separadas por comas (,)");
-		String caracteristicas=br.readLine();
-
-		String tipo = "";
-		if (tipoHabitacion == 1) {
-			tipo = "Estandar";
-		} else if (tipoHabitacion == 2) {
-			tipo = "Suite";
-		} else if (tipoHabitacion == 3) {
-			tipo = "Suite Doble";
-		}
-		String[] caracterisitcas = caracteristicas.split(",");
-		ArrayList<Habitacion> listaDisponibilidad = hotel.recopilarDisponibilidad(tipo,formatearFecha(fechaIngreso),formatearFecha(fechaSalida), caracterisitcas);
+		
+		ArrayList<Habitacion> listaDisponibilidad = hotel.recopilarDisponibilidadFecha(fechaIngreso,fechaSalida);
 
 		if (listaDisponibilidad.isEmpty()) {
-			System.out.println("Las fechas que busca para el tipo de habitaci�n y caracter�sticas est�n tot�lmente ocupadas.");
+			JOptionPane.showMessageDialog(this, "Fechas no disponibles");
+			//System.out.println("Las fechas que busca para el tipo de habitaci�n y caracter�sticas est�n tot�lmente ocupadas.");
 		}
 
 		// Segunda interaccion : #personas y #ni�os y si cuentan
-
-		System.out.println("Ingresar n�mero de personas en su grupo:");
-		int CntPersonas = Integer.parseInt(br.readLine());
-		System.out.println("De esas personas, ingresar cuantos son ni�os que no necesitan cama:");
-		int cntKids = Integer.parseInt(br.readLine());
+		int CntPersonas = 0;
 		
+		
+		String[] botonesP = { "1", "2", "3", "4", "5"};
+		int seleccion = JOptionPane.showOptionDialog(null, "Cantidad de personas", "Cantidad de personas",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botonesP, null);
+		if (seleccion == 0) {
+			CntPersonas = 1;
+		} else if (seleccion == 1) {
+			CntPersonas = 2;
+		} else if (seleccion == 2) {
+			CntPersonas = 3;
+		} else if (seleccion == 3) {
+			CntPersonas = 4;
+		} else if (seleccion == 4) {
+			CntPersonas = 5;
+		}
+		
+		
+		int cntKids = 0;
+		
+		String[] botonesN = { "0","1", "2", "3", "4", "5"};
+		int seleccionN = JOptionPane.showOptionDialog(null, "Cantidad de personas", "Cantidad de personas",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botonesN, null);
+		if (seleccion == 0) {
+			cntKids = 0;
+		} else if (seleccionN == 1) {
+			cntKids = 1;
+		} else if (seleccionN == 2) {
+			cntKids = 2;
+		} else if (seleccionN == 3) {
+			cntKids = 3;
+		} else if (seleccionN == 4) {
+			cntKids = 4;
+		} else if (seleccionN == 5) {
+			cntKids = 5;
+		}
 		CntP = CntPersonas - cntKids;
 		ArrayList<Habitacion> resultadoCuartos = hotel.asignacioncuartos(listaDisponibilidad, CntP);
 		if (resultadoCuartos.isEmpty()) {
-			System.out.println("Lo siento, no hay habitaciones disponibles para el número de personas indicado.");
-			return;
+			JOptionPane.showMessageDialog(this, "No hay habitaciones pa toda esa gente");
+			//System.out.println("Lo siento, no hay habitaciones disponibles para el número de personas indicado.");
+			System.exit(0);
 
 			// TODO escribir que pasa
 		}
@@ -302,22 +311,14 @@ public class PanelHuespedCentro extends JPanel{
 
 		}
 
-		Reserva reservaEncurso = hotel.nuevaReserva(listadeMiebros.get(0), listaGrupo, CntPersonas, formatearFecha(fechaIngreso), formatearFecha(fechaSalida), resultadoCuartos,new ArrayList<String>(Arrays.asList(caracterisitcas)), tipo);
+		Reserva reservaEncurso = hotel.nuevaReserva2(listadeMiebros.get(0), listaGrupo, CntPersonas, fechaIngreso, fechaSalida, resultadoCuartos);
 
-		finalizarReserva(reservaEncurso, new ArrayList<String>(Arrays.asList(caracterisitcas)), hotel);
+		//finalizarReserva(reservaEncurso, hotel);
 
 	}
-	public void finalizarReserva(Reserva reservaEncurso, ArrayList<String> caracteristicas, Hotel hotel) {
+	public void finalizarReserva(Reserva reservaEncurso,  Hotel hotel) {
 
-		ArrayList<String> informacionFinal = hotel.informacionSobreReserva(reservaEncurso, caracteristicas);
-		System.out.println("\n");
-		System.out.println("\n");
-		System.out.println("---------------------------------------------------");
-		for (String elemento : informacionFinal) {
-			System.out.println(elemento);
-		}
-		System.out.println("---------------------------------------------------");
-		System.out.println("\n");
-		System.out.println("\n");
+		ArrayList<String> informacionFinal = hotel.informacionSobreReserva2(reservaEncurso);
+		
 	}
 }

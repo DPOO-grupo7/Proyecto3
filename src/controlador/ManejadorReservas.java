@@ -41,6 +41,15 @@ public class ManejadorReservas implements Serializable {
 		setTipohabitacion(tipohabitacion);
 		numHabitaciones = pNumHabitaciones;
 	}
+	
+	public void inicioProceso2(InformadorHuesped pHuespedAcargo, Date pFechainicio, Date pFechaFin,
+			ArrayList<Habitacion> pNumHabitaciones) {
+		huespedAcargo = pHuespedAcargo;
+		fechaInicio = pFechainicio;
+		fechaFin = pFechaFin;
+		numHabitaciones = pNumHabitaciones;
+	}
+	
 
 	public void setEspecificaciones(List<String> especificaciones) {
 		this.especificaciones = especificaciones;

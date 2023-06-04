@@ -16,6 +16,7 @@ import utilidades.Autenticador;
 
 
 
+
 public class Hotel implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Archivador archivador;
@@ -134,7 +135,9 @@ public class Hotel implements Serializable{
 	}
 	public void crearCuentaHuesped(String login, String password,  String identificacion, String correo, String telefono)
 	{
-		huespedes.add(new InformadorHuesped(login, password, identificacion, correo, telefono));
+		InformadorHuesped huesped = new InformadorHuesped(login, password, identificacion, correo, telefono);
+		huespedes.add(huesped);
+		
 	}
 	public Object opcionesAdmin(String opcion,String login,HashMap<String, String> datos)
 	{
@@ -162,6 +165,18 @@ public class Hotel implements Serializable{
 		for (int i=0; i<recepcionistas.size();i++)
 		{
 			if (recepcionistas.get(i).getLogin().equals(login))
+			{
+				return i; 
+			}
+		}
+		return -1;
+	}
+	
+	public int encontrarHuesped(String login)
+	{
+		for (int i=0; i<huespedes.size();i++)
+		{
+			if (huespedes.get(i).getLogin().equals(login))
 			{
 				return i; 
 			}
@@ -244,6 +259,20 @@ public class Hotel implements Serializable{
 
 		return reservaActual;
 	}
+	public Reserva nuevaReserva2(InformadorHuesped huespedPrincipal, ArrayList<InformadorHuesped> listaGrupo, int cntPersonas,Date fechaInicio, Date fechaFinal, ArrayList<Habitacion> resultadoCuartos) {
+
+		mr.inicioProceso2(huespedPrincipal, fechaInicio, fechaFinal,resultadoCuartos);
+		if (listaGrupo != null) {
+			mr.setGrupoHuespedes(listaGrupo);
+		} else {
+			mr.setGrupoHuespedes(new ArrayList<InformadorHuesped>());
+		}
+
+		Reserva reservaActual = mr.AsignarReserva();
+
+		return reservaActual;
+	}
+	
 	public ArrayList<String> informacionSobreReserva(Reserva reservaEncurso, ArrayList<String> CaracterisitcasF) {
 		ArrayList<String> infoReserva = new ArrayList<>();
 		String resumen = "Resumen:\n";
@@ -272,6 +301,35 @@ public class Hotel implements Serializable{
 
 		return infoReserva;
 	}
+	
+	public ArrayList<String> informacionSobreReserva2(Reserva reservaEncurso) {
+		ArrayList<String> infoReserva = new ArrayList<>();
+		String resumen = "Resumen:\n";
+		resumen += reservaEncurso.getNumPersonas() + " personas\n";
+		
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    String fechaLlegada = dateFormat.format(reservaEncurso.getFechaLlegada());
+	    String fechaSalida = dateFormat.format(reservaEncurso.getFechaSalida());
+	    resumen += fechaLlegada + " - " + fechaSalida + "\n";
+		
+		
+		
+		resumen += reservaEncurso.getNumHabitaciones().size() + " cuartos\n";// solo da la cantidad de cuartos
+		resumen += reservaEncurso.getNumHabitaciones().get(0).getTipo() + "\n";
+		resumen += "Especificaciones:\n";
+		
+		
+		int tarifa = mt.tarifaReserva(reservaEncurso);
+		String infoTarifa = "Precio: " + tarifa;
+
+		infoReserva.add("Reserva # " + reservaEncurso.getIdentificacion() + ":");
+		infoReserva.add(resumen);
+		infoReserva.add(infoTarifa);
+
+		return infoReserva;
+	}
+	
 	public void guardarHotel()
 	{
 		archivador.guardarHotel(this);
