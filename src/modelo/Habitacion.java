@@ -88,7 +88,9 @@ public class Habitacion implements Serializable{
 	public String getDatos()
 	{
 		String cadena = "ID: "+this.identificador+" Capacidad: "+this.capacidad+" Ubicacion: "+this.ubicacion+ " Tipo: "
-		+tipo;
+		+tipo + "Tamaño: "+this.tamanio+ "AC: "+this.aireAcondicionado+ "Calefacción: "+this.calefaccion + "Tamaño cama: "+this.tamanioCama + "TV: "+this.tv+
+		"Cafetera: "+this.cafetera+ "Plancha: "+this.plancha+ "Ropa De Cama: "+this.ropaDeCama+ "Secador: "+this.secador+ "Voltaje: "+this.voltaje+ "USB-A: "+this.USBA+
+		"USB-C: "+this.USBC+ "Desayuno: "+this.desayuno;
 		return cadena;
 	}
 
