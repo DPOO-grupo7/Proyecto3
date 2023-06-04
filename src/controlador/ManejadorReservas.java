@@ -67,7 +67,7 @@ public class ManejadorReservas implements Serializable {
 		// despues de confirmar se asigna a
 		// la reserva
 		int identificador = LISTA_RESERVA.size() + 1;
-		reservaenProceso = new Reserva(huespedAcargo, fechaInicio, fechaFin, numHabitaciones, identificador);
+		reservaenProceso = new Reserva(huespedAcargo, fechaInicio, fechaFin, numHabitaciones, identificador, false);
 
 		reservaenProceso.setGrupoHuespedes(getGrupoHuespedes());
 		reservaenProceso.setNumPersonas();
@@ -116,4 +116,16 @@ public class ManejadorReservas implements Serializable {
 		this.tipoHabitacion = tipoHabitacion;
 	}
 
+	public Reserva encontrarReserva(int id) {
+
+		Reserva buscada=null;
+		for (Reserva reserva : LISTA_RESERVA) {
+			if (reserva.getIdentificacion() == id) {
+				return reserva;
+
+			}
+
+		}
+		return buscada;
+	}
 }

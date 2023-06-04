@@ -424,5 +424,11 @@ public class Hotel implements Serializable{
 			
 		}
 	}
+	public Reserva encontrarReserva(int id) {
+		return mr.encontrarReserva(id);
+	}
+	
+		
+	
 }
 

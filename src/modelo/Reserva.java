@@ -16,11 +16,12 @@ public class Reserva implements Serializable {
 	private Date fechaSalida;
 	private ArrayList<Habitacion> numHabitaciones;
 	private int identificacion;
-	private int facturacion;
+	private int facturacion = 0;
 	private boolean enUso;
+	private boolean pagada;
 
 	public Reserva(InformadorHuesped pHuespedAcargo, Date pFechaLlegada, Date pFechaSalida,
-			ArrayList<Habitacion> pNumHabitaciones, int identificador) {
+			ArrayList<Habitacion> pNumHabitaciones, int identificador, boolean pagada) {
 		huespedAcargo = pHuespedAcargo;
 		grupoHuespedes = new ArrayList<InformadorHuesped>();
 		grupoHuespedes.add(huespedAcargo);
@@ -29,6 +30,7 @@ public class Reserva implements Serializable {
 		numHabitaciones = pNumHabitaciones;
 		identificacion = identificador;
 		setEnUso(false);
+		this.pagada = false;
 	}
 
 	public void setGrupoHuespedes(ArrayList<InformadorHuesped> pGrupoHuespedes) {
@@ -74,6 +76,10 @@ public class Reserva implements Serializable {
 
 	public boolean isEnUso() {
 		return enUso;
+	}
+	
+	public boolean setPagado(boolean pago) {
+		return pagada;
 	}
 
 	public void setEnUso(boolean enUso) {

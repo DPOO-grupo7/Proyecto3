@@ -102,7 +102,7 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Ventana Huespedes");
-		setSize(800, 600);
+		setSize(1100, 600);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
