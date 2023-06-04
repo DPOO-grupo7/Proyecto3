@@ -71,6 +71,12 @@ public class Habitacion implements Serializable{
 	public String getTipo() {
 		return tipo;
 	}
+	
+	public void setFechasReservadas(Date date1, Date date2)
+	{
+		this.fechasReservadas.add(date1);
+		this.fechasReservadas.add(date2);
+	}
 
 	public ArrayList<String> getCaracteristicas() {
 		return caracteristicas;

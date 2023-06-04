@@ -172,16 +172,16 @@ public class Hotel implements Serializable{
 		return -1;
 	}
 	
-	public int encontrarHuesped(String login)
+	public InformadorHuesped encontrarHuesped(String login)
 	{
 		for (int i=0; i<huespedes.size();i++)
 		{
 			if (huespedes.get(i).getLogin().equals(login))
 			{
-				return i; 
+				return huespedes.get(i); 
 			}
 		}
-		return -1;
+		return null;
 	}
 	
 	public ControladorHabitaciones getControladorHabitaciones()
@@ -411,6 +411,20 @@ public class Hotel implements Serializable{
 		// TODO Auto-generated method stub
 		System.out.println("GATA");
 		return autenticador.getTipo(username);
+	}
+	
+	public void actualizarHabitaciones(ArrayList<Habitacion> resultadoCuartos, Date fechaIngreso, Date fechaSalida)
+	{
+		for (int i = 0; i < resultadoCuartos.size(); i++) {
+			for (int j = 0; j < retornarHabitaciones().size(); j++) {
+			    if (retornarHabitaciones().get(j).equals(resultadoCuartos.get(i)))
+			    {
+			    	retornarHabitaciones().get(j).setFechasReservadas(fechaIngreso,fechaSalida);
+			    }
+				
+			}
+			
+		}
 	}
 }
 

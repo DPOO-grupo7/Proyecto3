@@ -30,3 +30,7 @@ bin/vista/Interfaz.class
 .classpath
 .DS_Store
 bin/modelo/Hotel.class
+bin/controlador/ControladorHabitaciones.class
+bin/modelo/Habitacion.class
+bin/modelo/Hotel.class
+bin/modelo/Reserva.class

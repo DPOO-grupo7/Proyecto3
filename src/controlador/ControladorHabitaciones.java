@@ -127,6 +127,9 @@ public class ControladorHabitaciones implements Serializable{
 		}
 		return listaFiltrada;
 	}
+	
+
+	
     public ArrayList<Habitacion> asignarcuartos(ArrayList<Habitacion> listaDisponibilidadCuartos, int cantidadPersonas) {
 		
     	ArrayList<Habitacion> cuartosAsignados = new ArrayList<Habitacion>();

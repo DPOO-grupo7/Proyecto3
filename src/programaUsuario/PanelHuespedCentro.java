@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import modelo.Habitacion;
@@ -92,21 +93,32 @@ public class PanelHuespedCentro extends JPanel{
 			setLayout(new BorderLayout());
 			ListaDisponible(hotel, this.fechaIni, this.fechaFin, "reserva");
 			add(new JLabel("Reservación"), BorderLayout.NORTH);
-			JPanel calendarios = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			JPanel calendarios = new JPanel();
+			calendarios.setLayout(new GridLayout(2, 3, 10, 10));
+			JLabel lblHuespedPrincipal = new JLabel("Huesped Principal:");
+	        calendarios.add(lblHuespedPrincipal);
+
+	        JTextField HuespedPrincipal = new JTextField(20);
+	        calendarios.add(HuespedPrincipal);
 			JDateChooser dateChooser1 = new JDateChooser();
 			JDateChooser dateChooser2 = new JDateChooser();
-			JButton refresh = new JButton("Refrescar Lista");
+			JButton refresh = new JButton("Refrescar");
 			calendarios.add(refresh);
+			JButton reservar = new JButton("Reservar");
+			
 			calendarios.add(dateChooser1);
 			calendarios.add(dateChooser2);
+			calendarios.add(reservar);
 			
 			add(calendarios, BorderLayout.SOUTH);
 			
-			Date fechaInicial = dateChooser1.getDate();
-			Date fechaFinal = dateChooser2.getDate();
+			//Date fechaInicial = dateChooser1.getDate();
+			//Date fechaFinal = dateChooser2.getDate();
 			
 			
 			refresh.addActionListener(e -> {
+				Date fechaInicial = dateChooser1.getDate();
+				Date fechaFinal = dateChooser2.getDate();
 	        	if (fechaInicial != null && fechaFinal != null) 
 	        	{
 	        		try {
@@ -122,6 +134,36 @@ public class PanelHuespedCentro extends JPanel{
 	    	            JOptionPane.showMessageDialog(null, "Error con la fecha", "Error", JOptionPane.WARNING_MESSAGE);
 	    	        }
 	        	}
+	        });
+			reservar.addActionListener(e -> {
+				Date fechaInicial = dateChooser1.getDate();
+				Date fechaFinal = dateChooser2.getDate();
+				if (fechaInicial != null && fechaFinal != null) 
+	        	{
+	        		try {
+	        			SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
+	        			String fechaFormateada1 = formatoFecha.format(fechaInicial);
+	        			String fechaFormateada2 = formatoFecha.format(fechaFinal);
+	    	            this.fechaIni = formatoFecha.parse(fechaFormateada1);
+	    	            this.fechaFin = formatoFecha.parse(fechaFormateada2);
+	    	        
+	    	        } catch (ParseException e1) {
+	    	            e1.printStackTrace();
+	    	            JOptionPane.showMessageDialog(null, "Error con la fecha", "Error", JOptionPane.WARNING_MESSAGE);
+	    	        }
+	        	}
+	        	String huespedP = HuespedPrincipal.getText();
+	        	InformadorHuesped huespedPrinci = hotel.encontrarHuesped(huespedP);
+	        	if (huespedPrinci == null)
+	        	{
+	        		hotel.crearCuentaHuesped(huespedP, "", "", "", "");
+	        	}
+	        	try {
+					crearReserva(hotel, this.fechaIni, this.fechaFin);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	        });
 			
 			
@@ -217,13 +259,13 @@ public class PanelHuespedCentro extends JPanel{
 		}
 		return fecha;
 	}
-	public ArrayList<InformadorHuesped> informacionHuespedes(Hotel hotel) throws NumberFormatException, IOException {
+	public ArrayList<InformadorHuesped> informacionHuespedes(Hotel hotel, int cantidad) throws NumberFormatException, IOException {
 
 		int continuar = 0;
 
 		ArrayList<InformadorHuesped> miembrosGrupo = new ArrayList<InformadorHuesped>();
-		while (continuar == 0) {
-			String nombre = JOptionPane.showInputDialog(null, "Introduce tu numero de documento");
+		while (continuar < cantidad-1) {
+			String nombre = JOptionPane.showInputDialog(null, "Introduce tu nombre");
 			String documento = JOptionPane.showInputDialog(null, "Introduce tu numero de documento");
 			String email = JOptionPane.showInputDialog(null, "Introduce tu email");
 			String telefono = JOptionPane.showInputDialog(null, "Introduce tu telefono");
@@ -235,8 +277,8 @@ public class PanelHuespedCentro extends JPanel{
 			//hotel.crearCuentaHuesped(nombre, documento, documento, email, telefono);
 			
 			
-			continuar = JOptionPane.showConfirmDialog(null, "¿Quieres seguir agregando?", "Agregar Ocupantes", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-			
+			//continuar = JOptionPane.showConfirmDialog(null, "¿Quieres seguir agregando?", "Agregar Ocupantes", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			continuar++;
 			
 		}
 		return miembrosGrupo;
@@ -276,7 +318,7 @@ public class PanelHuespedCentro extends JPanel{
 		int cntKids = 0;
 		
 		String[] botonesN = { "0","1", "2", "3", "4", "5"};
-		int seleccionN = JOptionPane.showOptionDialog(null, "Cantidad de personas", "Cantidad de personas",
+		int seleccionN = JOptionPane.showOptionDialog(null, "Cantidad de Niños", "Cantidad de Niños",
 				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, botonesN, null);
 		if (seleccion == 0) {
 			cntKids = 0;
@@ -301,7 +343,7 @@ public class PanelHuespedCentro extends JPanel{
 			// TODO escribir que pasa
 		}
 
-		ArrayList<InformadorHuesped> listadeMiebros = informacionHuespedes(hotel);
+		ArrayList<InformadorHuesped> listadeMiebros = informacionHuespedes(hotel, CntPersonas);
 		// se divide entre el huesped a cargo y el resto de miembros.
 		ArrayList<InformadorHuesped> listaGrupo = listadeMiebros;
 		if (listadeMiebros.size() != 1) {
@@ -310,9 +352,12 @@ public class PanelHuespedCentro extends JPanel{
 			listaGrupo = null;
 
 		}
-
+		
+		hotel.actualizarHabitaciones(resultadoCuartos, fechaIngreso, fechaSalida);
+		
 		Reserva reservaEncurso = hotel.nuevaReserva2(listadeMiebros.get(0), listaGrupo, CntPersonas, fechaIngreso, fechaSalida, resultadoCuartos);
-
+		System.out.println(reservaEncurso.getNumPersonas());
+		JOptionPane.showMessageDialog(this, "Reserva Exitosa");
 		//finalizarReserva(reservaEncurso, hotel);
 
 	}

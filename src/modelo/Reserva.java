@@ -1,9 +1,14 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private InformadorHuesped huespedAcargo;
 	private ArrayList<InformadorHuesped> grupoHuespedes;
 	private int numPersonas;
