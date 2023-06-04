@@ -34,9 +34,9 @@ public class InformadorAdministrador implements Serializable{
 	{
 		if (opcion.equals("1"))
 		{
-			hotel.crearHabitacion(Integer.parseInt(datos.get("capacidad")), datos.get("ubicacion"),datos.get("tipo"), tamanio,  cama,  ac,  heat,  tv,  cafe,
-					 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-					 desayuno);
+			hotel.crearHabitacion(Integer.parseInt(datos.get("capacidad")), datos.get("ubicacion"),datos.get("tipo"), datos.get("tamanio"),  datos.get("cama"),  Boolean.parseBoolean(datos.get("ac")),  Boolean.parseBoolean(datos.get("heat")),  Boolean.parseBoolean(datos.get("tv")),  Boolean.parseBoolean(datos.get("cafe")),
+			Boolean.parseBoolean(datos.get("plancha")),  Boolean.parseBoolean(datos.get("ropa")),  Boolean.parseBoolean(datos.get("secador")),  Boolean.parseBoolean(datos.get("voltaje")),  Boolean.parseBoolean(datos.get("usba")),  Boolean.parseBoolean(datos.get("usbc")),
+			Boolean.parseBoolean(datos.get("desayuno")));
 		}
 		
 		else if (opcion.equals("2"))

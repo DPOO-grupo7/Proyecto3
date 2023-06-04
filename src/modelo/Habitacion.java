@@ -85,14 +85,16 @@ public class Habitacion implements Serializable{
 	public ArrayList<Date> getFechasReservadas() {
 		return fechasReservadas;
 	}
-	public String getDatos()
-	{
-		String cadena = "ID: "+this.identificador+" Capacidad: "+this.capacidad+" Ubicacion: "+this.ubicacion+ " Tipo: "
-		+tipo + "Tamaño: "+this.tamanio+ "AC: "+this.aireAcondicionado+ "Calefacción: "+this.calefaccion + "Tamaño cama: "+this.tamanioCama + "TV: "+this.tv+
-		"Cafetera: "+this.cafetera+ "Plancha: "+this.plancha+ "Ropa De Cama: "+this.ropaDeCama+ "Secador: "+this.secador+ "Voltaje: "+this.voltaje+ "USB-A: "+this.USBA+
-		"USB-C: "+this.USBC+ "Desayuno: "+this.desayuno;
-		return cadena;
+	public String getDatos() {
+	    String cadena = "ID: " + this.identificador + " Capacidad: " + this.capacidad + " Ubicacion: " + this.ubicacion + " Tipo: "
+	            + tipo + "Tamaño: " + this.tamanio + " AC: " + (this.aireAcondicionado ? "si" : "no") + " Calefacción: " + (this.calefaccion ? "si" : "no")
+	            + " Tamaño cama: " + this.tamanioCama + " TV: " + (this.tv ? "si" : "no") + " Cafetera: " + (this.cafetera ? "si" : "no")
+	            + " Plancha: " + (this.plancha ? "si" : "no") + " Ropa De Cama: " + (this.ropaDeCama ? "si" : "no") + " Secador: " + (this.secador ? "si" : "no")
+	            + " Voltaje: " + (this.voltaje ? "si" : "no") + " USB-A: " + (this.USBA ? "si" : "no") + " USB-C: " + (this.USBC ? "si" : "no")
+	            + " Desayuno: " + (this.desayuno ? "si" : "no");
+	    return cadena;
 	}
+
 
 	public String getTamanio() {
 		return tamanio;
