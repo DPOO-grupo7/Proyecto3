@@ -34,7 +34,7 @@ public class Habitacion implements Serializable{
 	public Habitacion(int pCapacidad, String pUbicacion, String pTipo, int identificacion,
 			String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
 			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno) {
+			boolean desayuno, int precio) {
 		identificador = identificacion;
 		capacidad = pCapacidad;
 		ubicacion = pUbicacion;
@@ -54,6 +54,8 @@ public class Habitacion implements Serializable{
 		this.USBA = usba;
 		this.USBC = usbc;
 		this.desayuno = desayuno;
+		this.precio = precio;
+		
 	}
 
 	public int getIdentificador() {
@@ -91,7 +93,7 @@ public class Habitacion implements Serializable{
 	            + " Tamaño cama: " + this.tamanioCama + " TV: " + (this.tv ? "si" : "no") + " Cafetera: " + (this.cafetera ? "si" : "no")
 	            + " Plancha: " + (this.plancha ? "si" : "no") + " Ropa De Cama: " + (this.ropaDeCama ? "si" : "no") + " Secador: " + (this.secador ? "si" : "no")
 	            + " Voltaje: " + (this.voltaje ? "si" : "no") + " USB-A: " + (this.USBA ? "si" : "no") + " USB-C: " + (this.USBC ? "si" : "no")
-	            + " Desayuno: " + (this.desayuno ? "si" : "no");
+	            + " Desayuno: " + (this.desayuno ? "si" : "no") + " Precio: " + this.precio + "$";
 	    return cadena;
 	}
 

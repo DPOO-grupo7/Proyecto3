@@ -30,13 +30,13 @@ public class InformadorPersonal implements Serializable{
 	public String opciones(String opcion, HashMap<String, String> datos, String tamanio
 			, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
 			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno)
+			boolean desayuno, int precio)
 	{
 		if (opcion.equals("1"))
 		{
 			hotel.crearHabitacion(Integer.parseInt(datos.get("capacidad")), datos.get("ubicacion"),datos.get("tipo"), tamanio,  cama,  ac,  heat,  tv,  cafe,
 					 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-					 desayuno);
+					 desayuno, precio);
 		}
 		
 		else if (opcion.equals("2"))

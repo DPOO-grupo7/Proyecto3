@@ -9,6 +9,7 @@ import modelo.Habitacion;
 import modelo.Hotel;
 
 import java.awt.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class PanelAdminCentro extends JPanel{
@@ -94,10 +95,12 @@ public class PanelAdminCentro extends JPanel{
 			    boolean usba = JOptionPane.showConfirmDialog(null, "¿Tiene tomas USB-A?") == JOptionPane.YES_OPTION;
 			    boolean usbc = JOptionPane.showConfirmDialog(null, "¿Tiene tomas USB-C?") == JOptionPane.YES_OPTION;
 			    boolean desayuno = JOptionPane.showConfirmDialog(null, "¿Incluye desayuno?") == JOptionPane.YES_OPTION;
+			    int precio = 100000;
+			    precio = Integer.parseInt(JOptionPane.showInputDialog(null, "Precio Habitacion"));
 			    
 			    hotel.crearHabitacion(capacidad, ubicacion, clase,  tamanio,  cama,  ac,  heat,  tv,  cafe,
 						 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-						 desayuno);
+						 desayuno, precio);
 				ventana.repintar("habitaciones");
 
 	        

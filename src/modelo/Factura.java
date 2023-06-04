@@ -2,11 +2,12 @@ package modelo;
 import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-public class Factura {
+public class Factura implements Serializable{
 	
 	
 	
 	
+	private static final long serialVersionUID = 1L;
 	private String numeroFactura;
 	private String fecha;
 	private String huesped;

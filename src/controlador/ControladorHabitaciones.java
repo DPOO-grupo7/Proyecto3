@@ -18,11 +18,11 @@ public class ControladorHabitaciones implements Serializable{
 	}
 	public void crearHabitacion(int capacidad, String ubicacion, String tipo, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
 			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno) {
+			boolean desayuno, int precio) {
 		int identificador=LISTA_HABITACIONES.size()+1;
 		
 		LISTA_HABITACIONES.add(new Habitacion(capacidad, ubicacion, tipo, identificador,  tamanio,  cama,  ac,  heat,  tv,  cafe,
-				 plancha,  ropa,  secador,  voltaje,  usba,  usbc,desayuno));
+				 plancha,  ropa,  secador,  voltaje,  usba,  usbc,desayuno, precio));
 		
 	}
 	public Habitacion encontrarHabitacion(int id) {

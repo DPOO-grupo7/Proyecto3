@@ -201,11 +201,11 @@ public class Hotel implements Serializable{
 	
 	public void crearHabitacion(int pCapacidad, String pUbicacion, String pTipo, String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
 			boolean plancha, boolean ropa, boolean secador, boolean voltaje, boolean usba, boolean usbc,
-			boolean desayuno)
+			boolean desayuno, int precio)
 	{
 		ch.crearHabitacion(pCapacidad, pUbicacion, pTipo,  tamanio,  cama,  ac,  heat,  tv,  cafe,
 				 plancha,  ropa,  secador,  voltaje,  usba,  usbc,
-				 desayuno);
+				 desayuno, precio);
 	}
 	public Habitacion solicitarHabitacion(int id)
 	{
