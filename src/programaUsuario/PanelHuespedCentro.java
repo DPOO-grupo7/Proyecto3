@@ -356,7 +356,7 @@ public class PanelHuespedCentro extends JPanel{
 		hotel.actualizarHabitaciones(resultadoCuartos, fechaIngreso, fechaSalida);
 		
 		Reserva reservaEncurso = hotel.nuevaReserva2(listadeMiebros.get(0), listaGrupo, CntPersonas, fechaIngreso, fechaSalida, resultadoCuartos);
-		System.out.println(reservaEncurso.getNumPersonas());
+		//System.out.println(reservaEncurso.getNumPersonas());
 		JOptionPane.showMessageDialog(this, "Reserva Exitosa");
 		//finalizarReserva(reservaEncurso, hotel);
 
