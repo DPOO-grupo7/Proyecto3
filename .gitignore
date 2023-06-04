@@ -34,3 +34,5 @@ bin/controlador/ControladorHabitaciones.class
 bin/modelo/Habitacion.class
 bin/modelo/Hotel.class
 bin/modelo/Reserva.class
+bin/modelo/Habitacion.class
+bin/modelo/InformadorAdministrador.class

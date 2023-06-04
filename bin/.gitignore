@@ -1,14 +1,4 @@
 /programaUsuario/
-/modelo/
-/vista/
-<<<<<<< Updated upstream
-=======
-=======
-/pruebas/
-/pasarelaPago/
->>>>>>> Stashed changes
-/controlador/
-/posterityKeeper/
-/utilidades/
 /test/
->>>>>>> Stashed changes
+/utilidades/
+/vista/
