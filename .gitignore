@@ -27,3 +27,5 @@ bin/modelo/Hotel.class
 bin/modelo/InformadorHuesped.class
 bin/modelo/Hotel.class
 bin/vista/Interfaz.class
+.classpath
+.DS_Store
