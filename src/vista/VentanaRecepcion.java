@@ -102,7 +102,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         
         
         arriba.setBackground(Color.decode("#f5f6fb"));
-        dere.setBackground(Color.decode("#f5f6fb"));
+        //dere.setBackground(Color.decode("#f5f6fb"));
         izq.setBackground(Color.decode("#a8c4d4"));
         abajo.setBackground(Color.decode("#a8c4d4"));
         
@@ -142,7 +142,7 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 		{
 			
 			remove(centro);
-			remove(dere);
+			//remove(dere);
 			centro = new PanelFacturas();
 			//dere = new PanelRecepDerecha("factura", this);
 			add(centro, BorderLayout.CENTER);

@@ -20,6 +20,7 @@ import controlador.ManejadorTarifa;
 import modelo.Hotel;
 import posterityKeeper.Archivador;
 import utilidades.Autenticador;
+import vista.VentanaPrincipal;
 
 
 
@@ -30,7 +31,7 @@ public class VentanaInicialHuesped extends JFrame implements ActionListener {
 	//private Autenticador Autenticador;
 	//= new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
-	
+	private JButton administrativo = new JButton("Administrativo");
 	private Hotel hotel;
 
 
@@ -61,8 +62,10 @@ public class VentanaInicialHuesped extends JFrame implements ActionListener {
 		panelHServiciosHuesped panelHServicios = new panelHServiciosHuesped();
 		//restaurante.addActionListener(this);
 		iniciar.addActionListener(this);
+		administrativo.addActionListener(this);
 		//panelHSeleccionVista.add(restaurante);
 		panelHSeleccionVista.add(iniciar);
+		panelHSeleccionVista.add(administrativo);
 		Contenedor.setLayout(new GridLayout(1, 2, 0, 0));
 		Contenedor.add(panelHInformacion);
 		Contenedor.add(panelHServicios);
@@ -97,6 +100,11 @@ public class VentanaInicialHuesped extends JFrame implements ActionListener {
 
 		if (e.getSource() == iniciar) {
 			new VentanaLogInUsuario(hotel);
+			dispose();
+		
+	}
+		else if (e.getSource() == administrativo) {
+			new VentanaPrincipal(hotel);
 			dispose();
 		
 	}
