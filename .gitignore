@@ -37,3 +37,9 @@ bin/modelo/Reserva.class
 bin/modelo/Habitacion.class
 bin/modelo/InformadorAdministrador.class
 bin/modelo/Habitacion.class
+.classpath
+.classpath
+*.class
+.classpath
+*.class
+*.class
