@@ -26,13 +26,5 @@ public class PasarelaPago {
 	}
 
 
-	public static void main(String[] args) throws IOException {
-		System.out.println("Indique el nombre de la clase ");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String nombreClase = reader.readLine();
-		if (nombreClase.length() == 0) // El usuario no tecleó nada
-			nombreClase = "pasarelaPago.PayU";
-		PasarelaPago pasarelaPago = new PasarelaPago();
-		pasarelaPago.Pagar(nombreClase, "33322232", "nombreDue;o", 10);
-	}
+	
 }
