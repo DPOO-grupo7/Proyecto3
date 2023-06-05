@@ -1,0 +1,21 @@
+UBICACION,CAPACIDAD,TIPO,TAMANO HAB,TAMANO CAMA ,AC,CALEFACCION,TV,CAFETERA,PLANCHA,ROPA DE CAMA,SECADOR,VOLTAJE,USB-A,USB-C,DESAYUNO
+Edificio Principal,5,Estandar,20,Doble,No,No,Si,Si,No,Si,Si,No,No,No,Si
+Bungalows,4,Suite Doble,40,Queen,Si,Si,No,No,Si,No,Si,No,No,Si,Si
+Zona Exterior,2,Estandar,25,King,No,Si,Si,Si,No,No,Si,No,No,No,Si
+Edificio Del Sol,5,Suite,30,King,No,No,Si,No,No,Si,Si,Si,No,Si,No
+Bungalows,2,Suite Doble,40,Queen,Si,Si,Si,Si,Si,No,Si,No,No,No,No
+Edificio Principal,4,Estandar,20,Queen,Si,No,No,No,No,No,Si,Si,Si,No,Si
+Edificio Principal,3,Suite,35,Doble,Si,Si,No,Si,No,Si,Si,No,Si,Si,No
+Edificio Del Sol,4,Suite Doble,40,Doble,No,No,Si,No,No,No,Si,No,Si,No,Si
+Zona Exterior,6,Suite,35,King,Si,Si,Si,Si,No,No,Si,Si,No,No,No
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
