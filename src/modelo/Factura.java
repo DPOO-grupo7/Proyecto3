@@ -13,11 +13,12 @@ public class Factura implements Serializable{
 	private String huesped;
 	private String idHabitacion;
 	private String tipoConsumo;
-	private Boolean estaPagado;
+	private String idReserva;
+	private boolean estaPagado;
 	private int total;
 	
 	
-	public Factura(String nf, String fecha, String nombreh,String idhab,String tipo,Boolean pagado) {
+	public Factura(String nf, String fecha, String nombreh,String idhab,String tipo,boolean pagado, String idReserva, int total) {
 		
 		
 		this.fecha = fecha;
@@ -25,9 +26,9 @@ public class Factura implements Serializable{
 		this.huesped = nombreh;
 		this.idHabitacion = idhab;
 		this.numeroFactura = nf;
-		
+		this.idReserva = idReserva;
 		this.estaPagado = pagado;
-		this.total = 0;
+		this.total = total;
 }
 	
 	public String getFecha() {return fecha;}
@@ -35,9 +36,13 @@ public class Factura implements Serializable{
 	public String getidHabitacion() {return idHabitacion;}
 	public String getnumeroFactura() {return numeroFactura;}
 	public int getcosto() {return total;}
+	public String getIdReserva() {return idReserva;}
 	public Boolean getpagado() {return estaPagado;}
 	public String gettipoConsumo() {return tipoConsumo;}
-	
+	public void setPagado(boolean yesorno)
+	{
+		this.estaPagado = yesorno;
+	}
 	
 	
 	

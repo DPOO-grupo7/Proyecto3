@@ -1,4 +1,4 @@
-package programaUsuario;
+package vista;
 
 import java.awt.BorderLayout;
 
@@ -44,11 +44,12 @@ import modelo.Hotel;
 import modelo.InformadorHuesped;
 import modelo.Reserva;
 import pasarelaPago.PasarelaPago;
+import programaUsuario.JOptionPaneCalendario;
 import vista.VentanaAdmin;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JCalendar;
 
-public class PanelHuespedCentro extends JPanel{
+public class PanelReservasCentro extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> desplegable;
@@ -61,26 +62,9 @@ public class PanelHuespedCentro extends JPanel{
     private Date fechaFin = formatearFecha("31/12/2040");
 	//metodo de controlador habitaciones
 	//hotel recopilarDisponibilidad();
-    private JLabel lblNumeroTarjeta;
-    private JLabel lblFechaVencimiento;
-    private JLabel lblCVV;
-    private JTextField txtNumeroTarjeta;
-    private JTextField txtFechaVencimiento;
-    private JPasswordField txtCVV;
-    private JLabel lblNombrePagador;
-    private JLabel lblDireccionPagador;
-    private JTextField txtNombrePagador;
-    private JTextField txtIdReserva;
-    private JButton btnRealizarPago;
-    private String nombrePagador = "";
-    private String direccionPagador = "";
-	
-    private String pasarela = "pasarelaPago.PayU";
+   
     
-    private Image payu = new ImageIcon("./data/payu.png").getImage();
-    private Image paypal = new ImageIcon("./data/logo_paypal.jpg").getImage();
-    
-	public PanelHuespedCentro(String tipo, VentanaHuesped ventana, Hotel hotel, Date uno, Date fin)
+	public PanelReservasCentro(String tipo, VentanaRecepcion ventana, Hotel hotel, Date uno, Date fin)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
 		
@@ -201,124 +185,6 @@ public class PanelHuespedCentro extends JPanel{
 			
 			
 		}
-		else if (tipo == "pagar")
-		{
-			Icon payuu = new ImageIcon(this.payu);
-			Icon paypall = new ImageIcon(this.paypal);
-			
-			
-			
-			JLabel payuuu = new JLabel();
-			JLabel paypalll = new JLabel();
-			
-			
-			payuuu.setIcon(payuu);
-			paypalll.setIcon(paypall);
-		
-			
-			
-			lblNumeroTarjeta = new JLabel("Número de Tarjeta:");
-	        lblFechaVencimiento = new JLabel("Fecha de Vencimiento (MM/AA):");
-	        lblCVV = new JLabel("CVV:");
-	        txtNumeroTarjeta = new JTextField(16);
-	        txtFechaVencimiento = new JTextField(5);
-	        txtCVV = new JPasswordField(3);
-	        lblNombrePagador = new JLabel("Nombre del Pagador:");
-	        lblDireccionPagador = new JLabel("Dirección del Pagador:");
-	        txtNombrePagador = new JTextField(20);
-	        txtIdReserva = new JTextField(20);
-	        btnRealizarPago = new JButton("Realizar Pago");
-	        
-	        JLabel dificultad = new JLabel("Plataforma:");
-	        
-	        JRadioButton facil = new JRadioButton("Payu");
-	        JRadioButton medio = new JRadioButton("Paypal");
-	        JRadioButton dificil = new JRadioButton("Sire");
-	        ButtonGroup dificultades = new ButtonGroup();
-	        
-
-	        // Configuración del diseño del panel con GridBagLayout
-	        setLayout(new GridBagLayout());
-	        GridBagConstraints gbc = new GridBagConstraints();
-	        gbc.gridx = 0;
-	        gbc.gridy = 0;
-	        gbc.anchor = GridBagConstraints.WEST;
-	        gbc.insets = new Insets(5, 5, 5, 5);
-
-	        // Agregar componentes al panel
-	        add(lblNumeroTarjeta, gbc);
-	        gbc.gridy++;
-	        add(txtNumeroTarjeta, gbc);
-	        gbc.gridy++;
-	        add(lblFechaVencimiento, gbc);
-	        gbc.gridy++;
-	        add(txtFechaVencimiento, gbc);
-	        gbc.gridy++;
-	        add(lblCVV, gbc);
-	        gbc.gridy++;
-	        add(txtCVV, gbc);
-	        gbc.gridy++;
-	        add(lblNombrePagador, gbc);
-	        gbc.gridy++;
-	        add(txtNombrePagador, gbc);
-	        gbc.gridy++;
-	        add(lblDireccionPagador, gbc);
-	        gbc.gridy++;
-	        add(txtIdReserva, gbc);
-	        gbc.gridy++;
-	        add(btnRealizarPago, gbc);
-	        this.add(dificultad);
-	        dificultades.add(facil);
-	        dificultades.add(medio);
-	        dificultades.add(dificil);
-	        this.add(facil);
-	        this.add(medio);
-	        this.add(dificil);
-	        gbc.gridx++;
-			add(payuuu, gbc);
-			gbc.gridx++;
-			add(paypalll, gbc);
-			
-	        // Establecer los valores del pagador
-	        txtNombrePagador.setText(this.nombrePagador);
-	        txtIdReserva.setText(this.direccionPagador);
-	        
-	        facil.addActionListener(e -> {
-	        	pasarela = "pasarelaPago.PayU";
-	        });
-	        
-	        medio.addActionListener(e -> {
-	        	pasarela = "pasarelaPago.Paypal";
-	        });
-	        
-	        dificil.addActionListener(e -> {
-	        	pasarela = "pasarelaPago.Sire";
-	        });
-	        
-	        btnRealizarPago.addActionListener(e -> {
-	        	
-	        	this.nombrePagador = txtNombrePagador.getText();
-	        	this.direccionPagador = txtIdReserva.getText();
-	        	if ((this.txtNumeroTarjeta.getText() != "" || this.txtNumeroTarjeta.getText() != null) && (this.txtFechaVencimiento.getText() != "" || this.txtFechaVencimiento.getText() != null))
-	        	{
-	        		try {
-						pagarReserva(hotel, Integer.parseInt(txtIdReserva.getText()), this.pasarela);
-					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(null, "El id de su reserva está en la factura", "Error", JOptionPane.WARNING_MESSAGE);
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	        	}
-	        	else
-	        	{
-	        		JOptionPane.showMessageDialog(null, "Coloque su tarjeta", "Error", JOptionPane.WARNING_MESSAGE);
-	        	}
-	        });
-	    }
-		
 		
 		
 	}
@@ -341,57 +207,7 @@ public class PanelHuespedCentro extends JPanel{
         
 	}
 	
-	public void crearCosas(String tipo, VentanaHuesped ventana)
-	{
-		this.setLayout(new GridLayout(6 ,3 ));
-        
-        desplegable = new JComboBox<String>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
-        //1
-        this.add(new JLabel());
-        this.add(desplegable);
-        this.add(new JLabel());
-        //2
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        utilidad = new JButton("Agregar"+" "+tipo);
-        desplegable.addActionListener(e -> {
-            if (desplegable.getSelectedItem().equals("Opción 1")) {
-                utilidad.setEnabled(true);
-            } else {
-                utilidad.setEnabled(false);
-            }
-        });
-        //3
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        this.add(utilidad);
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        this.add(new JLabel());
-        this.add(new JLabel());
-        this.add(new JLabel());
-        
-        desplegable.addActionListener(ventana);
-		utilidad.addActionListener(ventana);
-        utilidad.setEnabled(false);
-	}
+	
 	public Date formatearFecha(String fechaTexto) {
 		// esta va a ser usada para cuando se quiera buscar una fecha o reservar en esa
 		// fecha.
@@ -516,49 +332,9 @@ public class PanelHuespedCentro extends JPanel{
 		Random nroRandom = new Random();
 		int nroFactura = nroRandom.nextInt(10000)+1;
 		Factura factura = new Factura(String.valueOf(nroFactura), fechaSalida.toString(), principal.getLogin(), String.valueOf(id),type, false, String.valueOf(reservaEncurso.getIdentificacion()), price);
-		GeneradorFactura.generarFacturaTxt(factura);
+		//GeneradorFactura.generarFacturaTxt(factura);
 		reservaEncurso.setFactura(factura);
 		
 	}
-	public void finalizarReserva(Reserva reservaEncurso,  Hotel hotel) {
-
-		ArrayList<String> informacionFinal = hotel.informacionSobreReserva2(reservaEncurso);
-		
-	}
 	
-
-    public String getNumeroTarjeta() {
-        return txtNumeroTarjeta.getText();
-    }
-
-    public String getFechaVencimiento() {
-        return txtFechaVencimiento.getText();
-    }
-
-    public String getCVV() {
-        return new String(txtCVV.getPassword());
-    }
-    
-    public void pagarReserva(Hotel hotel, int id , String plataforma) throws IOException {
-		boolean pago = true;
-		
-		PasarelaPago pasarelaPago = new PasarelaPago();
-		pasarelaPago.Pagar(plataforma, this.txtNumeroTarjeta.getText(), this.nombrePagador, 10);
-		
-		
-		Reserva reservaApagar = hotel.encontrarReserva(id);
-		reservaApagar.setPagado(pago);
-		Factura factura = reservaApagar.getFactura();
-		
-		int ventanaYesNotCancel = JOptionPane.showConfirmDialog(null, "¿Quieres generar una nueva factura?", "Facturacion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		//0=yes, 1=no, 2=cancel
-		if(ventanaYesNotCancel == 0) {
-			GeneradorFactura.generarFacturaTxt(factura);
-			JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros", "Facturación", -1);
-		}else if(ventanaYesNotCancel == 1){
-			JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros", "Facturación", -1);
-		}
-		
-		
-    }
 }
