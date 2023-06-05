@@ -164,14 +164,13 @@ public class Habitacion implements Serializable{
 		this.precio = precio;
 	}
 
-    public static int obtenerTarifa(String tipoHab) {
-        return preciosHabitaciones.getOrDefault(tipoHab, 0);
-    }
 
     public static void actualizarTarifa(String tipoHab, int tarifa) {
         preciosHabitaciones.put(tipoHab, tarifa);
     }
     
-    
+    public static int obtenerTarifa(String tipoHab) {
+        return preciosHabitaciones.getOrDefault(tipoHab, 0);
+    }
 	
 }
