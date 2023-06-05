@@ -224,7 +224,7 @@ public class PanelHuespedCentro extends JPanel{
 	        txtFechaVencimiento = new JTextField(5);
 	        txtCVV = new JPasswordField(3);
 	        lblNombrePagador = new JLabel("Nombre del Pagador:");
-	        lblDireccionPagador = new JLabel("Dirección del Pagador:");
+	        lblDireccionPagador = new JLabel("Id de la reserva:");
 	        txtNombrePagador = new JTextField(20);
 	        txtIdReserva = new JTextField(20);
 	        btnRealizarPago = new JButton("Realizar Pago");

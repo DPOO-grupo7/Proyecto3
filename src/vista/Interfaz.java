@@ -159,7 +159,7 @@ public class Interfaz {
 	}
 	private void crearHotel()
 	{
-		hotel=new Hotel(archivador, true, true, true ,true ,true, true, true, new Autenticador());
+		hotel=new Hotel(archivador, true, true, true ,true ,true, true, true);
 	}
 	private void iniciarSesion(String tipoUsuario) throws IOException
 	{

@@ -20,19 +20,11 @@ public class PasarelaPago {
 			System.out.println("No existe la clase " + TipoPago);
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Hubo otro error construyendo la agenda telefónica: " + e.getMessage());
+			System.out.println("Hubo otro error construyendo la pasarela " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 
-	public static void main(String[] args) throws IOException {
-		System.out.println("Indique el nombre de la clase ");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		String nombreClase = reader.readLine();
-		if (nombreClase.length() == 0) // El usuario no tecleó nada
-			nombreClase = "pasarelaPago.PayU";
-		PasarelaPago pasarelaPago = new PasarelaPago();
-		pasarelaPago.Pagar(nombreClase, "33322232", "nombreDue;o", 10);
-	}
+	
 }

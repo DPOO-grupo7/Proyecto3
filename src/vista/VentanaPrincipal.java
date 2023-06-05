@@ -95,7 +95,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 				botones, botones[0]);
 		if (opcion == 0)
 		{
-			hotel = new Hotel(archivador, true, true, true ,true ,true, true, true, autenticador);
+			hotel = new Hotel(archivador, true, true, true ,true ,true, true, true);
 		}
 		else
 		{
