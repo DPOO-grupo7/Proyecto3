@@ -1,11 +1,13 @@
 package vista;
 
-import java.awt.Color;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.*;
 
@@ -13,7 +15,7 @@ import javax.swing.*;
 import controlador.ManejadorReservas;
 
 import modelo.Hotel;
-
+import programaUsuario.PanelHuespedCentro;
 
 import java.awt.*;
 
@@ -38,6 +40,8 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 	private Image salir = new ImageIcon("./data/salir2.png").getImage();
 	private Image reserva = new ImageIcon("./data/reserva.png").getImage();
 	private Hotel hotel;
+	private Date fechaIni = formatearFecha("01/01/2021");
+    private Date fechaFin = formatearFecha("31/12/2040");
 
 
 	
@@ -71,10 +75,10 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         izq.add(new JLabel());
         
         
-         centro = new PanelReservasLista(new ManejadorReservas());
+         centro = new PanelReservasCentro("habitaciones", this, hotel, fechaIni, fechaFin);
         
         
-        dere = new PanelReservasFormulario(new String[]{"1","3"});
+        //dere = new PanelReservasFormulario();
         
         
        
@@ -104,13 +108,13 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
         
         add(izq, BorderLayout.WEST);
         add(centro, BorderLayout.CENTER);
-        add(dere, BorderLayout.EAST);
+        //add(dere, BorderLayout.EAST);
         add(arriba, BorderLayout.NORTH);
         add(abajo, BorderLayout.SOUTH);
         
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Panel Recepcion");
+        setTitle("Ventana Recepcion");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -146,44 +150,16 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 			revalidate();
 			repaint();
 		}
-		else if (e.getSource() == botonInventario)
-		{
-			
-			remove(centro);
-			remove(dere);
-			//centro = new PanelRecepCentro("inventario", this);
-			centro = new PanelInventarioDisponible();
-			//dere = new PanelRecepDerecha("inventario", this);
-			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
-		}
 		else if (e.getSource() == botonInvTotal)
 		{
 			
-			remove(centro);
-			//remove(dere);
-			centro = new PanelInventarioTotal();
-			//dere = new PanelRecepDerecha("invtotal", this);
-			add(centro, BorderLayout.CENTER);
-			//add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
+			repintar("habitaciones");
 			
 		}
 		else if (e.getSource() == botonReserva)
 		{
 			
-			remove(centro);
-			remove(dere);
-			centro = new PanelReservasLista(new ManejadorReservas());
-			//dere = new PanelRecepDerecha("reserva", this);
-			dere = new PanelReservasFormulario(new String[]{"1","3"});
-			add(centro, BorderLayout.CENTER);
-			add(dere, BorderLayout.EAST);
-			revalidate();
-			repaint();
+			repintar("personal");
 		}
 		
 		else if (e.getSource() == botonSalir)
@@ -193,5 +169,34 @@ public class VentanaRecepcion extends JFrame implements ActionListener {
 			dispose();
 		}
 		//else if (e.getSource() == dere.b)
+	}
+	public void repintar(String tipo) {
+		remove(centro);
+		centro = new PanelReservasCentro(tipo, this, hotel, this.fechaIni, this.fechaFin);
+		add(centro, BorderLayout.CENTER);
+		//add(dere, BorderLayout.EAST);
+		revalidate();
+		repaint();
+	}
+	
+	public Date formatearFecha(String fechaTexto) {
+		// esta va a ser usada para cuando se quiera buscar una fecha o reservar en esa
+		// fecha.
+//		un ejemplo de fechaTexto = "15/01/2023";
+		DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = null;
+		try {
+			fecha = formatoFecha.parse(fechaTexto);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		return fecha;
+	}
+	
+	public void setFechas(Date ini, Date end)
+	{
+		this.fechaIni = ini;
+		this.fechaFin = end;
 	}
 }
