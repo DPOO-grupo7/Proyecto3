@@ -1,8 +1,8 @@
-Número de factura: 7429
+Número de factura: 5532
 Fecha: Sat Jun 03 00:00:00 COT 2023
-Huésped: LEO
+Huésped: leo
 ID de habitación: 1
 ID de la reserva: 1
-Tipo de consumo: Estandar
-Pagado: No
+Tipo de consumo: Suite Doble
+Pagado: Sí
 Total: 0

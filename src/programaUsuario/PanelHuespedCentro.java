@@ -520,11 +520,6 @@ public class PanelHuespedCentro extends JPanel{
 		reservaEncurso.setFactura(factura);
 		
 	}
-	public void finalizarReserva(Reserva reservaEncurso,  Hotel hotel) {
-
-		ArrayList<String> informacionFinal = hotel.informacionSobreReserva2(reservaEncurso);
-		
-	}
 	
 
     public String getNumeroTarjeta() {

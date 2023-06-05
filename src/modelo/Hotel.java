@@ -36,13 +36,13 @@ public class Hotel implements Serializable{
 	private boolean piscina;
 	private boolean zonaHumeda;
 	private boolean asador;
-	private boolean recepcion24;
+	private boolean recepcion24; 
 	private boolean mascotas;
 	private Autenticador autenticador;
 	public Hotel(Archivador pArchivador, boolean parq, boolean wifi, boolean pis, boolean zona, boolean bbq,
 			boolean recepcion, boolean pets)
 	{
-		this.autenticador = autenticador;
+		//this.autenticador = autenticador;
 		archivador=pArchivador;
 		recepcionistas=new ArrayList<InformadorRecepcionista>();
 		admins=new ArrayList<InformadorAdministrador>();
