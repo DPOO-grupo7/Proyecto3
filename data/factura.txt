@@ -1,8 +1,8 @@
-Número de factura: 5532
+Número de factura: 2571
 Fecha: Sat Jun 03 00:00:00 COT 2023
-Huésped: leo
+Huésped: LEO
 ID de habitación: 1
 ID de la reserva: 1
-Tipo de consumo: Suite Doble
+Tipo de consumo: Estandar
 Pagado: Sí
-Total: 0
+Total: 100000
