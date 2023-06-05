@@ -37,3 +37,17 @@ bin/modelo/Reserva.class
 bin/modelo/Habitacion.class
 bin/modelo/InformadorAdministrador.class
 bin/modelo/Habitacion.class
+.classpath
+.classpath
+*.class
+.classpath
+*.class
+*.class
+bin/controlador/ControladorHabitaciones.class
+bin/controlador/ManejadorReservas.class
+bin/modelo/Habitacion.class
+bin/modelo/Hotel.class
+bin/modelo/InformadorAdministrador.class
+bin/modelo/Reserva.class
+bin/vista/Interfaz.class
+.DS_Store
