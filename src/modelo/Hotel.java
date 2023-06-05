@@ -40,7 +40,7 @@ public class Hotel implements Serializable{
 	private boolean mascotas;
 	private Autenticador autenticador;
 	public Hotel(Archivador pArchivador, boolean parq, boolean wifi, boolean pis, boolean zona, boolean bbq,
-			boolean recepcion, boolean pets, Autenticador autenticador)
+			boolean recepcion, boolean pets)
 	{
 		this.autenticador = autenticador;
 		archivador=pArchivador;

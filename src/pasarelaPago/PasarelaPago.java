@@ -20,7 +20,7 @@ public class PasarelaPago {
 			System.out.println("No existe la clase " + TipoPago);
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.out.println("Hubo otro error construyendo la agenda telefónica: " + e.getMessage());
+			System.out.println("Hubo otro error construyendo la pasarela " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
