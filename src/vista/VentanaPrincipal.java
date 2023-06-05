@@ -6,6 +6,8 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +17,7 @@ import javax.swing.JPanel;
 
 import modelo.Hotel;
 import posterityKeeper.Archivador;
+import programaUsuario.VentanaInicialHuesped;
 import utilidades.Autenticador;
 
 
@@ -27,6 +30,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	//= new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
 	private JButton restaurante = new JButton("Restaurante");
+	private JButton huesped = new JButton("Huesped");
 	private Hotel hotel;
 
 
@@ -57,13 +61,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		panelHServicios panelHServicios = new panelHServicios();
 		restaurante.addActionListener(this);
 		iniciar.addActionListener(this);
+		huesped.addActionListener(this);
 		panelHSeleccionVista.add(restaurante);
 		panelHSeleccionVista.add(iniciar);
+		panelHSeleccionVista.add(huesped);
 		Contenedor.setLayout(new GridLayout(1, 2, 0, 0));
 		Contenedor.add(panelHInformacion);
 		Contenedor.add(panelHServicios);
 		add(panelHSeleccionVista, BorderLayout.NORTH);
 		add(Contenedor, BorderLayout.CENTER);
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                hotel.guardarHotel(); 
+               
+                dispose();
+            }
+        });
 
 	}
 
@@ -99,7 +113,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			new LogIn(hotel);
 			dispose();
 		}
-		if (e.getSource() == restaurante) {
+		else if (e.getSource() == restaurante) {
 
 			Ventana.getContentPane().removeAll();
 			Ventana.revalidate();
@@ -109,6 +123,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			Ventana.repaint();
 
 		}
-
+		else if (e.getSource() == huesped) {
+			new VentanaInicialHuesped(hotel);
+			dispose();
+		}
 	}
 }

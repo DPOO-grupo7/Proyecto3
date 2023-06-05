@@ -1,10 +1,15 @@
 package programaUsuario;
 
 import java.awt.BorderLayout;
+
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,21 +20,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Insets;
 
+import modelo.Factura;
+import modelo.GeneradorFactura;
 import modelo.Habitacion;
 import modelo.Hotel;
 import modelo.InformadorHuesped;
 import modelo.Reserva;
+import pasarelaPago.PasarelaPago;
 import vista.VentanaAdmin;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JCalendar;
@@ -47,7 +61,25 @@ public class PanelHuespedCentro extends JPanel{
     private Date fechaFin = formatearFecha("31/12/2040");
 	//metodo de controlador habitaciones
 	//hotel recopilarDisponibilidad();
+    private JLabel lblNumeroTarjeta;
+    private JLabel lblFechaVencimiento;
+    private JLabel lblCVV;
+    private JTextField txtNumeroTarjeta;
+    private JTextField txtFechaVencimiento;
+    private JPasswordField txtCVV;
+    private JLabel lblNombrePagador;
+    private JLabel lblDireccionPagador;
+    private JTextField txtNombrePagador;
+    private JTextField txtIdReserva;
+    private JButton btnRealizarPago;
+    private String nombrePagador = "";
+    private String direccionPagador = "";
 	
+    private String pasarela = "pasarelaPago.PayU";
+    
+    private Image payu = new ImageIcon("./data/payu.png").getImage();
+    private Image paypal = new ImageIcon("./data/logo_paypal.jpg").getImage();
+    
 	public PanelHuespedCentro(String tipo, VentanaHuesped ventana, Hotel hotel, Date uno, Date fin)
 	{
 		this.setBackground(Color.decode("#f5f6fb"));
@@ -157,9 +189,10 @@ public class PanelHuespedCentro extends JPanel{
 	        	if (huespedPrinci == null)
 	        	{
 	        		hotel.crearCuentaHuesped(huespedP, "", "", "", "");
+	        		huespedPrinci = hotel.encontrarHuesped(huespedP);
 	        	}
 	        	try {
-					crearReserva(hotel, this.fechaIni, this.fechaFin);
+					crearReserva(hotel, this.fechaIni, this.fechaFin, huespedPrinci);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -170,8 +203,122 @@ public class PanelHuespedCentro extends JPanel{
 		}
 		else if (tipo == "pagar")
 		{
-			crearCosas(tipo, ventana);
-		}
+			Icon payuu = new ImageIcon(this.payu);
+			Icon paypall = new ImageIcon(this.paypal);
+			
+			
+			
+			JLabel payuuu = new JLabel();
+			JLabel paypalll = new JLabel();
+			
+			
+			payuuu.setIcon(payuu);
+			paypalll.setIcon(paypall);
+		
+			
+			
+			lblNumeroTarjeta = new JLabel("Número de Tarjeta:");
+	        lblFechaVencimiento = new JLabel("Fecha de Vencimiento (MM/AA):");
+	        lblCVV = new JLabel("CVV:");
+	        txtNumeroTarjeta = new JTextField(16);
+	        txtFechaVencimiento = new JTextField(5);
+	        txtCVV = new JPasswordField(3);
+	        lblNombrePagador = new JLabel("Nombre del Pagador:");
+	        lblDireccionPagador = new JLabel("Dirección del Pagador:");
+	        txtNombrePagador = new JTextField(20);
+	        txtIdReserva = new JTextField(20);
+	        btnRealizarPago = new JButton("Realizar Pago");
+	        
+	        JLabel dificultad = new JLabel("Plataforma:");
+	        
+	        JRadioButton facil = new JRadioButton("Payu");
+	        JRadioButton medio = new JRadioButton("Paypal");
+	        JRadioButton dificil = new JRadioButton("Sire");
+	        ButtonGroup dificultades = new ButtonGroup();
+	        
+
+	        // Configuración del diseño del panel con GridBagLayout
+	        setLayout(new GridBagLayout());
+	        GridBagConstraints gbc = new GridBagConstraints();
+	        gbc.gridx = 0;
+	        gbc.gridy = 0;
+	        gbc.anchor = GridBagConstraints.WEST;
+	        gbc.insets = new Insets(5, 5, 5, 5);
+
+	        // Agregar componentes al panel
+	        add(lblNumeroTarjeta, gbc);
+	        gbc.gridy++;
+	        add(txtNumeroTarjeta, gbc);
+	        gbc.gridy++;
+	        add(lblFechaVencimiento, gbc);
+	        gbc.gridy++;
+	        add(txtFechaVencimiento, gbc);
+	        gbc.gridy++;
+	        add(lblCVV, gbc);
+	        gbc.gridy++;
+	        add(txtCVV, gbc);
+	        gbc.gridy++;
+	        add(lblNombrePagador, gbc);
+	        gbc.gridy++;
+	        add(txtNombrePagador, gbc);
+	        gbc.gridy++;
+	        add(lblDireccionPagador, gbc);
+	        gbc.gridy++;
+	        add(txtIdReserva, gbc);
+	        gbc.gridy++;
+	        add(btnRealizarPago, gbc);
+	        this.add(dificultad);
+	        dificultades.add(facil);
+	        dificultades.add(medio);
+	        dificultades.add(dificil);
+	        this.add(facil);
+	        this.add(medio);
+	        this.add(dificil);
+	        gbc.gridx++;
+			add(payuuu, gbc);
+			gbc.gridx++;
+			add(paypalll, gbc);
+			
+	        // Establecer los valores del pagador
+	        txtNombrePagador.setText(this.nombrePagador);
+	        txtIdReserva.setText(this.direccionPagador);
+	        
+	        facil.addActionListener(e -> {
+	        	pasarela = "pasarelaPago.PayU";
+	        });
+	        
+	        medio.addActionListener(e -> {
+	        	pasarela = "pasarelaPago.Paypal";
+	        });
+	        
+	        dificil.addActionListener(e -> {
+	        	pasarela = "pasarelaPago.Sire";
+	        });
+	        
+	        btnRealizarPago.addActionListener(e -> {
+	        	
+	        	this.nombrePagador = txtNombrePagador.getText();
+	        	this.direccionPagador = txtIdReserva.getText();
+	        	if ((this.txtNumeroTarjeta.getText() != "" || this.txtNumeroTarjeta.getText() != null) && (this.txtFechaVencimiento.getText() != "" || this.txtFechaVencimiento.getText() != null))
+	        	{
+	        		try {
+						pagarReserva(hotel, Integer.parseInt(txtIdReserva.getText()), this.pasarela);
+					} catch (NumberFormatException e1) {
+						JOptionPane.showMessageDialog(null, "El id de su reserva está en la factura", "Error", JOptionPane.WARNING_MESSAGE);
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        	else
+	        	{
+	        		JOptionPane.showMessageDialog(null, "Coloque su tarjeta", "Error", JOptionPane.WARNING_MESSAGE);
+	        	}
+	        });
+	    }
+		
 		
 		
 	}
@@ -259,11 +406,13 @@ public class PanelHuespedCentro extends JPanel{
 		}
 		return fecha;
 	}
-	public ArrayList<InformadorHuesped> informacionHuespedes(Hotel hotel, int cantidad) throws NumberFormatException, IOException {
+	public ArrayList<InformadorHuesped> informacionHuespedes(Hotel hotel, int cantidad, InformadorHuesped principal) throws NumberFormatException, IOException {
 
 		int continuar = 0;
+		
 
 		ArrayList<InformadorHuesped> miembrosGrupo = new ArrayList<InformadorHuesped>();
+		miembrosGrupo.add(principal);
 		while (continuar < cantidad-1) {
 			String nombre = JOptionPane.showInputDialog(null, "Introduce tu nombre");
 			String documento = JOptionPane.showInputDialog(null, "Introduce tu numero de documento");
@@ -284,7 +433,9 @@ public class PanelHuespedCentro extends JPanel{
 		return miembrosGrupo;
 	}
 	
-	public void crearReserva(Hotel hotel, Date fechaIngreso, Date fechaSalida) throws IOException {
+	
+	
+	public void crearReserva(Hotel hotel, Date fechaIngreso, Date fechaSalida, InformadorHuesped principal) throws IOException {
 		int CntP = 0;
 		// Primera interacción: Verificar disponibilidad de la solicitud general
 		
@@ -343,7 +494,7 @@ public class PanelHuespedCentro extends JPanel{
 			// TODO escribir que pasa
 		}
 
-		ArrayList<InformadorHuesped> listadeMiebros = informacionHuespedes(hotel, CntPersonas);
+		ArrayList<InformadorHuesped> listadeMiebros = informacionHuespedes(hotel, CntPersonas, principal);
 		// se divide entre el huesped a cargo y el resto de miembros.
 		ArrayList<InformadorHuesped> listaGrupo = listadeMiebros;
 		if (listadeMiebros.size() != 1) {
@@ -359,11 +510,55 @@ public class PanelHuespedCentro extends JPanel{
 		//System.out.println(reservaEncurso.getNumPersonas());
 		JOptionPane.showMessageDialog(this, "Reserva Exitosa");
 		//finalizarReserva(reservaEncurso, hotel);
-
+		int id = resultadoCuartos.get(0).getIdentificador();
+		String type = resultadoCuartos.get(0).getTipo();
+		int price = resultadoCuartos.get(0).getPrecio();
+		Random nroRandom = new Random();
+		int nroFactura = nroRandom.nextInt(10000)+1;
+		Factura factura = new Factura(String.valueOf(nroFactura), fechaSalida.toString(), principal.getLogin(), String.valueOf(id),type, false, String.valueOf(reservaEncurso.getIdentificacion()), price);
+		GeneradorFactura.generarFacturaTxt(factura);
+		reservaEncurso.setFactura(factura);
+		
 	}
 	public void finalizarReserva(Reserva reservaEncurso,  Hotel hotel) {
 
 		ArrayList<String> informacionFinal = hotel.informacionSobreReserva2(reservaEncurso);
 		
 	}
+	
+
+    public String getNumeroTarjeta() {
+        return txtNumeroTarjeta.getText();
+    }
+
+    public String getFechaVencimiento() {
+        return txtFechaVencimiento.getText();
+    }
+
+    public String getCVV() {
+        return new String(txtCVV.getPassword());
+    }
+    
+    public void pagarReserva(Hotel hotel, int id , String plataforma) throws IOException {
+		boolean pago = true;
+		
+		PasarelaPago pasarelaPago = new PasarelaPago();
+		pasarelaPago.Pagar(plataforma, this.txtNumeroTarjeta.getText(), this.nombrePagador, 10);
+		
+		
+		Reserva reservaApagar = hotel.encontrarReserva(id);
+		reservaApagar.setPagado(pago);
+		Factura factura = reservaApagar.getFactura();
+		
+		int ventanaYesNotCancel = JOptionPane.showConfirmDialog(null, "¿Quieres generar una nueva factura?", "Facturacion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+		//0=yes, 1=no, 2=cancel
+		if(ventanaYesNotCancel == 0) {
+			GeneradorFactura.generarFacturaTxt(factura);
+			JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros", "Facturación", -1);
+		}else if(ventanaYesNotCancel == 1){
+			JOptionPane.showMessageDialog(null, "Gracias por confiar en nosotros", "Facturación", -1);
+		}
+		
+		
+    }
 }

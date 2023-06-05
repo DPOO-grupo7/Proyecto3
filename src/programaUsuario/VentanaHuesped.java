@@ -134,7 +134,7 @@ public class VentanaHuesped extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == botonTarifa) {
 
-			repintar("tarifa");
+			repintar("pagar");
 		}
 
 		else if (e.getSource() == botonSalir) {

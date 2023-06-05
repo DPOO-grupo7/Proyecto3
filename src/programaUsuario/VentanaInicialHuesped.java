@@ -6,6 +6,8 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +30,7 @@ public class VentanaInicialHuesped extends JFrame implements ActionListener {
 	//private Autenticador Autenticador;
 	//= new Autenticador();
 	private JButton iniciar = new JButton("Iniciar Sesion");
-	private JButton restaurante = new JButton("Restaurante");
+	
 	private Hotel hotel;
 
 
@@ -66,14 +68,22 @@ public class VentanaInicialHuesped extends JFrame implements ActionListener {
 		Contenedor.add(panelHServicios);
 		add(panelHSeleccionVista, BorderLayout.NORTH);
 		add(Contenedor, BorderLayout.CENTER);
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                hotel.guardarHotel(); 
+               
+                dispose();
+            }
+        });
 
 	}
 
 	
 	public static void main(String[] args) {
-		Autenticador autenticador = new Autenticador();
+		
 		Archivador archivador = new Archivador();
-		String[] botones = {"Nuevo Hotel", "Continuar"};
+		
 		Hotel hotel = null;
 		hotel = archivador.cargarHotel();
 		

@@ -19,6 +19,7 @@ public class Reserva implements Serializable {
 	private int facturacion = 0;
 	private boolean enUso;
 	private boolean pagada;
+	private Factura factura;
 
 	public Reserva(InformadorHuesped pHuespedAcargo, Date pFechaLlegada, Date pFechaSalida,
 			ArrayList<Habitacion> pNumHabitaciones, int identificador, boolean pagada) {
@@ -78,11 +79,22 @@ public class Reserva implements Serializable {
 		return enUso;
 	}
 	
-	public boolean setPagado(boolean pago) {
-		return pagada;
+	public void setPagado(boolean pago) {
+		this.factura.setPagado(pago);
+		this.pagada = pago;
 	}
 
 	public void setEnUso(boolean enUso) {
 		this.enUso = enUso;
 	}
+
+	public Factura getFactura() {
+		return factura;
+	}
+
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
+	
 }
+
