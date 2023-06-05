@@ -159,6 +159,7 @@ public class PanelAdminCentro extends JPanel{
 	                    
 	                    reader.close();
 	                    
+	                    
 	                    ventana.repintar("habitaciones"); 
 	                } catch (IOException ex) {
 	                    ex.printStackTrace();
@@ -187,7 +188,7 @@ public class PanelAdminCentro extends JPanel{
 	{
 		this.setLayout(new GridLayout(6 ,3 ));
         
-        desplegable = new JComboBox<String>(new String[]{"Opción 1", "Opción 2", "Opción 3"});
+        desplegable = new JComboBox<String>(new String[]{"Habitaciones", "Opción 2", "Opción 3"});
         //1
         this.add(new JLabel());
         this.add(desplegable);
@@ -199,16 +200,57 @@ public class PanelAdminCentro extends JPanel{
         
         utilidad = new JButton("Agregar"+" "+tipo);
         desplegable.addActionListener(e -> {
-            if (desplegable.getSelectedItem().equals("Opción 1")) {
+            if (desplegable.getSelectedItem().equals("Habitaciones")) {
                 utilidad.setEnabled(true);
             } else {
                 utilidad.setEnabled(false);
             }
+            
         });
         //3
         this.add(new JLabel());
         this.add(new JLabel());
         this.add(new JLabel());
+        
+        utilidad.addActionListener(e -> {
+            if (desplegable.getSelectedItem().equals("Habitaciones")) {
+                JFileChooser fileChooser = new JFileChooser();
+                int option = fileChooser.showOpenDialog(ventana);
+
+                if (option == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+
+                    try {
+                        BufferedReader reader = new BufferedReader(new FileReader(file));
+                        String line;
+                        boolean isFirstLine = true;
+
+                        while ((line = reader.readLine()) != null) {
+                            if (isFirstLine) {
+                                isFirstLine = false;
+                                continue;
+                            }
+
+                            String[] values = line.split(",");
+
+                            if (values.length == 2) {
+                                String tipoHab = values[0].trim();
+                                int tarifa = Integer.parseInt(values[1].trim());
+                                
+                                Habitacion.actualizarTarifa(tipoHab, tarifa);
+
+                            }
+                        }
+
+                        reader.close();
+
+                        ventana.repintar("habitaciones");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
         
         this.add(utilidad);
         this.add(new JLabel());
@@ -234,5 +276,7 @@ public class PanelAdminCentro extends JPanel{
 		utilidad.addActionListener(ventana);
         utilidad.setEnabled(false);
 	}
+
+	
 	
 }

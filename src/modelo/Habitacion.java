@@ -3,6 +3,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Habitacion implements Serializable{
 
@@ -30,6 +31,9 @@ public class Habitacion implements Serializable{
 	private boolean USBC;
 	private boolean desayuno;
 	private int precio = 0;
+	
+	private static HashMap<String, Integer> preciosHabitaciones = new HashMap<>();
+
 
 	public Habitacion(int pCapacidad, String pUbicacion, String pTipo, int identificacion,
 			String tamanio, String cama, boolean ac, boolean heat, boolean tv, boolean cafe,
@@ -54,7 +58,7 @@ public class Habitacion implements Serializable{
 		this.USBA = usba;
 		this.USBC = usbc;
 		this.desayuno = desayuno;
-		this.precio = precio;
+		this.precio = obtenerTarifa(tipo);
 		
 	}
 
@@ -160,5 +164,14 @@ public class Habitacion implements Serializable{
 		this.precio = precio;
 	}
 
+    public static int obtenerTarifa(String tipoHab) {
+        return preciosHabitaciones.getOrDefault(tipoHab, 0);
+    }
+
+    public static void actualizarTarifa(String tipoHab, int tarifa) {
+        preciosHabitaciones.put(tipoHab, tarifa);
+    }
+    
+    
 	
 }
